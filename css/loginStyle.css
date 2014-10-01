@@ -1,0 +1,19 @@
+body{
+    background-image: url("../images/login-background.jpg");
+    background-repeat: no-repeat;
+    background-size: 100%;
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+
+body div.panel{
+}
+
+div.login-panel{
+    background: transparent;
+    border: transparent;
+}
