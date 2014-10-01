@@ -24,7 +24,7 @@ class UserIdentity extends CUserIdentity {
         ));
         if ($record === null)
             $this->errorCode = self::ERROR_USERNAME_INVALID;
-        else if ($record->contrasenia !== crypt($this->password, $record->password))
+        else if ($record->password !== crypt($this->password, $record->password))
             $this->errorCode = self::ERROR_PASSWORD_INVALID;
         else {
             $this->_id = $record->nick;

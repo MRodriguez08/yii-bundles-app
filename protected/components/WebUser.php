@@ -10,12 +10,12 @@ class WebUser extends CWebUser {
 
     function getName() {
         $user = $this->loadUser(Yii::app()->user->id);
-        return (isset($user) ? $user->nombre : "");
+        return (isset($user) ? $user->name : "");
     }
 
     function getNameAndRole() {
         $user = $this->loadUser(Yii::app()->user->id);
-        return $user->nombre . ' (' . $this->userRoles[0]->itemname . ')';
+        return $user->name . ' (' . $this->userRoles[0]->itemname . ')';
     }
 
     function hasRole($rolId) {
@@ -35,9 +35,9 @@ class WebUser extends CWebUser {
     protected function loadUser($id = null) {
         if ($this->_model === null) {
             if ($id !== null) {
-                $this->_model = Usuario::model()->findByPk($id);
+                $this->_model = User::model()->findByPk($id);
                 $this->userRoles = AuthAssignment::model()->findAll(
-                        "userid=:usrId", array(':usrId' => $this->_model->usuario));
+                        "userid=:usrId", array(':usrId' => $this->_model->nick));
             }
         }
         return $this->_model;

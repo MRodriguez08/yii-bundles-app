@@ -31,7 +31,7 @@ class Audit extends CActiveRecord {
         return array(
             array('date_time, object, operation, user', 'required'),
             array('object, operation', 'length', 'max' => 100),
-            array('descripcion', 'length', 'max' => 512),
+            array('description', 'length', 'max' => 512),
             array('user', 'length', 'max' => 50),
             // The following rule is used by search().
             // @todo Please remove those attributes that should not be searched.

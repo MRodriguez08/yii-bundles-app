@@ -48,10 +48,10 @@
                         <span class="glyphicon glyphicon-user"></span>  <?php echo Yii::app()->user->getNameAndRole(); ?> <i class="fa fa-caret-down"></i>  
                     </a>
                     <ul class="dropdown-menu dropdown-user">
-                        <li><a href="<?php echo Yii::app()->createUrl("usuario/miPerfil") ?>"><span class="glyphicon glyphicon-user"></span> Mi perfil</a>
+                        <li><a href="<?php echo Yii::app()->createUrl("user/miPerfil") ?>"><span class="glyphicon glyphicon-user"></span> Mi perfil</a>
                         </li>
                         <li class="divider"></li>
-                        <li><a href="<?php echo Yii::app()->createUrl("usuario/logout") ?>"><span class="glyphicon glyphicon-log-out"></span> Salir</a>
+                        <li><a href="<?php echo Yii::app()->createUrl("user/logout") ?>"><span class="glyphicon glyphicon-log-out"></span> Salir</a>
                         </li>
                     </ul>
                     <!-- /.dropdown-user -->

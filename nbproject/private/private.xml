@@ -3,12 +3,8 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/opt/lampp/htdocs/riasAltas/backend/docs/prodConfig/parametros.sql</file>
-            <file>file:/opt/lampp/htdocs/riasAltas/backend/protected/components/FileSystemUtil.php</file>
-            <file>file:/opt/lampp/htdocs/riasAltas/backend/protected/components/RWSController.php</file>
-            <file>file:/opt/lampp/htdocs/riasAltas/backend/protected/components/UploadHandler.php</file>
-            <file>file:/opt/lampp/htdocs/riasAltas/backend/protected/components/HttpUtils.php</file>
-            <file>file:/opt/lampp/htdocs/riasAltas/backend/protected/controllers/FileController.php</file>
+            <file>file:/opt/lampp/htdocs/yii-bundles-app/protected/config/main.php</file>
+            <file>file:/opt/lampp/htdocs/yii-bundles-app/protected/components/AdminController.php</file>
         </group>
     </open-files>
 </project-private>
