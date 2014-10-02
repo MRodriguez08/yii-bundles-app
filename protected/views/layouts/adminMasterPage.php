@@ -118,7 +118,7 @@
                             if (strcmp(Yii::app()->session[Constantes::SESSION_CURRENT_TAB], Constantes::ITEM_MENU_USUARIOS) == 0) {
                                 echo 'active';
                             }
-                            ?>"><a href="<?php echo Yii::app()->createUrl('usuario/admin'); ?>"><span class="glyphicon glyphicon-user"></span> <?php echo Yii::app()->params["labelFuncionalidadUsuarios"] ?></a></li>
+                            ?>"><a href="<?php echo Yii::app()->createUrl('user/admin'); ?>"><span class="glyphicon glyphicon-user"></span> <?php echo Yii::app()->params["labelFuncionalidadUsuarios"] ?></a></li>
                             <?php } ?>
                             <?php if (Yii::app()->user->hasRole(Constantes::USER_ROLE_DIRECTOR) || Yii::app()->user->hasRole(Constantes::USER_ROLE_ADMINISTRATIVO)) { ?>
                             <li class="<?php

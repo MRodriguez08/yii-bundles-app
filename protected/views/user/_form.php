@@ -1,6 +1,6 @@
 <?php
-/* @var $this UsuarioController */
-/* @var $model Usuario */
+/* @var $this UserController */
+/* @var $model User */
 /* @var $form CActiveForm */
 ?>
 
@@ -8,7 +8,7 @@
 
     <?php
     $form = $this->beginWidget('CActiveForm', array(
-        'id' => 'usuario-form',
+        'id' => 'user-form',
         'enableAjaxValidation' => false,
     ));
     ?>
@@ -16,9 +16,9 @@
     <?php if (count($model->getErrors()) > 0) { echo Yii::app()->params["formHasErrorPanel"]; }; ?>
 
     <div class="form-group">
-        <?php echo $form->labelEx($model, 'usuario'); ?>
-        <?php echo $form->textField($model, 'usuario', array('disabled' => ($model->isNewRecord ? '' : 'true'),'size' => 60, 'maxlength' => 64, "class" => "form-control input-sm")); ?>
-        <?php echo $form->error($model, 'usuario', array("class" => "yii-error-alert")); ?>
+        <?php echo $form->labelEx($model, 'nick'); ?>
+        <?php echo $form->textField($model, 'nick', array('disabled' => ($model->isNewRecord ? '' : 'true'),'size' => 60, 'maxlength' => 64, "class" => "form-control input-sm")); ?>
+        <?php echo $form->error($model, 'nick', array("class" => "yii-error-alert")); ?>
     </div>
 
     <div class="form-group">
@@ -28,25 +28,25 @@
     </div>
 
     <div class="form-group">
-        <?php echo $form->labelEx($model, 'nombre'); ?>
-        <?php echo $form->textField($model, 'nombre', array('size' => 60, 'maxlength' => 100, "class" => "form-control input-sm")); ?>
-        <?php echo $form->error($model, 'nombre', array("class" => "yii-error-alert")); ?>
+        <?php echo $form->labelEx($model, 'name'); ?>
+        <?php echo $form->textField($model, 'name', array('size' => 60, 'maxlength' => 100, "class" => "form-control input-sm")); ?>
+        <?php echo $form->error($model, 'name', array("class" => "yii-error-alert")); ?>
     </div>
 
     <div class="form-group">
-        <?php echo $form->labelEx($model, 'apellido'); ?>
-        <?php echo $form->textField($model, 'apellido', array('size' => 60, 'maxlength' => 100, "class" => "form-control input-sm")); ?>
-        <?php echo $form->error($model, 'apellido', array("class" => "yii-error-alert")); ?>
+        <?php echo $form->labelEx($model, 'surname'); ?>
+        <?php echo $form->textField($model, 'surname', array('size' => 60, 'maxlength' => 100, "class" => "form-control input-sm")); ?>
+        <?php echo $form->error($model, 'surname', array("class" => "yii-error-alert")); ?>
     </div>
 
     <div class="form-group">
-        <?php echo $form->labelEx($model, 'rol'); ?>        
-        <?php echo CHtml::dropDownList('Usuario[rol]', $model->rol, 
+        <?php echo $form->labelEx($model, 'role'); ?>        
+        <?php echo CHtml::dropDownList('User[role]', $model->role, 
             array('administrativo' => 'administrativo', 'agente' => 'agente', 'director' => 'director'),
             array("class" => "form-control input-sm")); ?>       
     </div>
     
-    <a href="<?php echo Yii::app()->createUrl("usuario/admin") ?>"><?php echo Yii::app()->params["labelBotonVolver"] ?></a>
+    <a href="<?php echo Yii::app()->createUrl("user/admin") ?>"><?php echo Yii::app()->params["labelBotonVolver"] ?></a>
     <?php echo CHtml::submitButton($model->isNewRecord ? Yii::app()->params["labelBotonCrear"] : Yii::app()->params["labelBotonGuardar"], array("class" => "btn btn-default")); ?>
 
     <?php $this->endWidget(); ?>

@@ -58,13 +58,13 @@ return array(
             
         ),
         // uncomment the following to enable URLs in path-format
-        'defaultController' => 'usuario',
+        'defaultController' => 'site',
         'urlManager' => array(
             'urlFormat' => 'path',
             'rules' => array(
 
                 'sysparam/admin' => 'sysparam/admin',
-                'usuario/admin' => 'usuario/admin',
+                'user/admin' => 'user/admin',
                 
                 'evento/admin' => 'evento/admin',
                 
@@ -81,7 +81,7 @@ return array(
                 
                 'sysparam/<action:\w+>/<id:\w+>' => 'sysparam/<action>',
                 'evento/<action:\w+>/<id:\w+>' => 'evento/<action>',
-                'usuario/<action:\w+>/<id:\w+>' => 'usuario/<action>',
+                'user/<action:\w+>/<id:\w+>' => 'user/<action>',
                 
                 '<controller:\w+>/<id:\d+>' => '<controller>/view',                
                 '<controller:\w+>/<action:\w+>/<id:\d+>' => '<controller>/<action>',

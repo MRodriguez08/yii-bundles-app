@@ -8,7 +8,7 @@ $('.search-button').click(function(){
 	return false;
 });
 $('.search-form form').submit(function(){
-	$('#usuario-grid').yiiGridView('update', {
+	$('#user-grid').yiiGridView('update', {
 		data: $(this).serialize()
 	});
 	return false;
@@ -32,14 +32,14 @@ $('.search-form form').submit(function(){
                     ?>
             </div>
             <div class="col-lg-12">
-                <div class="pull-right"><a href="<?php echo Yii::app()->createUrl('usuario/create'); ?>"><span title="nuevo" class="glyphicon glyphicon-plus"></span></a></div>
+                <div class="pull-right"><a href="<?php echo Yii::app()->createUrl('user/create'); ?>"><span title="nuevo" class="glyphicon glyphicon-plus"></span></a></div>
             </div>
         </div>
         <div class="row">
             <div class="col-lg-12">
                 <?php
                 $this->widget('zii.widgets.grid.CGridView', array(
-                    'id' => 'usuario-grid',
+                    'id' => 'user-grid',
                     'emptyText' => Yii::app()->params["labelTablaSinResultados"],
                     'dataProvider' => $model->search(),
                     'cssFile' => Yii::app()->params["gridViewStyleSheet"],
@@ -53,7 +53,7 @@ $('.search-form form').submit(function(){
                         'lastPageLabel' => '&gt;&gt;',
                     ),
                     'columns' => array(
-                        'usuario',
+                        'nick',
                         'email',
                         'nombre',
                         'apellido',
@@ -66,7 +66,7 @@ $('.search-form form').submit(function(){
                                     (
                                     'label' => Yii::app()->params["labelBotonGrillaVer"],
                                     'options' => array('title' => 'ver'),
-                                    'url' => 'Yii::app()->createUrl("usuario/view", array("id"=>$data->usuario))',
+                                    'url' => 'Yii::app()->createUrl("user/view", array("id"=>$data->nick))',
                                 ),
                             ),
                         ),
@@ -79,7 +79,7 @@ $('.search-form form').submit(function(){
                                     (
                                     'label' => Yii::app()->params["labelBotonGrillaEditar"],
                                     'options' => array('class' => 'grid-action-cell'),
-                                    'url' => 'Yii::app()->createUrl("usuario/update", array("id"=>$data->usuario))',
+                                    'url' => 'Yii::app()->createUrl("user/update", array("id"=>$data->nick))',
                                 ),
                             ),
                         ),
@@ -96,7 +96,7 @@ $('.search-form form').submit(function(){
                                     (
                                     'label' => Yii::app()->params["labelBotonResetPassword"],
                                     'options' => array('class' => 'grid-action-cell'),
-                                    'url' => 'Yii::app()->createUrl("usuario/resetPassword", array("id"=>$data->usuario))',
+                                    'url' => 'Yii::app()->createUrl("user/resetPassword", array("id"=>$data->nick))',
                                 ),
                             ),
                         ),

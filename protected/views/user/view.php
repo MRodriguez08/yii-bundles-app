@@ -10,7 +10,7 @@
         <form role="form">
             <div class="form-group">
                 <label for="inputUsuario">Usuario</label>
-                <input disabled="true" type="text" class="form-control input-sm" id="inputUsuario" value="<?php echo $model->usuario; ?>">
+                <input disabled="true" type="text" class="form-control input-sm" id="inputUsuario" value="<?php echo $model->nick; ?>">
             </div>
             <div class="form-group">
                 <label for="inputEmail">Email</label>
@@ -18,17 +18,17 @@
             </div>
             <div class="form-group">
                 <label for="inputNombre">Nombre</label>
-                <input disabled="true" type="text" class="form-control input-sm" id="inputNombre" value="<?php echo $model->nombre; ?>">
+                <input disabled="true" type="text" class="form-control input-sm" id="inputNombre" value="<?php echo $model->name; ?>">
             </div>
             <div class="form-group">
                 <label for="inputApellido">Apellido</label>
-                <input disabled="true" type="text" class="form-control input-sm" id="inputApellido" value="<?php echo $model->apellido; ?>">
+                <input disabled="true" type="text" class="form-control input-sm" id="inputApellido" value="<?php echo $model->surname; ?>">
             </div>
             <div class="form-group">
                 <label for="inputRol">Rol</label>
-                <input disabled="true" type="text" class="form-control input-sm" id="inputApellido" value="<?php echo $model->rol; ?>">
+                <input disabled="true" type="text" class="form-control input-sm" id="inputApellido" value="<?php echo $model->role; ?>">
             </div>
-            <a href="<?php echo Yii::app()->createUrl("usuario/admin"); ?>">Volver</a>
+            <a href="<?php echo Yii::app()->createUrl("user/admin"); ?>">Volver</a>
         </form>
     </div>
     <div class="col-lg-8"></div>

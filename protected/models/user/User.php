@@ -45,17 +45,17 @@ class User extends CActiveRecord {
 
     public function duplicatedUserName($attribute, $params) {
         if ($this->isNewRecord) {
-            if (count(Usuario::model()->findALl('nick=:nick', array("nick" => $this->usuario))) > 0)
+            if (count(User::model()->findALl('nick=:nick', array("nick" => $this->nick))) > 0)
                 $this->addError($attribute, str_replace("{attribute}", $attribute, Yii::app()->params["templateDuplicatedValueErrorMessage"]));
         }
     }
 
     public function duplicatedUserEmal($attribute, $params) {
         if ($this->isNewRecord) {
-            if (count(Usuario::model()->findALl('email=:email', array("email" => $this->email))) > 0)
+            if (count(User::model()->findALl('email=:email', array("email" => $this->email))) > 0)
                 $this->addError($attribute, str_replace("{attribute}", $attribute, Yii::app()->params["templateDuplicatedValueErrorMessage"]));
         }  else {
-            if (count(Usuario::model()->findALl('email=:email and nick <> :nick', array("email" => $this->email,"nick" => $this->nick))) > 0)
+            if (count(User::model()->findALl('email=:email and nick <> :nick', array("email" => $this->email,"nick" => $this->nick))) > 0)
                 $this->addError($attribute, str_replace("{attribute}", $attribute, Yii::app()->params["templateDuplicatedValueErrorMessage"]));
         }
         
@@ -125,15 +125,15 @@ class User extends CActiveRecord {
      * Returns the static model of the specified AR class.
      * Please note that you should have this exact method in all your CActiveRecord descendants!
      * @param string $className active record class name.
-     * @return Usuario the static model class
+     * @return User the static model class
      */
     public static function model($className = __CLASS__) {
         return parent::model($className);
     }
     
     public function resetPassword(){
-        $defPassword = Parametro::model()->findByPk(Constantes::PARAMETRO_CONTRASENIA_REINICIO);
-        $this->password = crypt($defPassword->valor);
+        $defPassword = Sysparam::model()->findByPk(Constantes::PARAMETRO_CONTRASENIA_REINICIO);
+        $this->password = crypt($defPassword->value);
     }
 
 }

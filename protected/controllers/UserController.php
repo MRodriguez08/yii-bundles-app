@@ -75,7 +75,7 @@ class UserController extends AdminController {
 
         if (isset($_POST['User'])) {
             $model->attributes = $_POST['User'];
-            $model->password = crypt(Parametro::model()->findByPk(Constantes::PARAMETRO_CONTRASENIA_REINICIO)->valor);
+            $model->password = crypt(Sysparam::model()->findByPk(Constantes::PARAMETRO_CONTRASENIA_REINICIO)->value);
             if ($model->save()) {
                 $authAssign = new AuthAssignment();
                 $authAssign->itemname = $model->role;
@@ -114,7 +114,7 @@ class UserController extends AdminController {
             if ($model->save()) {
 
                 $authAsign = AuthAssignment::model()->findByAttributes(array('userid' => $model->nick));
-                $authAsign->itemname = $model->rol;
+                $authAsign->itemname = $model->role;
                 if ($authAsign->save()) {
                     $this->audit->logAudit(Yii::app()->user->id, new DateTime, Constantes::AUDITORIA_OBJETO_USUARIO, Constantes::AUDITORIA_OPERACION_MODIFICACION, $model->nick);
                     $this->render('/site/successfullOperation', array(
@@ -168,7 +168,7 @@ class UserController extends AdminController {
                 $this->render('/site/successfullOperation', array(
                     'header' => 'Contrase&ntilde;a modificada con &eacute;xito',
                     'message' => 'Haga click en volver para regresar a Mi Perfil',
-                    'returnUrl' => Yii::app()->createUrl('nick/miPerfil')
+                    'returnUrl' => Yii::app()->createUrl('user/miPerfil')
                 ));
                 return;
             }
@@ -195,8 +195,8 @@ class UserController extends AdminController {
                 $this->render('/site/successfullOperation', array(
                     'header' => 'Usuario modificado con &eacute;xito',
                     'message' => 'Haga click en volver para regresar a la gestión de usuarios',
-                    'returnUrl' => Yii::app()->createUrl('nick/admin'),
-                    'viewUrl' => Yii::app()->createUrl("nick/view", array("id" => $model->nick))
+                    'returnUrl' => Yii::app()->createUrl('user/admin'),
+                    'viewUrl' => Yii::app()->createUrl("user/view", array("id" => $model->nick))
                 ));
                 return;
             }
