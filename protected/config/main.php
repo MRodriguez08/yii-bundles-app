@@ -19,12 +19,15 @@ return array(
         /* audit bundle */
         'application.models.audit.*',
         
-        'application.models.*',
+        
+        /* system parameters bundle */
         'application.models.sysparam.*',
         
         'application.models.evento.*',
         
-        'application.models.cliente.*',
+        /* customers bundle */
+        'application.models.customer.*',
+                
         'application.models.inmueble.*',
         'application.models.departamento.*',
         'application.models.ciudad.*',

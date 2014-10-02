@@ -6,18 +6,18 @@
  * The followings are the available columns in table 'clientes':
  * @property integer $id
  * @property string $email
- * @property string $nombre
- * @property string $apellido
- * @property string $direccion
- * @property string $comentarios
+ * @property string $name
+ * @property string $surname
+ * @property string $streetaddress
+ * @property string $comments
  */
-class Cliente extends CActiveRecord {
+class Customer extends CActiveRecord {
 
     /**
      * @return string the associated database table name
      */
     public function tableName() {
-        return 'clientes';
+        return 'customers';
     }
 
     /**
@@ -31,20 +31,20 @@ class Cliente extends CActiveRecord {
             array('email', 'length', 'max' => 64),
             array('email', 'validateEmailFormat', 'message' => Yii::app()->params["templateInvalidEmailFormatMessage"]),
             array('email', 'duplicatedClientEmail', 'message' => Yii::app()->params["templateDuplicatedValueErrorMessage"]),
-            array('nombre, apellido', 'length', 'max' => 100),
-            array('direccion, comentarios', 'length', 'max' => 2048),
+            array('name, surname', 'length', 'max' => 100),
+            array('streetaddress, comments', 'length', 'max' => 2048),
             // The following rule is used by search().
             // @todo Please remove those attributes that should not be searched.
-            array('id, email, nombre, apellido, direccion, comentarios', 'safe', 'on' => 'search'),
+            array('id, email, name, surname, streetaddress, comments', 'safe', 'on' => 'search'),
         );
     }
 
     public function duplicatedClientEmail($attribute, $params) {
         if ($this->isNewRecord) {
-            if (count(Cliente::model()->findALl('email=:email', array("email" => $this->email))) > 0)
+            if (count(Customer::model()->findALl('email=:email', array("email" => $this->email))) > 0)
                 $this->addError($attribute, str_replace("{attribute}", $attribute, Yii::app()->params["templateDuplicatedValueErrorMessage"]));
         }  else {
-            if (count(Cliente::model()->findALl('email=:email and id <> :id', array("email" => $this->email,"id" => $this->id))) > 0)
+            if (count(Customer::model()->findALl('email=:email and id <> :id', array("email" => $this->email,"id" => $this->id))) > 0)
                 $this->addError($attribute, str_replace("{attribute}", $attribute, Yii::app()->params["templateDuplicatedValueErrorMessage"]));
         }        
     }
@@ -72,10 +72,10 @@ class Cliente extends CActiveRecord {
         return array(
             'id' => 'ID',
             'email' => 'Email',
-            'nombre' => 'Nombre',
-            'apellido' => 'Apellido',
-            'direccion' => 'Direcci&oacute;n',
-            'comentarios' => 'Comentarios',
+            'name' => 'Nombre',
+            'surname' => 'Apellido',
+            'streetaddress' => 'Direcci&oacute;n',
+            'comments' => 'Comentarios',
         );
     }
 
@@ -98,10 +98,10 @@ class Cliente extends CActiveRecord {
 
         $criteria->compare('id', $this->id);
         $criteria->compare('email', $this->email, true);
-        $criteria->compare('nombre', $this->nombre, true);
-        $criteria->compare('apellido', $this->apellido, true);
-        $criteria->compare('direccion', $this->direccion, true);
-        $criteria->compare('comentarios', $this->comentarios, true);
+        $criteria->compare('name', $this->name, true);
+        $criteria->compare('surname', $this->surname, true);
+        $criteria->compare('streetaddress', $this->streetaddress, true);
+        $criteria->compare('comments', $this->comments, true);
 
         return new CActiveDataProvider($this, array(
             'criteria' => $criteria,
@@ -112,7 +112,7 @@ class Cliente extends CActiveRecord {
      * Returns the static model of the specified AR class.
      * Please note that you should have this exact method in all your CActiveRecord descendants!
      * @param string $className active record class name.
-     * @return Cliente the static model class
+     * @return Customer the static model class
      */
     public static function model($className = __CLASS__) {
         return parent::model($className);

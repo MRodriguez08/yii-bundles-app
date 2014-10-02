@@ -32,7 +32,7 @@ $('.search-form form').submit(function(){
                     ?>
             </div>
             <div class="col-lg-12">
-                <div class="pull-right"><a href="<?php echo Yii::app()->createUrl('cliente/create'); ?>"><span title="nuevo" class="glyphicon glyphicon-plus"></span></a></div>
+                <div class="pull-right"><a href="<?php echo Yii::app()->createUrl('customer/create'); ?>"><span title="nuevo" class="glyphicon glyphicon-plus"></span></a></div>
             </div>
         </div>
         <div class="row">
@@ -54,8 +54,8 @@ $('.search-form form').submit(function(){
                     'dataProvider' => $model->search(),
                     'columns' => array(
                         'email',
-                        'nombre',
-                        'apellido',
+                        'name',
+                        'surname',
                         array(
                             'class' => 'CButtonColumn',
                             'template' => '{ver}',
@@ -65,7 +65,7 @@ $('.search-form form').submit(function(){
                                     (
                                     'label' => Yii::app()->params["labelBotonGrillaVer"],
                                     'options' => array('title' => 'ver'),
-                                    'url' => 'Yii::app()->createUrl("cliente/view", array("id"=>$data->id))',
+                                    'url' => 'Yii::app()->createUrl("customer/view", array("id"=>$data->id))',
                                 ),
                             ),
                         ),
@@ -78,7 +78,7 @@ $('.search-form form').submit(function(){
                                     (
                                     'label' => Yii::app()->params["labelBotonGrillaEditar"],
                                     'options' => array('title' => 'editar'),
-                                    'url' => 'Yii::app()->createUrl("cliente/update", array("id"=>$data->id))',
+                                    'url' => 'Yii::app()->createUrl("customer/update", array("id"=>$data->id))',
                                 ),
                             ),
                         ),
@@ -91,7 +91,7 @@ $('.search-form form').submit(function(){
                                     (
                                     'label' => Yii::app()->params["labelBotonGrillaEliminar"],
                                     'options' => array('title' => 'eliminar'),
-                                    'url' => 'Yii::app()->createUrl("cliente/delete", array("id"=>$data->id))',
+                                    'url' => 'Yii::app()->createUrl("customer/delete", array("id"=>$data->id))',
                                 ),
                             ),
                         ),

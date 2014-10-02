@@ -14,21 +14,21 @@
             </div>
             <div class="form-group">
                 <label for="inputNombre">Nombre</label>
-                <input disabled="true" type="text" class="form-control input-sm" id="inputNombre" value="<?php echo $model->nombre; ?>">
+                <input disabled="true" type="text" class="form-control input-sm" id="inputNombre" value="<?php echo $model->name; ?>">
             </div>
             <div class="form-group">
                 <label for="inputApellido">Apellido</label>
-                <input disabled="true" type="text" class="form-control input-sm" id="inputApellido" value="<?php echo $model->apellido; ?>">
+                <input disabled="true" type="text" class="form-control input-sm" id="inputApellido" value="<?php echo $model->surname; ?>">
             </div>
             <div class="form-group">
                 <label for="inputDireccion">Direcci&oacute;n</label>
-                <textarea disabled="true" type="text" class="form-control input-sm" id="inputDireccion" ><?php echo $model->direccion; ?></textarea>
+                <textarea disabled="true" type="text" class="form-control input-sm" id="inputDireccion" ><?php echo $model->streetaddress; ?></textarea>
             </div>
             <div class="form-group">
                 <label for="inputComentarios">Comentarios</label>
-                <textarea disabled="true" type="text" class="form-control input-sm" id="inputComentarios" ><?php echo $model->comentarios; ?></textarea>
+                <textarea disabled="true" type="text" class="form-control input-sm" id="inputComentarios" ><?php echo $model->comments; ?></textarea>
             </div>
-            <a href="<?php echo Yii::app()->createUrl("cliente/admin") ?>"><?php echo Yii::app()->params["labelBotonVolver"] ?></a>
+            <a href="<?php echo Yii::app()->createUrl("customer/admin") ?>"><?php echo Yii::app()->params["labelBotonVolver"] ?></a>
         </form>
     </div>
     <div class="col-lg-8"></div>

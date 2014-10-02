@@ -125,7 +125,7 @@
                             if (strcmp(Yii::app()->session[Constantes::SESSION_CURRENT_TAB], Constantes::ITEM_MENU_CLIENTES) == 0) {
                                 echo 'active';
                             }
-                            ?>"><a href="<?php echo Yii::app()->createUrl('cliente/admin'); ?>" ><span class="glyphicon glyphicon-list"></span> <?php echo Yii::app()->params["labelFuncionalidadClientes"] ?></a></li>
+                            ?>"><a href="<?php echo Yii::app()->createUrl('customer/admin'); ?>" ><span class="glyphicon glyphicon-list"></span> <?php echo Yii::app()->params["labelFuncionalidadClientes"] ?></a></li>
                             <li class="<?php
                             if (strcmp(Yii::app()->session[Constantes::SESSION_CURRENT_TAB], Constantes::ITEM_MENU_INMUEBLES) == 0) {
                                 echo 'active';
