@@ -1,6 +1,6 @@
 <?php
 
-class ParametroController extends AdminController {
+class SysparamController extends AdminController {
 
     protected $pageTitle = ". : Parametros : .";
     
@@ -55,21 +55,21 @@ class ParametroController extends AdminController {
             $this->render('/site/invalidOperation', array(
                 'header' => 'Operacion no valida' , 
                 'message' => 'El parametro que desea modifica esta marcado como no editable',
-                'returnUrl'=>Yii::app()->createUrl('parametro/admin')
+                'returnUrl'=>Yii::app()->createUrl('sysparam/admin')
             ));
             return;
         }
         // Uncomment the following line if AJAX validation is needed
         // $this->performAjaxValidation($model);
 
-        if (isset($_POST['Parametro'])) {
-            $model->attributes = $_POST['Parametro'];
+        if (isset($_POST['Sysparam'])) {
+            $model->attributes = $_POST['Sysparam'];
             if ($model->save()) {
-                $this->audit->registrarAuditoria(Yii::app()->user->id, new DateTime, Constantes::AUDITORIA_OBJETO_PARAMETRO, Constantes::AUDITORIA_OPERACION_MODIFICACION, "parametro = " . $model->nombre . ", nuevo_valor = " . $model->valor);
+                $this->audit->logAudit(Yii::app()->user->id, new DateTime, Constantes::AUDITORIA_OBJETO_PARAMETRO, Constantes::AUDITORIA_OPERACION_MODIFICACION, "sysparam = " . $model->name . ", nuevo_valor = " . $model->value);
                 $this->render('/site/successfullOperation', array(
                     'header' => 'Par&aacute;metro modificado con &eacute;xito' , 
                     'message' => 'Haga click en volver para regresar a la gestión de parámetros',
-                    'returnUrl'=>Yii::app()->createUrl('parametro/admin')
+                    'returnUrl'=>Yii::app()->createUrl('sysparam/admin')
                 ));
                 return;
             }
@@ -97,7 +97,7 @@ class ParametroController extends AdminController {
      * Lists all models.
      */
     public function actionIndex() {
-        $dataProvider = new CActiveDataProvider('Parametro');
+        $dataProvider = new CActiveDataProvider('Sysparam');
         $this->render('index', array(
             'dataProvider' => $dataProvider,
         ));
@@ -107,10 +107,10 @@ class ParametroController extends AdminController {
      * Manages all models.
      */
     public function actionAdmin() {
-        $model = new Parametro('search');
+        $model = new Sysparam('search');
         $model->unsetAttributes();  // clear any default values
-        if (isset($_GET['Parametro']))
-            $model->attributes = $_GET['Parametro'];
+        if (isset($_GET['Sysparam']))
+            $model->attributes = $_GET['Sysparam'];
 
         $this->render('admin', array(
             'model' => $model,
@@ -121,11 +121,11 @@ class ParametroController extends AdminController {
      * Returns the data model based on the primary key given in the GET variable.
      * If the data model is not found, an HTTP exception will be raised.
      * @param integer $id the ID of the model to be loaded
-     * @return Parametro the loaded model
+     * @return Sysparam the loaded model
      * @throws CHttpException
      */
     public function loadModel($id) {
-        $model = Parametro::model()->findByPk($id);
+        $model = Sysparam::model()->findByPk($id);
         if ($model === null)
             throw new CHttpException(404, 'The requested page does not exist.');
         return $model;
@@ -133,10 +133,10 @@ class ParametroController extends AdminController {
 
     /**
      * Performs the AJAX validation.
-     * @param Parametro $model the model to be validated
+     * @param Sysparam $model the model to be validated
      */
     protected function performAjaxValidation($model) {
-        if (isset($_POST['ajax']) && $_POST['ajax'] === 'parametro-form') {
+        if (isset($_POST['ajax']) && $_POST['ajax'] === 'sysparam-form') {
             echo CActiveForm::validate($model);
             Yii::app()->end();
         }
@@ -144,7 +144,7 @@ class ParametroController extends AdminController {
     
     protected function renderEdit($data, $row) {
         if ($data->editable == 1)
-            echo "<a href=" . Yii::app()->createUrl("parametro/update", array("id"=>$data->nombre)) . "> " . Yii::app()->params["labelBotonGrillaEditar"] . "</a>";
+            echo "<a href=" . Yii::app()->createUrl("sysparam/update", array("id"=>$data->name)) . "> " . Yii::app()->params["labelBotonGrillaEditar"] . "</a>";
         else
             echo Yii::app()->params["labelBotonGrillaEditarDisabled"];
     }

@@ -25,7 +25,7 @@ return array(
 
     "UiHeadersWrapperOMarkup" => '<h3 class="page-header">',
     "UiHeadersWrapperCMarkup" => '</h3>',
-    "gridViewStyleSheet" => '../../../backend/css/gridViewStyle/gridView.css',
+    "gridViewStyleSheet" => '../../css/gridViewStyle/gridView.css',
 
     "labelFuncionalidadAuditoria" => "Consulta de auditoria",
     "labelFuncionalidadBarrios" => "Gesti&oacute;n de barrios",

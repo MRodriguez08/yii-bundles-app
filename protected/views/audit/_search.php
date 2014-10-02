@@ -24,31 +24,31 @@
                     ?>
 
                     <div class="form-group col-lg-3">
-                        <?php echo $form->label($model, "usuario"); ?>
-                        <?php echo $form->textField($model, "usuario", array("class" => "form-control input-sm")); ?>
+                        <?php echo $form->label($model, "user"); ?>
+                        <?php echo $form->textField($model, "user", array("class" => "form-control input-sm")); ?>
                     </div>
 
                     <div class="form-group col-lg-3">
-                        <?php echo $form->label($model, "objeto"); ?>                        
+                        <?php echo $form->label($model, "object"); ?>                        
                         <?php
-                        echo $form->dropDownList($model, 'objeto', array("" => Yii::app()->params["labelEmptyComboBoxValue"], Constantes::AUDITORIA_OBJETO_EVENTO => "Eventos", Constantes::AUDITORIA_OBJETO_INMUEBLE => "Inmuebles", Constantes::AUDITORIA_OBJETO_PARAMETRO => "Parametros", Constantes::AUDITORIA_OBJETO_USUARIO => "Usuario"), array("class" => "form-control input-sm"));
+                        echo $form->dropDownList($model, 'object', array("" => Yii::app()->params["labelEmptyComboBoxValue"], Constantes::AUDITORIA_OBJETO_EVENTO => "Eventos", Constantes::AUDITORIA_OBJETO_INMUEBLE => "Inmuebles", Constantes::AUDITORIA_OBJETO_PARAMETRO => "Parametros", Constantes::AUDITORIA_OBJETO_USUARIO => "Usuario"), array("class" => "form-control input-sm"));
                         ?>       
                     </div>
 
                     <div class="col-lg-3">
                         <div class="form-group">
-                            <?php echo $form->label($model, "operacion"); ?>
+                            <?php echo $form->label($model, "operation"); ?>
                             <?php
-                            echo $form->dropDownList($model, 'operacion', array("" => Yii::app()->params["labelEmptyComboBoxValue"], Constantes::AUDITORIA_OPERACION_ALTA => "Altas", Constantes::AUDITORIA_OPERACION_BAJA => "Bajas", Constantes::AUDITORIA_OPERACION_LOGIN => "Login", Constantes::AUDITORIA_OPERACION_LOGOUT => "Logout", Constantes::AUDITORIA_OPERACION_MODIFICACION => "Modificaciones"), array("class" => "form-control input-sm"));
+                            echo $form->dropDownList($model, 'operation', array("" => Yii::app()->params["labelEmptyComboBoxValue"], Constantes::AUDITORIA_OPERACION_ALTA => "Altas", Constantes::AUDITORIA_OPERACION_BAJA => "Bajas", Constantes::AUDITORIA_OPERACION_LOGIN => "Login", Constantes::AUDITORIA_OPERACION_LOGOUT => "Logout", Constantes::AUDITORIA_OPERACION_MODIFICACION => "Modificaciones"), array("class" => "form-control input-sm"));
                             ?>    
                         </div>
                     </div>
                     <div class="col-lg-12"></div>
                     <div class="col-lg-3">
                         <div class="form-group">
-                            <?php echo $form->label($model, "fechaDesde"); ?>
+                            <?php echo $form->label($model, "dateTimeFrom"); ?>
                             <div class="input-group date">
-                                <?php echo $form->textField($model, "fechaDesde", array("class" => "date form-control input-sm", "data-date-format" => Yii::app()->params["inputDataDateFormat"])); ?>
+                                <?php echo $form->textField($model, "dateTimeFrom", array("class" => "date form-control input-sm", "data-date-format" => Yii::app()->params["inputDataDateFormat"])); ?>
                                 <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span>
                                 </span>
                             </div>
@@ -56,9 +56,9 @@
                     </div>
                     <div class="col-lg-3">
                         <div class="form-group">
-                            <?php echo $form->label($model, "fechaHasta"); ?>
+                            <?php echo $form->label($model, "dateTimeTo"); ?>
                             <div class="input-group date">
-                                <?php echo $form->textField($model, "fechaHasta", array("class" => "date form-control input-sm", "data-date-format" => Yii::app()->params["inputDataDateFormat"])); ?>
+                                <?php echo $form->textField($model, "dateTimeTo", array("class" => "date form-control input-sm", "data-date-format" => Yii::app()->params["inputDataDateFormat"])); ?>
                                 <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span>
                                 </span>
                             </div>

@@ -20,7 +20,7 @@ return array(
         'application.models.audit.*',
         
         'application.models.*',
-        'application.models.parametro.*',
+        'application.models.sysparam.*',
         
         'application.models.evento.*',
         
@@ -63,7 +63,7 @@ return array(
             'urlFormat' => 'path',
             'rules' => array(
 
-                'parametro/admin' => 'parametro/admin',
+                'sysparam/admin' => 'sysparam/admin',
                 'usuario/admin' => 'usuario/admin',
                 
                 'evento/admin' => 'evento/admin',
@@ -79,7 +79,7 @@ return array(
                 
                 'emailNotificacion/createClient' => 'emailNotificacion/createClient',
                 
-                'parametro/<action:\w+>/<id:\w+>' => 'parametro/<action>',
+                'sysparam/<action:\w+>/<id:\w+>' => 'sysparam/<action>',
                 'evento/<action:\w+>/<id:\w+>' => 'evento/<action>',
                 'usuario/<action:\w+>/<id:\w+>' => 'usuario/<action>',
                 

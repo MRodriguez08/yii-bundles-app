@@ -1,6 +1,6 @@
 <?php
-/* @var $this ParametroController */
-/* @var $model Parametro */
+/* @var $this SysparamController */
+/* @var $model Sysparam */
 
 Yii::app()->clientScript->registerScript('search', "
 $('.search-button').click(function(){
@@ -8,7 +8,7 @@ $('.search-button').click(function(){
 	return false;
 });
 $('.search-form form').submit(function(){
-	$('#parametro-grid').yiiGridView('update', {
+	$('#sysparam-grid').yiiGridView('update', {
 		data: $(this).serialize()
 	});
 	return false;
@@ -37,7 +37,7 @@ $('.search-form form').submit(function(){
             <div class="col-lg-12">
                 <?php
                 $this->widget('zii.widgets.grid.CGridView', array(
-                    'id' => 'parametro-grid',
+                    'id' => 'sysparam-grid',
                     'dataProvider' => $model->search(),
                     'summaryText' => '',
                     'pager' => array(
@@ -51,9 +51,9 @@ $('.search-form form').submit(function(){
                     'cssFile' => Yii::app()->params["gridViewStyleSheet"],
                     'emptyText' => Yii::app()->params["labelTablaSinResultados"],
                     'columns' => array(
-                        'nombre',
-                        'descripcion',
-                        'valor',
+                        'name',
+                        'description',
+                        'value',
                         array(            
                             'name'=>'',
                             'value'=>array($this,'renderEdit')

@@ -53,12 +53,12 @@ $('.search-form form').submit(function(){
                     'columns' => array(                        
                         array(
                             'name' => 'date',
-                            'value'=>'date("' . Yii::app()->params["dateTimeDisplayFormat"] . '",$data->fecha)',
+                            'value'=>'date("' . Yii::app()->params["dateTimeDisplayFormat"] . '",$data->date_time)',
                         ),                        
-                        'usuario',
-                        'objeto',
-                        'operacion',
-                        'descripcion'
+                        'user',
+                        'object',
+                        'operation',
+                        'description'
                     ),
                 ));
                 ?>

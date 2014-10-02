@@ -76,7 +76,7 @@
                                     if (strcmp(Yii::app()->session[Constantes::SESSION_CURRENT_TAB], Constantes::ITEM_MENU_AUDITORIA) == 0) {
                                         echo 'active';
                                     }
-                                    ?>"><a href="<?php echo Yii::app()->createUrl('auditoria/admin'); ?>"><span class="glyphicon glyphicon-book"></span> <?php echo Yii::app()->params["labelFuncionalidadAuditoria"] ?></a></li>
+                                    ?>"><a href="<?php echo Yii::app()->createUrl('audit/admin'); ?>"><span class="glyphicon glyphicon-book"></span> <?php echo Yii::app()->params["labelFuncionalidadAuditoria"] ?></a></li>
                                     <li class="divider"></li>
                                     <li class="<?php
                                     if (strcmp(Yii::app()->session[Constantes::SESSION_CURRENT_TAB], Constantes::ITEM_MENU_BARRIOS) == 0) {
@@ -103,7 +103,7 @@
                                     if (strcmp(Yii::app()->session[Constantes::SESSION_CURRENT_TAB], Constantes::ITEM_MENU_PARAMETROS) == 0) {
                                         echo 'active';
                                     }
-                                    ?>"><a href="<?php echo Yii::app()->createUrl('parametro/admin'); ?>"><span class="glyphicon glyphicon-wrench"></span> <?php echo Yii::app()->params["labelFuncionalidadParametros"] ?></a></li>
+                                    ?>"><a href="<?php echo Yii::app()->createUrl('sysparam/admin'); ?>"><span class="glyphicon glyphicon-wrench"></span> <?php echo Yii::app()->params["labelFuncionalidadParametros"] ?></a></li>
                                     <li class="<?php
                                     if (strcmp(Yii::app()->session[Constantes::SESSION_CURRENT_TAB], Constantes::ITEM_MENU_TIPOS_NOTIFICACION) == 0) {
                                         echo 'active';

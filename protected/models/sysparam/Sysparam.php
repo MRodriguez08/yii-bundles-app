@@ -4,17 +4,17 @@
  * This is the model class for table "parametros".
  *
  * The followings are the available columns in table 'parametros':
- * @property string $nombre
- * @property string $descripcion
- * @property string $valor
+ * @property string $name
+ * @property string $description
+ * @property string $value
  */
-class Parametro extends CActiveRecord {
+class Sysparam extends CActiveRecord {
 
     /**
      * @return string the associated database table name
      */
     public function tableName() {
-        return 'parametros';
+        return 'sysparams';
     }
 
     /**
@@ -24,37 +24,37 @@ class Parametro extends CActiveRecord {
         // NOTE: you should only define rules for those attributes that
         // will receive user inputs.
         return array(
-            array('nombre, valor, descripcion', 'required', "message" => Yii::app()->params["templateEmptyValueErrorMessage"]),
-            array('valor', 'validateParameter', 'message' => Yii::app()->params["templateInvalidEmailFormatMessage"]),
-            array('nombre', 'length', 'max' => 64),
-            array('descripcion', 'length', 'max' => 1024),
-            array('valor', 'length', 'max' => 512),
+            array('name, value, description', 'required', "message" => Yii::app()->params["templateEmptyValueErrorMessage"]),
+            array('value', 'validateParameter', 'message' => Yii::app()->params["templateInvalidEmailFormatMessage"]),
+            array('name', 'length', 'max' => 64),
+            array('description', 'length', 'max' => 1024),
+            array('value', 'length', 'max' => 512),
             // The following rule is used by search().
             // @todo Please remove those attributes that should not be searched.
-            array('nombre, descripcion, valor', 'safe', 'on' => 'search'),
+            array('name, description, value', 'safe', 'on' => 'search'),
         );
     }
     
     public function validateParameter($attribute, $params) {
         
-        //Valido segun tipo de parametro
-        if ((strcmp($this->tipo,  Constantes::TIPO_PARAMETRO_INTEGER) == 0) && !ctype_digit(strval($this->valor))){
-            $this->addError($attribute, "Este parametro es de tipo entero");
+        //Valido segun type de parametro
+        if ((strcmp($this->type,  Constantes::TIPO_PARAMETRO_INTEGER) == 0) && !ctype_digit(strval($this->value))){
+            $this->addError($attribute, "Este parametro es de type entero");
             return;
         }            
         
-        if ((strcmp($this->nombre,  Constantes::PARAMETRO_DESV_LATITUD) == 0)){
-            if ((int)$this->valor > 150){
+        if ((strcmp($this->name,  Constantes::PARAMETRO_DESV_LATITUD) == 0)){
+            if ((int)$this->value > 150){
                 $this->addError($attribute, "No se recomienda que la desviacion de latitud supere los 150 puntos");
                 return;
             }
-        } else if ((strcmp($this->nombre,  Constantes::PARAMETRO_DESV_LONGITUD) == 0)){
-            if ((int)$this->valor > 150){
+        } else if ((strcmp($this->name,  Constantes::PARAMETRO_DESV_LONGITUD) == 0)){
+            if ((int)$this->value > 150){
                 $this->addError($attribute, "No se recomienda que la desviacion de longitud supere los 150 puntos");
                 return;
             }
-        } else if ((strcmp($this->nombre,  Constantes::PARAMETRO_EMAIL_ADMINISTRADOR) == 0)){
-            if (!filter_var($this->valor, FILTER_VALIDATE_EMAIL)){
+        } else if ((strcmp($this->name,  Constantes::PARAMETRO_EMAIL_ADMINISTRADOR) == 0)){
+            if (!filter_var($this->value, FILTER_VALIDATE_EMAIL)){
                 $this->addError($attribute, "Este parametro debe ser un email valido (ej. juan@gmail.com)");
                 return;
             }
@@ -78,9 +78,9 @@ class Parametro extends CActiveRecord {
      */
     public function attributeLabels() {
         return array(
-            'nombre' => 'Nombre',
-            'descripcion' => 'Descripci&oacute;n',
-            'valor' => 'Valor',
+            'name' => 'Nombre',
+            'description' => 'Descripci&oacute;n',
+            'value' => 'Valor',
         );
     }
 
@@ -101,9 +101,9 @@ class Parametro extends CActiveRecord {
 
         $criteria = new CDbCriteria;
 
-        $criteria->compare('nombre', $this->nombre, true);
-        $criteria->compare('descripcion', $this->descripcion, true);
-        $criteria->compare('valor', $this->valor, true);
+        $criteria->compare('name', $this->name, true);
+        $criteria->compare('description', $this->description, true);
+        $criteria->compare('value', $this->value, true);
 
         return new CActiveDataProvider($this, array(
             'criteria' => $criteria,

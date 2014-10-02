@@ -47,13 +47,13 @@ class AuditController extends AdminController {
      * If creation is successful, the browser will be redirected to the 'view' page.
      */
     public function actionCreate() {
-        $model = new Auditoria;
+        $model = new Audit;
 
         // Uncomment the following line if AJAX validation is needed
         // $this->performAjaxValidation($model);
 
-        if (isset($_POST['Auditoria'])) {
-            $model->attributes = $_POST['Auditoria'];
+        if (isset($_POST['Audit'])) {
+            $model->attributes = $_POST['Audit'];
             if ($model->save())
                 $this->redirect(array('view', 'id' => $model->id));
         }
@@ -74,8 +74,8 @@ class AuditController extends AdminController {
         // Uncomment the following line if AJAX validation is needed
         // $this->performAjaxValidation($model);
 
-        if (isset($_POST['Auditoria'])) {
-            $model->attributes = $_POST['Auditoria'];
+        if (isset($_POST['Audit'])) {
+            $model->attributes = $_POST['Audit'];
             if ($model->save())
                 $this->redirect(array('view', 'id' => $model->id));
         }
@@ -102,7 +102,7 @@ class AuditController extends AdminController {
      * Lists all models.
      */
     public function actionIndex() {
-        $dataProvider = new CActiveDataProvider('Auditoria');
+        $dataProvider = new CActiveDataProvider('Audit');
         $this->render('index', array(
             'dataProvider' => $dataProvider,
         ));
@@ -113,22 +113,22 @@ class AuditController extends AdminController {
      */
     public function actionAdmin() {
 
-        $model = new Auditoria('search');
+        $model = new Audit('search');
         $model->unsetAttributes();
-        if (isset($_GET['Auditoria'])) {
-            $model->attributes = $_GET['Auditoria'];
+        if (isset($_GET['Audit'])) {
+            $model->attributes = $_GET['Audit'];
         }
 
         $dH = new DateTimeHelper;   
-        if (isset($_GET["Auditoria"]["fechaDesde"]) && strcmp($_GET["Auditoria"]["fechaDesde"],"") !== 0) {
-            $model->fechaDesde = $_GET["Auditoria"]["fechaDesde"];
+        if (isset($_GET["Audit"]["dateTimeFrom"]) && strcmp($_GET["Audit"]["dateTimeFrom"],"") !== 0) {
+            $model->dateTimeFrom = $_GET["Audit"]["dateTimeFrom"];
         } else {
-            $model->fechaDesde = $dH->getDefaultStartRangeFilter("")->format(Yii::app()->params["dateTimeDisplayFormat"]);
+            $model->dateTimeFrom = $dH->getDefaultStartRangeFilter("")->format(Yii::app()->params["dateTimeDisplayFormat"]);
         }
-        if (isset($_GET["Auditoria"]["fechaHasta"]) && strcmp($_GET["Auditoria"]["fechaHasta"],"") !== 0) {
-            $model->fechaHasta = $_GET["Auditoria"]["fechaHasta"];
+        if (isset($_GET["Audit"]["dateTimeTo"]) && strcmp($_GET["Audit"]["dateTimeTo"],"") !== 0) {
+            $model->dateTimeTo = $_GET["Audit"]["dateTimeTo"];
         } else {
-            $model->fechaHasta = $dH->getDefaultEndRangeFilter("")->format(Yii::app()->params["dateTimeDisplayFormat"]);
+            $model->dateTimeTo = $dH->getDefaultEndRangeFilter("")->format(Yii::app()->params["dateTimeDisplayFormat"]);
         }
         
         $this->render('admin', array(
@@ -140,11 +140,11 @@ class AuditController extends AdminController {
      * Returns the data model based on the primary key given in the GET variable.
      * If the data model is not found, an HTTP exception will be raised.
      * @param integer $id the ID of the model to be loaded
-     * @return Auditoria the loaded model
+     * @return Audit the loaded model
      * @throws CHttpException
      */
     public function loadModel($id) {
-        $model = Auditoria::model()->findByPk($id);
+        $model = Audit::model()->findByPk($id);
         if ($model === null)
             throw new CHttpException(404, 'The requested page does not exist.');
         return $model;
@@ -152,10 +152,10 @@ class AuditController extends AdminController {
 
     /**
      * Performs the AJAX validation.
-     * @param Auditoria $model the model to be validated
+     * @param Audit $model the model to be validated
      */
     protected function performAjaxValidation($model) {
-        if (isset($_POST['ajax']) && $_POST['ajax'] === 'auditoria-form') {
+        if (isset($_POST['ajax']) && $_POST['ajax'] === 'audit-form') {
             echo CActiveForm::validate($model);
             Yii::app()->end();
         }
