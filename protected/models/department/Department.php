@@ -5,18 +5,18 @@
  *
  * The followings are the available columns in table 'departamentos':
  * @property integer $id
- * @property string $nombre
+ * @property string $name
  *
  * The followings are the available model relations:
  * @property Ciudades[] $ciudades
  */
-class Departamento extends CActiveRecord {
+class Department extends CActiveRecord {
 
     /**
      * @return string the associated database table name
      */
     public function tableName() {
-        return 'departamentos';
+        return 'departments';
     }
 
     /**
@@ -26,21 +26,21 @@ class Departamento extends CActiveRecord {
         // NOTE: you should only define rules for those attributes that
         // will receive user inputs.
         return array(
-            array('nombre', 'required', 'message' => Yii::app()->params["templateEmptyValueErrorMessage"]),
-            array('nombre', 'duplicatedName', 'message' => Yii::app()->params["templateDuplicatedValueErrorMessage"]),
-            array('nombre', 'length', 'max' => 64),
+            array('name', 'required', 'message' => Yii::app()->params["templateEmptyValueErrorMessage"]),
+            array('name', 'duplicatedName', 'message' => Yii::app()->params["templateDuplicatedValueErrorMessage"]),
+            array('name', 'length', 'max' => 64),
             // The following rule is used by search().
             // @todo Please remove those attributes that should not be searched.
-            array('id, nombre', 'safe', 'on' => 'search'),
+            array('id, name', 'safe', 'on' => 'search'),
         );
     }
 
     public function duplicatedName($attribute, $params) {
         if ($this->isNewRecord) {
-            if (count(Departamento::model()->findALl('nombre=:nombre', array("nombre" => $this->nombre))) > 0)
+            if (count(Department::model()->findALl('name=:name', array("name" => $this->name))) > 0)
                 $this->addError($attribute, str_replace("{attribute}", $attribute, Yii::app()->params["templateDuplicatedValueErrorMessage"]));
         } else {
-            if (count(Departamento::model()->findALl('id<> :id and nombre=:nombre', array("nombre" => $this->nombre, "id" => $this->id))) > 0)
+            if (count(Department::model()->findALl('id<> :id and name=:name', array("name" => $this->name, "id" => $this->id))) > 0)
                 $this->addError($attribute, str_replace("{attribute}", $attribute, Yii::app()->params["templateDuplicatedValueErrorMessage"]));
         }
     }
@@ -62,7 +62,7 @@ class Departamento extends CActiveRecord {
     public function attributeLabels() {
         return array(
             'id' => 'ID',
-            'nombre' => 'Nombre',
+            'name' => 'Nombre',
         );
     }
 
@@ -84,7 +84,7 @@ class Departamento extends CActiveRecord {
         $criteria = new CDbCriteria;
 
         $criteria->compare('id', $this->id);
-        $criteria->compare('nombre', $this->nombre, true);
+        $criteria->compare('name', $this->name, true);
 
         return new CActiveDataProvider($this, array(
             'criteria' => $criteria,
@@ -95,7 +95,7 @@ class Departamento extends CActiveRecord {
      * Returns the static model of the specified AR class.
      * Please note that you should have this exact method in all your CActiveRecord descendants!
      * @param string $className active record class name.
-     * @return Departamento the static model class
+     * @return Department the static model class
      */
     public static function model($className = __CLASS__) {
         return parent::model($className);

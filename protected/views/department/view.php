@@ -10,9 +10,9 @@
         <form role="form">
             <div class="form-group">
                 <label for="inputNombre">Nombre</label>
-                <input disabled="true" type="text" class="form-control input-sm" id="inputNombre" value="<?php echo $model->nombre; ?>">
+                <input disabled="true" type="text" class="form-control input-sm" id="inputNombre" value="<?php echo $model->name; ?>">
             </div>
-            <a href="<?php echo Yii::app()->createUrl("departamento/admin") ?>"><?php echo Yii::app()->params["labelBotonVolver"] ?></a>
+            <a href="<?php echo Yii::app()->createUrl("department/admin") ?>"><?php echo Yii::app()->params["labelBotonVolver"] ?></a>
         </form>
     </div>
     <div class="col-lg-8"></div>

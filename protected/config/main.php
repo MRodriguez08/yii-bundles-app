@@ -29,7 +29,12 @@ return array(
         'application.models.customer.*',
                 
         'application.models.inmueble.*',
-        'application.models.departamento.*',
+        
+        
+        /* departments bundle */
+        'application.models.department.*',
+        
+        
         'application.models.ciudad.*',
         'application.models.barrio.*',
         'application.models.notificacion.*',

@@ -24,8 +24,8 @@
                     ?>
 
                     <div class="form-group col-lg-3">
-                        <?php echo $form->label($model, 'nombre'); ?>
-                        <?php echo $form->textField($model, 'nombre', array('size' => 60, 'maxlength' => 64, "class" => "form-control input-sm")); ?>
+                        <?php echo $form->label($model, 'name'); ?>
+                        <?php echo $form->textField($model, 'name', array('size' => 60, 'maxlength' => 64, "class" => "form-control input-sm")); ?>
                     </div>
 
                     <div class="form-group col-lg-12">

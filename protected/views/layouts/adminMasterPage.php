@@ -92,7 +92,7 @@
                                     if (strcmp(Yii::app()->session[Constantes::SESSION_CURRENT_TAB], Constantes::ITEM_MENU_DEPARTAMENTOS) == 0) {
                                         echo 'active';
                                     }
-                                    ?>"><a href="<?php echo Yii::app()->createUrl('departamento/admin'); ?>"><span class="glyphicon glyphicon-map-marker"></span> <?php echo Yii::app()->params["labelFuncionalidadDepartamentos"] ?></a></li>
+                                    ?>"><a href="<?php echo Yii::app()->createUrl('department/admin'); ?>"><span class="glyphicon glyphicon-map-marker"></span> <?php echo Yii::app()->params["labelFuncionalidadDepartamentos"] ?></a></li>
                                     <li class="divider"></li>
                                     <li class="<?php
                                     if (strcmp(Yii::app()->session[Constantes::SESSION_CURRENT_TAB], Constantes::ITEM_MENU_ESTADOS_INMUEBLES) == 0) {

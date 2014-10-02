@@ -8,7 +8,7 @@ $('.search-button').click(function(){
 	return false;
 });
 $('.search-form form').submit(function(){
-	$('#departamento-grid').yiiGridView('update', {
+	$('#departments-grid').yiiGridView('update', {
 		data: $(this).serialize()
 	});
 	return false;
@@ -33,7 +33,7 @@ $('.search-form form').submit(function(){
                 ?>
             </div>
             <div class="col-lg-12">
-                <div class="pull-right"><a href="<?php echo Yii::app()->createUrl('departamento/create'); ?>"><span title="nuevo" class="glyphicon glyphicon-plus"></span></a></div>
+                <div class="pull-right"><a href="<?php echo Yii::app()->createUrl('department/create'); ?>"><span title="nuevo" class="glyphicon glyphicon-plus"></span></a></div>
             </div>
         </div>
         <div class="row">
@@ -41,13 +41,13 @@ $('.search-form form').submit(function(){
 
                 <?php
                 $this->widget('zii.widgets.grid.CGridView', array(
-                    'id' => 'cliente-grid',
+                    'id' => 'departments-grid',
                     'summaryText' => '',
                     'cssFile' => Yii::app()->params["gridViewStyleSheet"],
                     'emptyText' => Yii::app()->params["labelTablaSinResultados"],
                     'dataProvider' => $model->search(),
                     'columns' => array(
-                        'nombre',
+                        'name',
                         array(
                             'class' => 'CButtonColumn',
                             'template' => '{ver}',
@@ -57,7 +57,7 @@ $('.search-form form').submit(function(){
                                     (
                                     'label' => Yii::app()->params["labelBotonGrillaVer"],
                                     'options' => array('title' => 'ver'),
-                                    'url' => 'Yii::app()->createUrl("departamento/view", array("id"=>$data->id))',
+                                    'url' => 'Yii::app()->createUrl("department/view", array("id"=>$data->id))',
                                 ),
                             ),
                         ),
@@ -70,7 +70,7 @@ $('.search-form form').submit(function(){
                                     (
                                     'label' => Yii::app()->params["labelBotonGrillaEditar"],
                                     'options' => array('title' => 'editar'),
-                                    'url' => 'Yii::app()->createUrl("departamento/update", array("id"=>$data->id))',
+                                    'url' => 'Yii::app()->createUrl("department/update", array("id"=>$data->id))',
                                 ),
                             ),
                         ),
@@ -83,7 +83,7 @@ $('.search-form form').submit(function(){
                                     (
                                     'label' => Yii::app()->params["labelBotonGrillaEliminar"],
                                     'options' => array('title' => 'eliminar'),
-                                    'url' => 'Yii::app()->createUrl("departamento/delete", array("id"=>$data->id))',
+                                    'url' => 'Yii::app()->createUrl("department/delete", array("id"=>$data->id))',
                                 ),
                             ),
                         ),

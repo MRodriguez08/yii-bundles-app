@@ -1,6 +1,6 @@
 <?php
 
-class DepartamentoController extends AdminController {
+class DepartmentController extends AdminController {
 
     protected $pageTitle = ". : Departamentos : .";
     
@@ -48,20 +48,20 @@ class DepartamentoController extends AdminController {
      * If creation is successful, the browser will be redirected to the 'view' page.
      */
     public function actionCreate() {
-        $model = new Departamento;
+        $model = new Department;
 
         // Uncomment the following line if AJAX validation is needed
         // $this->performAjaxValidation($model);
 
-        if (isset($_POST['Departamento'])) {            
-            $model->attributes = $_POST['Departamento'];
+        if (isset($_POST['Department'])) {            
+            $model->attributes = $_POST['Department'];
             if ($model->save()){
-                $this->audit->registrarAuditoria(Yii::app()->user->id, new DateTime, Constantes::AUDITORIA_OBJETO_DEPARTAMENTO, Constantes::AUDITORIA_OPERACION_ALTA, $model->id);
+                $this->audit->logAudit(Yii::app()->user->id, new DateTime, Constantes::AUDITORIA_OBJETO_DEPARTAMENTO, Constantes::AUDITORIA_OPERACION_ALTA, $model->id);
                 $this->render('/site/successfullOperation', array(
                     'header' => 'Departamento creado con &eacute;xito' , 
                     'message' => 'Haga click en volver para regresar a la gestión de departamentos',
-                    'returnUrl'=>Yii::app()->createUrl('departamento/admin'),
-                    'viewUrl'=>Yii::app()->createUrl("departamento/view", array("id"=>$model->id))
+                    'returnUrl'=>Yii::app()->createUrl('department/admin'),
+                    'viewUrl'=>Yii::app()->createUrl("department/view", array("id"=>$model->id))
                 ));
                 return; 
             }
@@ -83,15 +83,15 @@ class DepartamentoController extends AdminController {
         // Uncomment the following line if AJAX validation is needed
         // $this->performAjaxValidation($model);
 
-        if (isset($_POST['Departamento'])) {
-            $model->attributes = $_POST['Departamento'];
+        if (isset($_POST['Department'])) {
+            $model->attributes = $_POST['Department'];
             if ($model->save()){
-                $this->audit->registrarAuditoria(Yii::app()->user->id, new DateTime, Constantes::AUDITORIA_OBJETO_DEPARTAMENTO, Constantes::AUDITORIA_OPERACION_MODIFICACION, $model->id);
+                $this->audit->logAudit(Yii::app()->user->id, new DateTime, Constantes::AUDITORIA_OBJETO_DEPARTAMENTO, Constantes::AUDITORIA_OPERACION_MODIFICACION, $model->id);
                 $this->render('/site/successfullOperation', array(
                     'header' => 'Departamento modificado con &eacute;xito' , 
                     'message' => 'Haga click en volver para regresar a la gestión de departamentos',
-                    'returnUrl'=>Yii::app()->createUrl('departamento/admin'),
-                    'viewUrl'=>Yii::app()->createUrl("departamento/view", array("id"=>$model->id))
+                    'returnUrl'=>Yii::app()->createUrl('department/admin'),
+                    'viewUrl'=>Yii::app()->createUrl("department/view", array("id"=>$model->id))
                 ));
                 return; 
             }
@@ -119,7 +119,7 @@ class DepartamentoController extends AdminController {
      * Lists all models.
      */
     public function actionIndex() {
-        $dataProvider = new CActiveDataProvider('Departamento');
+        $dataProvider = new CActiveDataProvider('Department');
         $this->render('index', array(
             'dataProvider' => $dataProvider,
         ));
@@ -129,10 +129,10 @@ class DepartamentoController extends AdminController {
      * Manages all models.
      */
     public function actionAdmin() {
-        $model = new Departamento('search');
+        $model = new Department('search');
         $model->unsetAttributes();  // clear any default values
-        if (isset($_GET['Departamento']))
-            $model->attributes = $_GET['Departamento'];
+        if (isset($_GET['Department']))
+            $model->attributes = $_GET['Department'];
 
         $this->render('admin', array(
             'model' => $model,
@@ -143,11 +143,11 @@ class DepartamentoController extends AdminController {
      * Returns the data model based on the primary key given in the GET variable.
      * If the data model is not found, an HTTP exception will be raised.
      * @param integer $id the ID of the model to be loaded
-     * @return Departamento the loaded model
+     * @return Department the loaded model
      * @throws CHttpException
      */
     public function loadModel($id) {
-        $model = Departamento::model()->findByPk($id);
+        $model = Department::model()->findByPk($id);
         if ($model === null)
             throw new CHttpException(404, 'The requested page does not exist.');
         return $model;
@@ -155,7 +155,7 @@ class DepartamentoController extends AdminController {
 
     /**
      * Performs the AJAX validation.
-     * @param Departamento $model the model to be validated
+     * @param Department $model the model to be validated
      */
     protected function performAjaxValidation($model) {
         if (isset($_POST['ajax']) && $_POST['ajax'] === 'departamento-form') {
