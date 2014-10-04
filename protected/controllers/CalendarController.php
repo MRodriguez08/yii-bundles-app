@@ -36,9 +36,8 @@ class CalendarController extends AdminController {
     /**
      * Manages all models.
      */
-    public function actionAdmin() {
-        $model = new Evento('search');        
-        $this->render('admin', array('model' => $model,));
+    public function actionAdmin() {     
+        $this->render('admin');
     }
 
     /**
@@ -49,7 +48,7 @@ class CalendarController extends AdminController {
      * @throws CHttpException
      */
     public function loadModel($id) {
-        $model=Evento::model()->findByPk($id);
+        $model=Event::model()->findByPk($id);
         if($model===null)
             throw new CHttpException(404,'The requested page does not exist.');
         

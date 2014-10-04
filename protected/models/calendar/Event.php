@@ -18,7 +18,7 @@
  * @property Clientes $idCliente
  * @property Usuarios $idUsuario
  */
-class Evento extends CActiveRecord {
+class Event extends CActiveRecord {
 
     public $fechaDesde;
     public $fechaHasta;
@@ -27,7 +27,7 @@ class Evento extends CActiveRecord {
      * @return string the associated database table name
      */
     public function tableName() {
-        return 'eventos';
+        return 'calendar';
     }
 
     /**
