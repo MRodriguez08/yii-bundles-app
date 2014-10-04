@@ -6,6 +6,7 @@ CREATE TABLE `customers` (
   `surname` varchar(100) DEFAULT NULL,
   `streetaddress` varchar(2048) DEFAULT NULL,
   `comments` varchar(2048) DEFAULT NULL,
+  `enabled` boolean not null,
   PRIMARY KEY (`id`),
   UNIQUE KEY `id` (`id`),
   UNIQUE KEY `email` (`email`)
