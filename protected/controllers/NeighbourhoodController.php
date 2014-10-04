@@ -166,7 +166,7 @@ class NeighbourhoodController extends AdminController {
     }
 
     /*
-    protected function renderNombreCiudad($data, $row) {
+    protected function rendernameCiudad($data, $row) {
         return Ciudad::model()->findByPk($data->id_ciudad)->name;
     }*/
 

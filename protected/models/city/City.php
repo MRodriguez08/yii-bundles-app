@@ -66,7 +66,7 @@ class City extends CActiveRecord {
     public function attributeLabels() {
         return array(
             'id' => 'Id',
-            'name' => 'Nombre',
+            'name' => 'name',
             'department_id' => 'Departamento',
         );
     }

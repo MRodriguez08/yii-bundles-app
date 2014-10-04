@@ -1,6 +1,6 @@
 <?php
-/* @var $this EstadoInmuebleController */
-/* @var $model EstadoInmueble */
+/* @var $this PropertyStateController */
+/* @var $model PropertyState */
 ?>
 
 <div class="row">
@@ -22,20 +22,20 @@
             </div>
 
             <div class="form-group">
-                <?php echo $form->labelEx($model, 'nombre_cliente'); ?>
-                <?php echo $form->textField($model, "nombre_cliente", array('size' => 60, 'maxlength' => 1024, "class" => "form-control", "disabled" => "true")) ?>       
+                <?php echo $form->labelEx($model, 'name_cliente'); ?>
+                <?php echo $form->textField($model, "name_cliente", array('size' => 60, 'maxlength' => 1024, "class" => "form-control", "disabled" => "true")) ?>       
             </div>
             <div class="form-group">
                 <?php echo $form->labelEx($model, 'fecha_hora_envio'); ?>
                 <?php echo $form->textField($model, "fecha_hora_envio", array('size' => 60, 'maxlength' => 1024, "class" => "form-control", "disabled" => "true")) ?>       
             </div>
             <div class="form-group">
-                <?php echo $form->labelEx($model->tipoNotificacion, 'nombre'); ?>
-                <?php echo $form->textField($model->tipoNotificacion, "nombre", array('size' => 60, 'maxlength' => 1024, "class" => "form-control", "disabled" => "true")) ?>       
+                <?php echo $form->labelEx($model->tipoNotificacion, 'name'); ?>
+                <?php echo $form->textField($model->tipoNotificacion, "name", array('size' => 60, 'maxlength' => 1024, "class" => "form-control", "disabled" => "true")) ?>       
             </div>
             <div class="form-group">
-                <?php echo $form->labelEx($model->tipoNotificacion, 'nombre'); ?>
-                <?php echo $form->textArea($model->tipoNotificacion, "nombre", array('size' => 60, 'maxlength' => 1024, "class" => "form-control", "disabled" => "true")) ?>       
+                <?php echo $form->labelEx($model->tipoNotificacion, 'name'); ?>
+                <?php echo $form->textArea($model->tipoNotificacion, "name", array('size' => 60, 'maxlength' => 1024, "class" => "form-control", "disabled" => "true")) ?>       
             </div>
             <a href="<?php echo Yii::app()->createUrl("emailNotificacion/admin")?>">Volver</a>
             <?php echo CHtml::button("Ingresar cliente", array("class" => "btn btn-default" , "onclick" => "notificacionCrearNuevoCliente()")); ?>

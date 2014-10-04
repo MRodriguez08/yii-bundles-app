@@ -40,10 +40,10 @@
                     <?php echo $form->textField($model, 'direccion_corta', array("class" => "form-control  input-sm")); ?>
                     <?php echo $form->error($model, 'direccion_corta', array("class" => "yii-error-alert")); ?>
                 </div>
-                <div id="grp-inmueble-descripcion" class="form-group">
-                    <?php echo $form->labelEx($model, 'descripcion'); ?>
-                    <?php echo $form->textArea($model, 'descripcion', array('size' => 60, 'maxlength' => 2048, "class" => "form-control input-sm")); ?>
-                    <?php echo $form->error($model, 'descripcion', array("class" => "yii-error-alert")); ?>
+                <div id="grp-inmueble-description" class="form-group">
+                    <?php echo $form->labelEx($model, 'description'); ?>
+                    <?php echo $form->textArea($model, 'description', array('size' => 60, 'maxlength' => 2048, "class" => "form-control input-sm")); ?>
+                    <?php echo $form->error($model, 'description', array("class" => "yii-error-alert")); ?>
                 </div>
 
                 <div id="grp-inmueble-tipo" class="form-group">

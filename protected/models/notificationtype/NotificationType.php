@@ -59,8 +59,8 @@ class NotificationType extends CActiveRecord {
     public function attributeLabels() {
         return array(
             'id' => 'Id',
-            'name' => 'Nombre',
-            'description' => 'Descripcion',
+            'name' => 'name',
+            'description' => 'description',
         );
     }
 

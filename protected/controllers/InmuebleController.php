@@ -198,14 +198,14 @@ class InmuebleController extends AdminController {
     }
 
     public function getListaDepartamentos() {
-        return CHtml::listData(Departamento::model()->findAll(), 'id', 'nombre');
+        return CHtml::listData(Departamento::model()->findAll(), 'id', 'name');
     }
 
     public function actionCiudadDinamica() {
         $idDep = $_POST["Inmueble"]["id_departamento"];
         $data = Ciudad::model()->findAll('id_departamento=:id_departamento', array(':id_departamento' => (int) $idDep));
 
-        $data = CHtml::listData($data, 'id', 'nombre');
+        $data = CHtml::listData($data, 'id', 'name');
         echo CHtml::tag('option', array('value' => "-1"), CHtml::encode("--  Seleccione  --"), true);
         foreach ($data as $value => $name) {
             echo CHtml::tag('option', array('value' => $value), CHtml::encode($name), true);
@@ -216,7 +216,7 @@ class InmuebleController extends AdminController {
         $idBar = $_POST["Inmueble"]["id_ciudad"];
         $data = Barrio::model()->findAll('id_ciudad=:id_ciudad', array(':id_ciudad' => (int) $idBar));
 
-        $data = CHtml::listData($data, 'id', 'nombre');
+        $data = CHtml::listData($data, 'id', 'name');
         foreach ($data as $value => $name) {
             echo CHtml::tag('option', array('value' => $value), CHtml::encode($name), true);
         }
@@ -261,7 +261,7 @@ class InmuebleController extends AdminController {
 
         $result["data"] = $data;
         $result["titulo"] = "Porcentaje de inmuebles por tipo";
-        $result["nombreSerie"] = "Proporcion por tipo";
+        $result["nameSerie"] = "Proporcion por tipo";
         Response::send(CJSON::encode($result));
     }
 
@@ -280,7 +280,7 @@ class InmuebleController extends AdminController {
 
         $result["data"] = $data;
         $result["titulo"] = "Porcentaje de inmuebles por estado";
-        $result["nombreSerie"] = "Proporcion por estado";
+        $result["nameSerie"] = "Proporcion por estado";
         Response::send(CJSON::encode($result));
     }
 
@@ -299,7 +299,7 @@ class InmuebleController extends AdminController {
 
         $result["data"] = $data;
         $result["titulo"] = "Porcentaje de inmuebles por barrio";
-        $result["nombreSerie"] = "Proporcion por barrio";
+        $result["nameSerie"] = "Proporcion por barrio";
         Response::send(CJSON::encode($result));
     }
 

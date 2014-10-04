@@ -9,7 +9,7 @@
         dataType: 'json',
         data : {
           emailCliente : $("#EmailNotificacion_emailCliente").val(),
-          nombreCliente : $("#EmailNotificacion_nombreCliente").val()
+          nameCliente : $("#EmailNotificacion_nameCliente").val()
         }
     })
     .done(function(msg) {

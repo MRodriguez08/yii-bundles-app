@@ -78,7 +78,7 @@ class Sysparam extends CActiveRecord {
      */
     public function attributeLabels() {
         return array(
-            'name' => 'Nombre',
+            'name' => 'name',
             'description' => 'Descripci&oacute;n',
             'value' => 'Valor',
         );

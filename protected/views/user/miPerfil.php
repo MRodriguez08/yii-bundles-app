@@ -28,8 +28,8 @@
                     <input disabled="true" type="text" class="form-control input-sm" id="inputEmail" value="<?php echo $model->email; ?>">
                 </div>
                 <div class="form-group">
-                    <label for="inputNombre">Nombre</label>
-                    <input disabled="true" type="text" class="form-control input-sm" id="inputNombre" value="<?php echo $model->nombre; ?>">
+                    <label for="inputname">name</label>
+                    <input disabled="true" type="text" class="form-control input-sm" id="inputname" value="<?php echo $model->name; ?>">
                 </div>
                 <div class="form-group">
                     <label for="inputApellido">Apellido</label>

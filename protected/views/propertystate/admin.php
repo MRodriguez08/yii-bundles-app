@@ -1,6 +1,6 @@
 <?php
-/* @var $this EstadoInmuebleController */
-/* @var $model EstadoInmueble */
+/* @var $this PropertyStateController */
+/* @var $model PropertyState */
 
 Yii::app()->clientScript->registerScript('search', "
 $('.search-button').click(function(){
@@ -8,7 +8,7 @@ $('.search-button').click(function(){
 	return false;
 });
 $('.search-form form').submit(function(){
-	$('#estado-inmueble-grid').yiiGridView('update', {
+	$('#property-states-grid').yiiGridView('update', {
 		data: $(this).serialize()
 	});
 	return false;
@@ -32,21 +32,21 @@ $('.search-form form').submit(function(){
                     ?>
             </div>
             <div class="col-lg-12">
-                <div class="pull-right"><a href="<?php echo Yii::app()->createUrl('estadoInmueble/create'); ?>"><span title="nuevo" class="glyphicon glyphicon-plus"></span></a></div>
+                <div class="pull-right"><a href="<?php echo Yii::app()->createUrl('propertystate/create'); ?>"><span title="nuevo" class="glyphicon glyphicon-plus"></span></a></div>
             </div>
         </div>
         <div class="row">
             <div class="col-lg-12">
                 <?php
                 $this->widget('zii.widgets.grid.CGridView', array(
-                    'id' => 'estado-inmueble-grid',
+                    'id' => 'property-states-grid',
                     'summaryText' => '',
                     'cssFile' => Yii::app()->params["gridViewStyleSheet"],
                     'emptyText' => Yii::app()->params["labelTablaSinResultados"],
                     'dataProvider' => $model->search(),
                     'columns' => array(
-                        'nombre',
-                        'descripcion',
+                        'name',
+                        'description',
                         array(
                             'class' => 'CButtonColumn',
                             'template' => '{ver}',
@@ -56,7 +56,7 @@ $('.search-form form').submit(function(){
                                     (
                                     'label' => Yii::app()->params["labelBotonGrillaVer"],
                                     'options' => array('title' => 'ver'),
-                                    'url' => 'Yii::app()->createUrl("estadoInmueble/view", array("id"=>$data->id))',
+                                    'url' => 'Yii::app()->createUrl("propertystate/view", array("id"=>$data->id))',
                                 ),
                             ),
                         ),
@@ -69,7 +69,7 @@ $('.search-form form').submit(function(){
                                     (
                                     'label' => Yii::app()->params["labelBotonGrillaEditar"],
                                     'options' => array('title' => 'editar'),
-                                    'url' => 'Yii::app()->createUrl("estadoInmueble/update", array("id"=>$data->id))',
+                                    'url' => 'Yii::app()->createUrl("propertystate/update", array("id"=>$data->id))',
                                 ),
                             ),
                         ),
@@ -82,7 +82,7 @@ $('.search-form form').submit(function(){
                                     (
                                     'label' => Yii::app()->params["labelBotonGrillaEliminar"],
                                     'options' => array('title' => 'eliminar'),
-                                    'url' => 'Yii::app()->createUrl("estadoInmueble/delete", array("id"=>$data->id))',
+                                    'url' => 'Yii::app()->createUrl("propertystate/delete", array("id"=>$data->id))',
                                 ),
                             ),
                         ),

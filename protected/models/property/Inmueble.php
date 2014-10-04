@@ -6,7 +6,7 @@
  * The followings are the available columns in table 'inmuebles':
  * @property integer $id
  * @property string $titulo
- * @property string $descripcion
+ * @property string $description
  * @property string $tipo_inmueble
  * @property integer $vista_al_mar
  * @property integer $tiene_calefaccion
@@ -57,18 +57,18 @@ class Inmueble extends CActiveRecord {
         // NOTE: you should only define rules for those attributes that
         // will receive user inputs.
         return array(
-            array('titulo, descripcion, tipo_inmueble, fk_estado,operacion_publicacion', 'required', 'message' => Yii::app()->params["templateEmptyValueErrorMessage"]),
+            array('titulo, description, tipo_inmueble, fk_estado,operacion_publicacion', 'required', 'message' => Yii::app()->params["templateEmptyValueErrorMessage"]),
             array('vista_al_mar, tiene_calefaccion, anio_construccion_aproximado, cant_banios, mts2_edificados, cant_plantas_casa, es_propiedad_horizontal, cant_dormitorios, numero_de_piso, tiene_ascensor, tiene_porteria, tiene_portero_electrico, tiene_vigilancia, tiene_planta_alta, altura_salon_principal, cant_plantas_local, tiene_estacionamiento, tiene_deposito, fk_estado', 'numerical', 'integerOnly' => true),
             array('gastos_comunes, precio_publicacion,id_departamento,id_ciudad,id_barrio', 'numerical'),
             array('titulo,direccion_corta', 'length', 'max' => 100),
-            array('descripcion,direccion_larga', 'length', 'max' => 2048),
+            array('description,direccion_larga', 'length', 'max' => 2048),
             array('tipo_inmueble, tipo_local', 'length', 'max' => 50),
             array('tipo_local_observacion', 'length', 'max' => 1024),
             array('potencia_contratada', 'length', 'max' => 10),
             array('coord_latitud, coord_longitud', 'safe'),
             // The following rule is used by search().
             // @todo Please remove those attributes that should not be searched.
-            array('id, titulo, descripcion, tipo_inmueble, vista_al_mar, tiene_calefaccion, gastos_comunes, anio_construccion_aproximado, coord_latitud, coord_longitud, cant_banios, mts2_edificados, cant_plantas_casa, es_propiedad_horizontal, cant_dormitorios, numero_de_piso, tiene_ascensor, tiene_porteria, tiene_portero_electrico, tiene_vigilancia, tipo_local, tipo_local_observacion, tiene_planta_alta, altura_salon_principal, cant_plantas_local, tiene_estacionamiento, tiene_deposito, potencia_contratada, fk_estado', 'safe', 'on' => 'search'),
+            array('id, titulo, description, tipo_inmueble, vista_al_mar, tiene_calefaccion, gastos_comunes, anio_construccion_aproximado, coord_latitud, coord_longitud, cant_banios, mts2_edificados, cant_plantas_casa, es_propiedad_horizontal, cant_dormitorios, numero_de_piso, tiene_ascensor, tiene_porteria, tiene_portero_electrico, tiene_vigilancia, tipo_local, tipo_local_observacion, tiene_planta_alta, altura_salon_principal, cant_plantas_local, tiene_estacionamiento, tiene_deposito, potencia_contratada, fk_estado', 'safe', 'on' => 'search'),
         );
     }
 
@@ -92,7 +92,7 @@ class Inmueble extends CActiveRecord {
         return array(
             'id' => 'ID',
             'titulo' => 'T&iacute;tulo',
-            'descripcion' => 'Descripci&oacute;n',
+            'description' => 'Descripci&oacute;n',
             'tipo_inmueble' => 'Tipo de inmueble',
             'vista_al_mar' => 'Vista al mar',
             'tiene_calefaccion' => 'Tiene calefacci&oacute;n',
@@ -148,7 +148,7 @@ class Inmueble extends CActiveRecord {
 
         $criteria->compare('id', $this->id);
         $criteria->compare('titulo', $this->titulo, true);
-        $criteria->compare('descripcion', $this->descripcion, true);
+        $criteria->compare('description', $this->description, true);
         $criteria->compare('tipo_inmueble', $this->tipo_inmueble, true);
         $criteria->compare('vista_al_mar', $this->vista_al_mar);
         $criteria->compare('tiene_calefaccion', $this->tiene_calefaccion);
@@ -195,11 +195,11 @@ class Inmueble extends CActiveRecord {
         $criteria->addInCondition('operacion_publicacion', $filtros[WsParameters::F_TIPO_TRANSACCION]);
 
 
-        // condicion para busqueda por texto coincidente a titulo o descripcion
+        // condicion para busqueda por texto coincidente a titulo o description
         $filtroStr1 = new CDbCriteria;
         $filtroStr1->compare('titulo', $filtros[WsParameters::F_FILTRO_STR], true);
         $filtroStr2 = new CDbCriteria;
-        $filtroStr2->compare('descripcion', $filtros[WsParameters::F_FILTRO_STR], true);
+        $filtroStr2->compare('description', $filtros[WsParameters::F_FILTRO_STR], true);
         $filtroStr1->mergeWith($filtroStr2, 'OR');
 
         $criteria->mergeWith($filtroStr1, 'AND');
@@ -269,11 +269,11 @@ class Inmueble extends CActiveRecord {
         $criteria->addInCondition('operacion_publicacion', $filtros[WsParameters::F_TIPO_TRANSACCION]);
 
 
-        // condicion para busqueda por texto coincidente a titulo o descripcion
+        // condicion para busqueda por texto coincidente a titulo o description
         $filtroStr1 = new CDbCriteria;
         $filtroStr1->compare('titulo', $filtros[WsParameters::F_FILTRO_STR], true);
         $filtroStr2 = new CDbCriteria;
-        $filtroStr2->compare('descripcion', $filtros[WsParameters::F_FILTRO_STR], true);
+        $filtroStr2->compare('description', $filtros[WsParameters::F_FILTRO_STR], true);
         $filtroStr1->mergeWith($filtroStr2, 'OR');
 
         $criteria->mergeWith($filtroStr1, 'AND');
@@ -338,7 +338,7 @@ class Inmueble extends CActiveRecord {
     }
 
     public function getListaEstadosInmueble() {
-        return CHtml::listData(EstadoInmueble::model()->findAll(), 'id', 'nombre');
+        return CHtml::listData(PropertyState::model()->findAll(), 'id', 'name');
     }
 
     public function findDestacados() {
@@ -390,18 +390,18 @@ class Inmueble extends CActiveRecord {
 
     public function countByEstado() {
         $data = Yii::app()->db->createCommand()
-                ->select('e.nombre as estado_inmueble, COUNT(*) as count')
+                ->select('e.name as estado_inmueble, COUNT(*) as count')
                 ->from('inmuebles i,estados_inmueble e')
                 ->where('i.fk_estado = e.id')
-                ->group('e.nombre')
+                ->group('e.name')
                 ->queryAll();
         return $data;
     }
 
     public function countByBarrio() {
-        $sql = "select e.nombre as barrio_inmueble, count(*) as count
+        $sql = "select e.name as barrio_inmueble, count(*) as count
             from inmuebles i left join barrios e on i.id_barrio = e.id
-            group by e.nombre;";
+            group by e.name;";
         $connection = Yii::app()->db;
         $command = $connection->createCommand($sql);
         $data = array();

@@ -36,9 +36,9 @@
                 </div>
 
                 <div class="form-group">
-                    <?php echo $form->labelEx($model, 'nombre'); ?>
-                    <?php echo $form->textField($model, 'nombre', array('size' => 60, 'maxlength' => 100, "class" => "form-control input-sm")); ?>
-                    <?php echo $form->error($model, 'nombre', array("class" => "yii-error-alert")); ?>
+                    <?php echo $form->labelEx($model, 'name'); ?>
+                    <?php echo $form->textField($model, 'name', array('size' => 60, 'maxlength' => 100, "class" => "form-control input-sm")); ?>
+                    <?php echo $form->error($model, 'name', array("class" => "yii-error-alert")); ?>
                 </div>
 
                 <div class="form-group">

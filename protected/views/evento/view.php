@@ -7,8 +7,8 @@
     <div class="col-lg-4">
         <?php echo Yii::app()->params["UiHeadersWrapperOMarkup"]; ?><span class="glyphicon glyphicon-calendar"></span> Info de evento<?php echo Yii::app()->params["UiHeadersWrapperCMarkup"]; ?>
         <?php
-        /* @var $this EstadoInmuebleController */
-        /* @var $model EstadoInmueble */
+        /* @var $this PropertyStateController */
+        /* @var $model PropertyState */
         /* @var $form CActiveForm */
         ?>
 
@@ -45,7 +45,7 @@
             
             <div class="form-group">
                 <?php echo $form->labelEx($model, 'id_cliente'); ?>
-                <?php echo $form->textField($model->cliente, "nombre", array('size' => 60, 'maxlength' => 1024, "class" => "form-control", "disabled" => "true")) ?>       
+                <?php echo $form->textField($model->cliente, "name", array('size' => 60, 'maxlength' => 1024, "class" => "form-control", "disabled" => "true")) ?>       
             </div>
             
             <div class="form-group">
@@ -53,8 +53,8 @@
                 <?php echo $form->textField($model->inmueble, "titulo", array('size' => 60, 'maxlength' => 1024, "class" => "form-control", "disabled" => "true")) ?>       
             </div>
             <div class="form-group">
-                <?php echo $form->labelEx($model, 'descripcion'); ?>
-                <?php echo $form->textArea($model, 'descripcion', array('size' => 60, 'maxlength' => 2048, "class" => "form-control", "disabled" => "true")); ?>
+                <?php echo $form->labelEx($model, 'description'); ?>
+                <?php echo $form->textArea($model, 'description', array('size' => 60, 'maxlength' => 2048, "class" => "form-control", "disabled" => "true")); ?>
             </div>
 
             <a href="<?php echo Yii::app()->createUrl("evento/admin") ?>"><?php echo Yii::app()->params["labelBotonVolver"] ?></a>

@@ -52,7 +52,7 @@ class EmailNotificacionController extends AdminController {
         if ($hU->isAjaxRequest() == false)
             Response::error("not allowed ;)");
 
-        if (isset($_POST["nombreCliente"]) == false || isset($_POST["emailCliente"]) == false)
+        if (isset($_POST["nameCliente"]) == false || isset($_POST["emailCliente"]) == false)
             Response::ok(CJSON::encode(array(
                         "resultado" => Constantes::RESULTADO_OPERACION_FALLA,
                         "detalle" => "Faltan par&aacute;metros obligatorios")));
@@ -66,7 +66,7 @@ class EmailNotificacionController extends AdminController {
         $cl->apellido = "";
         $cl->comentarios = "";
         $cl->direccion = "";
-        $cl->nombre = $_POST["nombreCliente"];
+        $cl->name = $_POST["nameCliente"];
         $cl->email = $_POST["emailCliente"];
         if ($cl->save())
             Response::ok(CJSON::encode(array(
@@ -139,11 +139,11 @@ class EmailNotificacionController extends AdminController {
     }
 
     public function getListaEstadosNotificacion() {
-        return CHtml::listData(EstadoNotificacion::model()->findAll(), 'id', 'nombre');
+        return CHtml::listData(EstadoNotificacion::model()->findAll(), 'id', 'name');
     }
     
     public function getListaTiposNotificacion() {
-        return CHtml::listData(TipoNotificacion::model()->findAll(), 'id', 'nombre');
+        return CHtml::listData(TipoNotificacion::model()->findAll(), 'id', 'name');
     }
     
     public function actionGetNotificacionesPendientes(){

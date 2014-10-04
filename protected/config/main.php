@@ -28,7 +28,7 @@ return array(
         /* customers bundle */
         'application.models.customer.*',
                 
-        'application.models.inmueble.*',
+        'application.models.property.*',
         
         
         /* departments bundle */

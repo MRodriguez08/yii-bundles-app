@@ -15,7 +15,7 @@ abstract class RWSController extends CController
     }  
     
     /**
-     * Descripcion: Hidrata el array $arguments con la informacion enviada desde el cliente dependiendo del
+     * description: Hidrata el array $arguments con la informacion enviada desde el cliente dependiendo del
      * metodo que se trate.
      */
     public function actionProcessRequest() {

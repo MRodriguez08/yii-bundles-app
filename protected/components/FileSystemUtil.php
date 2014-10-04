@@ -81,7 +81,7 @@ class FileSystemUtil {
     }
 
     /**
-     * Copia el archivo con nombre = {fileName} del directorio temporal del usuario actualmente
+     * Copia el archivo con name = {fileName} del directorio temporal del usuario actualmente
      * logueado en la aplicacion, al directorio final de imagenes 
      * para el inmueble pasado como parametro {idInmueble}
      */
@@ -108,7 +108,7 @@ class FileSystemUtil {
     }
 
     /**
-     * Crea un directorio en el directorio base de imagenes con el nombre {idInmueble}.
+     * Crea un directorio en el directorio base de imagenes con el name {idInmueble}.
      * @param type $idInmueble: identificador del inmueble para el cual se creara el directorio de imagenes.
      */
     function createInmuebleImageFolder($idInmueble) {

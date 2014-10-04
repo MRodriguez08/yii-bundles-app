@@ -98,7 +98,7 @@
                                     if (strcmp(Yii::app()->session[Constantes::SESSION_CURRENT_TAB], Constantes::ITEM_MENU_ESTADOS_INMUEBLES) == 0) {
                                         echo 'active';
                                     }
-                                    ?>"><a href="<?php echo Yii::app()->createUrl('estadoInmueble/admin'); ?>"><span class="glyphicon glyphicon-retweet"></span> <?php echo Yii::app()->params["labelFuncionalidadEstadosInmueble"] ?></a></li>
+                                    ?>"><a href="<?php echo Yii::app()->createUrl('propertystate/admin'); ?>"><span class="glyphicon glyphicon-retweet"></span> <?php echo Yii::app()->params["labelFuncionalidadEstadosInmueble"] ?></a></li>
                                     <li class="<?php
                                     if (strcmp(Yii::app()->session[Constantes::SESSION_CURRENT_TAB], Constantes::ITEM_MENU_PARAMETROS) == 0) {
                                         echo 'active';

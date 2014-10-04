@@ -64,7 +64,7 @@ class Neighbourhood extends CActiveRecord {
     public function attributeLabels() {
         return array(
             'id' => 'Id',
-            'name' => 'Nombre',
+            'name' => 'name',
             'city_id' => 'Ciudad',
         );
     }

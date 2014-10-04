@@ -1,6 +1,6 @@
 <?php
 
-class EstadoInmuebleController extends AdminController {
+class PropertystateController extends AdminController {
 
     protected $pageTitle = ". : Estados de inmueble : .";
      
@@ -48,20 +48,20 @@ class EstadoInmuebleController extends AdminController {
      * If creation is successful, the browser will be redirected to the 'view' page.
      */
     public function actionCreate() {
-        $model = new EstadoInmueble;
+        $model = new PropertyState;
 
         // Uncomment the following line if AJAX validation is needed
         // $this->performAjaxValidation($model);
 
-        if (isset($_POST['EstadoInmueble'])) {
-            $model->attributes = $_POST['EstadoInmueble'];
+        if (isset($_POST['PropertyState'])) {
+            $model->attributes = $_POST['PropertyState'];
             if ($model->save()){
-                $this->audit->registrarAuditoria(Yii::app()->user->id, new DateTime, Constantes::AUDITORIA_OBJETO_ESTADO_INMUEBLE, Constantes::AUDITORIA_OPERACION_ALTA, $model->id);
+                $this->audit->logAudit(Yii::app()->user->id, new DateTime, Constantes::AUDITORIA_OBJETO_ESTADO_INMUEBLE, Constantes::AUDITORIA_OPERACION_ALTA, $model->id);
                 $this->render('/site/successfullOperation', array(
                     'header' => 'Estado de inmueble creado con &eacute;xito' , 
                     'message' => 'Haga click en volver para regresar a la gestión de estado de inmueble',
-                    'returnUrl'=>Yii::app()->createUrl('estadoInmueble/admin'),
-                    'viewUrl'=>Yii::app()->createUrl("estadoInmueble/view", array("id"=>$model->id))
+                    'returnUrl'=>Yii::app()->createUrl('propertystate/admin'),
+                    'viewUrl'=>Yii::app()->createUrl("propertystate/view", array("id"=>$model->id))
                 ));
                 return;
             }
@@ -84,15 +84,15 @@ class EstadoInmuebleController extends AdminController {
         // Uncomment the following line if AJAX validation is needed
         // $this->performAjaxValidation($model);
 
-        if (isset($_POST['EstadoInmueble'])) {
-            $model->attributes = $_POST['EstadoInmueble'];
+        if (isset($_POST['PropertyState'])) {
+            $model->attributes = $_POST['PropertyState'];
             if ($model->save()){
-                $this->audit->registrarAuditoria(Yii::app()->user->id, new DateTime, Constantes::AUDITORIA_OBJETO_ESTADO_INMUEBLE, Constantes::AUDITORIA_OPERACION_MODIFICACION, $model->id);
+                $this->audit->logAudit(Yii::app()->user->id, new DateTime, Constantes::AUDITORIA_OBJETO_ESTADO_INMUEBLE, Constantes::AUDITORIA_OPERACION_MODIFICACION, $model->id);
                 $this->render('/site/successfullOperation', array(
                     'header' => 'Estado de inmueble modificado con &eacute;xito' , 
                     'message' => 'Haga click en volver para regresar a la gestión de estado de inmueble',
-                    'returnUrl'=>Yii::app()->createUrl('estadoInmueble/admin'),
-                    'viewUrl'=>Yii::app()->createUrl("estadoInmueble/view", array("id"=>$model->id))
+                    'returnUrl'=>Yii::app()->createUrl('propertystate/admin'),
+                    'viewUrl'=>Yii::app()->createUrl("propertystate/view", array("id"=>$model->id))
                 ));
                 return;
             }
@@ -120,7 +120,7 @@ class EstadoInmuebleController extends AdminController {
      * Lists all models.
      */
     public function actionIndex() {
-        $dataProvider = new CActiveDataProvider('EstadoInmueble');
+        $dataProvider = new CActiveDataProvider('PropertyState');
         $this->render('index', array(
             'dataProvider' => $dataProvider,
         ));
@@ -130,10 +130,10 @@ class EstadoInmuebleController extends AdminController {
      * Manages all models.
      */
     public function actionAdmin() {
-        $model = new EstadoInmueble('search');
+        $model = new PropertyState('search');
         $model->unsetAttributes();  // clear any default values
-        if (isset($_GET['EstadoInmueble']))
-            $model->attributes = $_GET['EstadoInmueble'];
+        if (isset($_GET['PropertyState']))
+            $model->attributes = $_GET['PropertyState'];
 
         $this->render('admin', array(
             'model' => $model,
@@ -144,11 +144,11 @@ class EstadoInmuebleController extends AdminController {
      * Returns the data model based on the primary key given in the GET variable.
      * If the data model is not found, an HTTP exception will be raised.
      * @param integer $id the ID of the model to be loaded
-     * @return EstadoInmueble the loaded model
+     * @return PropertyState the loaded model
      * @throws CHttpException
      */
     public function loadModel($id) {
-        $model = EstadoInmueble::model()->findByPk($id);
+        $model = PropertyState::model()->findByPk($id);
         if ($model === null)
             throw new CHttpException(404, 'The requested page does not exist.');
         return $model;
@@ -156,10 +156,10 @@ class EstadoInmuebleController extends AdminController {
 
     /**
      * Performs the AJAX validation.
-     * @param EstadoInmueble $model the model to be validated
+     * @param PropertyState $model the model to be validated
      */
     protected function performAjaxValidation($model) {
-        if (isset($_POST['ajax']) && $_POST['ajax'] === 'estado-inmueble-form') {
+        if (isset($_POST['ajax']) && $_POST['ajax'] === 'property-state-form') {
             echo CActiveForm::validate($model);
             Yii::app()->end();
         }

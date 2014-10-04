@@ -27,7 +27,7 @@ function loadGraficaInmuebles(idContainer,data){
         },
         series: [{
             type: 'pie',
-            name: data["nombreSerie"],
+            name: data["nameSerie"],
             data: data["data"]
         }]
     });

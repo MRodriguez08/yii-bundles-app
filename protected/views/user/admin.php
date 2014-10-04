@@ -55,7 +55,7 @@ $('.search-form form').submit(function(){
                     'columns' => array(
                         'nick',
                         'email',
-                        'nombre',
+                        'name',
                         'apellido',
                         array(
                             'class' => 'CButtonColumn',

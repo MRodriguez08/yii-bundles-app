@@ -44,9 +44,9 @@
                             <?php echo $form->textArea($model, 'direccion_corta', array('size' => 60, 'maxlength' => 2048, "class" => "form-control", "disabled" => "true")); ?>
                         </div>
                         
-                        <div id="grp-inmueble-descripcion" class="form-group">
-                            <?php echo $form->labelEx($model, 'descripcion'); ?>
-                            <?php echo $form->textArea($model, 'descripcion', array('size' => 60, 'maxlength' => 2048, "class" => "form-control", "disabled" => "true")); ?>
+                        <div id="grp-inmueble-description" class="form-group">
+                            <?php echo $form->labelEx($model, 'description'); ?>
+                            <?php echo $form->textArea($model, 'description', array('size' => 60, 'maxlength' => 2048, "class" => "form-control", "disabled" => "true")); ?>
                         </div>
 
                         <div id="grp-inmueble-tipo" class="form-group">

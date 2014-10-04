@@ -1,6 +1,6 @@
 <?php
-/* @var $this EstadoInmuebleController */
-/* @var $model EstadoInmueble */
+/* @var $this PropertyStateController */
+/* @var $model PropertyState */
 ?>
 
 <div class="row">

@@ -6,7 +6,7 @@
  * The followings are the available columns in table 'eventos':
  * @property string $id
  * @property string $titulo
- * @property string $descripcion
+ * @property string $description
  * @property string $fecha_hora_desde
  * @property string $fecha_hora_hasta
  * @property integer $id_inmueble
@@ -40,12 +40,12 @@ class Evento extends CActiveRecord {
             array('titulo, fecha_hora_desde, id_inmueble, id_cliente, id_usuario', 'required', 'message' => Yii::app()->params["templateEmptyValueErrorMessage"]),
             array('id_inmueble, id_cliente', 'numerical', 'integerOnly' => true),
             array('titulo', 'length', 'max' => 100),
-            array('descripcion', 'length', 'max' => 512),
+            array('description', 'length', 'max' => 512),
             array('id_usuario', 'length', 'max' => 64),
             array('fecha_hora_hasta', 'safe'),
             // The following rule is used by search().
             // @todo Please remove those attributes that should not be searched.
-            array('titulo, descripcion', 'safe', 'on' => 'search'),
+            array('titulo, description', 'safe', 'on' => 'search'),
         );
     }
 
@@ -69,7 +69,7 @@ class Evento extends CActiveRecord {
         return array(
             'id' => 'ID',
             'titulo' => 'T&iacute;tulo',
-            'descripcion' => 'Descripcion',
+            'description' => 'description',
             'fecha_hora_desde' => 'Inicio',
             'fecha_hora_hasta' => 'Fin',
             'id_inmueble' => 'Inmueble',
@@ -99,7 +99,7 @@ class Evento extends CActiveRecord {
 
         $criteria->compare('id', $this->id, true);
         $criteria->compare('titulo', $this->titulo, true);
-        $criteria->compare('descripcion', $this->descripcion, true);
+        $criteria->compare('description', $this->description, true);
         
         if (isset($_GET["Evento"])) {
             $dH = new DateTimeHelper;            

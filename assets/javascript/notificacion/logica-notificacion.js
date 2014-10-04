@@ -14,7 +14,7 @@ function loadNotificacionesOnIndex(ns){
         div2.setAttribute("class", "header");
         var strong = document.createElement("strong");
         var strong = document.createElement("strong");
-        strong.appendChild(document.createTextNode(ns[idx].nombre_cliente));
+        strong.appendChild(document.createTextNode(ns[idx].name_cliente));
         var small = document.createElement("small");
         var i = document.createElement("i");
         i.setAttribute("class", "fa fa-clock-o fa-fw");

@@ -5,8 +5,8 @@
  *
  * The followings are the available columns in table 'estado_notificacion':
  * @property string $id
- * @property string $nombre
- * @property string $descripcion
+ * @property string $name
+ * @property string $description
  *
  * The followings are the available model relations:
  * @property EmailsNotificacion[] $emailsNotificacions
@@ -27,18 +27,18 @@ class EstadoNotificacion extends CActiveRecord {
         // NOTE: you should only define rules for those attributes that
         // will receive user inputs.
         return array(
-            array('nombre', 'required', 'message' => Yii::app()->params["templateEmptyValueErrorMessage"]),
-            array('nombre', 'length', 'max' => 64),
-            array('nombre', 'duplicatedName', 'message' => Yii::app()->params["templateDuplicatedValueErrorMessage"]),
-            array('descripcion', 'length', 'max' => 512),
+            array('name', 'required', 'message' => Yii::app()->params["templateEmptyValueErrorMessage"]),
+            array('name', 'length', 'max' => 64),
+            array('name', 'duplicatedName', 'message' => Yii::app()->params["templateDuplicatedValueErrorMessage"]),
+            array('description', 'length', 'max' => 512),
             // The following rule is used by search().
             // @todo Please remove those attributes that should not be searched.
-            array('id, nombre, descripcion', 'safe', 'on' => 'search'),
+            array('id, name, description', 'safe', 'on' => 'search'),
         );
     }
     
     public function duplicatedName($attribute, $params) {
-        if (count(TipoNotificacion::model()->findALl('nombre=:nombre', array("nombre" => $this->nombre))) > 0)
+        if (count(TipoNotificacion::model()->findALl('name=:name', array("name" => $this->name))) > 0)
             $this->addError($attribute, str_replace("{attribute}", $attribute, Yii::app()->params["templateDuplicatedValueErrorMessage"]));
     }
 
@@ -59,8 +59,8 @@ class EstadoNotificacion extends CActiveRecord {
     public function attributeLabels() {
         return array(
             'id' => 'ID',
-            'nombre' => 'Nombre',
-            'descripcion' => 'Descripcion',
+            'name' => 'name',
+            'description' => 'description',
         );
     }
 
@@ -82,8 +82,8 @@ class EstadoNotificacion extends CActiveRecord {
         $criteria = new CDbCriteria;
 
         $criteria->compare('id', $this->id, true);
-        $criteria->compare('nombre', $this->nombre, true);
-        $criteria->compare('descripcion', $this->descripcion, true);
+        $criteria->compare('name', $this->name, true);
+        $criteria->compare('description', $this->description, true);
 
         return new CActiveDataProvider($this, array(
             'criteria' => $criteria,

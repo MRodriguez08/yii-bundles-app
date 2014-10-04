@@ -62,7 +62,7 @@ class Department extends CActiveRecord {
     public function attributeLabels() {
         return array(
             'id' => 'ID',
-            'name' => 'Nombre',
+            'name' => 'name',
         );
     }
 

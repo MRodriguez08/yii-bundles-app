@@ -58,7 +58,7 @@ class Audit extends CActiveRecord {
             'date_time' => 'Fecha',
             'object' => 'Objeto',
             'operation' => 'Operacion',
-            'description' => 'Descripcion',
+            'description' => 'description',
             'user' => 'Usuario',
             'dateTimeFrom' => 'Desde',
             'dateTimeTo' => 'Hasta',

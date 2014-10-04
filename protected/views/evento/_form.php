@@ -1,6 +1,6 @@
 <?php
-/* @var $this EstadoInmuebleController */
-/* @var $model EstadoInmueble */
+/* @var $this PropertyStateController */
+/* @var $model PropertyState */
 /* @var $form CActiveForm */
 ?>
 
@@ -54,9 +54,9 @@
     </div>
 
     <div class="form-group">
-        <?php echo $form->labelEx($model, 'descripcion'); ?>
-        <?php echo CHtml::activeTextArea($model, "descripcion", array('size' => 60, 'maxlength' => 1024, "class" => "form-control input-sm")) ?>       
-        <?php echo $form->error($model, 'descripcion'); ?>
+        <?php echo $form->labelEx($model, 'description'); ?>
+        <?php echo CHtml::activeTextArea($model, "description", array('size' => 60, 'maxlength' => 1024, "class" => "form-control input-sm")) ?>       
+        <?php echo $form->error($model, 'description'); ?>
     </div>
 
     <a href="<?php echo Yii::app()->createUrl("evento/admin") ?>"><?php echo Yii::app()->params["labelBotonVolver"] ?></a>

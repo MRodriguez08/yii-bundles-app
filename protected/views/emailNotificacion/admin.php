@@ -53,11 +53,11 @@ $('.search-form form').submit(function(){
                         'email_cliente',
                         array(            
                             'name'=>'Tipo',
-                            'value'=>'$data->tipoNotificacion->nombre'
+                            'value'=>'$data->tipoNotificacion->name'
                         ),
                         array(            
                             'name'=>'Estado',
-                            'value'=>'$data->estadoNotificacion->nombre'
+                            'value'=>'$data->estadoNotificacion->name'
                         ),
                         array(
                             'class' => 'CButtonColumn',

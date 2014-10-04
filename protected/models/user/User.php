@@ -84,7 +84,7 @@ class User extends CActiveRecord {
             'nick' => 'Usuario',
             'email' => 'Email',
             'password' => 'Contrase&ntilde;a',
-            'name' => 'Nombre',
+            'name' => 'name',
             'surname' => 'Apellido',
             'last_login' => 'Ultimo Ingreso',
             'enabled' => 'Habilitado',

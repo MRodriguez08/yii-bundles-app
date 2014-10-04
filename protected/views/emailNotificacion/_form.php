@@ -1,6 +1,6 @@
 <?php
-/* @var $this EstadoInmuebleController */
-/* @var $model EstadoInmueble */
+/* @var $this PropertyStateController */
+/* @var $model PropertyState */
 /* @var $form CActiveForm */
 ?>
 
@@ -26,9 +26,9 @@
     </div>
 
     <div class="form-group">
-        <?php echo $form->labelEx($model, 'nombre_cliente'); ?>
-        <?php echo $form->textField($model, 'nombre_cliente', array('size' => 60, 'maxlength' => 100, "class" => "form-control")); ?>
-        <?php echo $form->error($model, 'nombre_cliente'); ?>
+        <?php echo $form->labelEx($model, 'name_cliente'); ?>
+        <?php echo $form->textField($model, 'name_cliente', array('size' => 60, 'maxlength' => 100, "class" => "form-control")); ?>
+        <?php echo $form->error($model, 'name_cliente'); ?>
     </div>
 
     <div class="form-group">

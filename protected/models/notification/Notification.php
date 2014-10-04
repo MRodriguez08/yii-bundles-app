@@ -10,7 +10,7 @@
  * @property string $id_tipo_notificacion
  * @property string $id_estado_notificacion
  * @property string $email_cliente
- * @property string $nombre_cliente
+ * @property string $name_cliente
  * @property string $telefono_cliente
  *
  * The followings are the available model relations:
@@ -36,10 +36,10 @@ class Notification extends CActiveRecord {
             array('fecha_hora_envio, mensaje, id_tipo_notificacion, id_estado_notificacion, email_cliente', 'required'),
             array('mensaje', 'length', 'max' => 2048),
             array('id_tipo_notificacion, id_estado_notificacion, telefono_cliente', 'length', 'max' => 20),
-            array('email_cliente, nombre_cliente', 'length', 'max' => 64),
+            array('email_cliente, name_cliente', 'length', 'max' => 64),
             // The following rule is used by search().
             // @todo Please remove those attributes that should not be searched.
-            array('id, fecha_hora_envio, mensaje, id_tipo_notificacion, id_estado_notificacion, email_cliente, nombre_cliente, telefono_cliente', 'safe', 'on' => 'search'),
+            array('id, fecha_hora_envio, mensaje, id_tipo_notificacion, id_estado_notificacion, email_cliente, name_cliente, telefono_cliente', 'safe', 'on' => 'search'),
         );
     }
 
@@ -66,7 +66,7 @@ class Notification extends CActiveRecord {
             'id_tipo_notificacion' => 'Tipo',
             'id_estado_notificacion' => 'Estado',
             'email_cliente' => 'Email',
-            'nombre_cliente' => 'Nombre',
+            'name_cliente' => 'name',
             'telefono_cliente' => 'Telefono',
         );
     }
@@ -94,7 +94,7 @@ class Notification extends CActiveRecord {
         $criteria->compare('id_tipo_notificacion', $this->id_tipo_notificacion, true);
         $criteria->compare('id_estado_notificacion', $this->id_estado_notificacion, true);
         $criteria->compare('email_cliente', $this->email_cliente, true);
-        $criteria->compare('nombre_cliente', $this->nombre_cliente, true);
+        $criteria->compare('name_cliente', $this->name_cliente, true);
         $criteria->compare('telefono_cliente', $this->telefono_cliente, true);
 
         return new CActiveDataProvider($this, array(
@@ -118,13 +118,13 @@ class Notification extends CActiveRecord {
             throw new Exception("mensaje no definido");
         if (!isset($arguments["telefonoCliente"]))
             throw new Exception("telefono no definido");
-        if (!isset($arguments["nombreCliente"]))
-            throw new Exception("nombre no definido");
+        if (!isset($arguments["nameCliente"]))
+            throw new Exception("name no definido");
         if (!isset($arguments["emailCliente"]))
             throw new Exception("email no definido");
         $this->mensaje = $arguments["mensaje"];
         $this->telefono_cliente = $arguments["telefonoCliente"];
-        $this->nombre_cliente = $arguments["nombreCliente"];
+        $this->name_cliente = $arguments["nameCliente"];
         $this->email_cliente = $arguments["emailCliente"];
         $this->id_tipo_notificacion = /* (isset($arguments["tipoNotificacion"]) ? $arguments["tipoNotificacion"] : "") */ 1;
         $dtNow = new DateTime;
