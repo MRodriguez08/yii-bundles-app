@@ -25,14 +25,14 @@
                     ?>
 
                     <div class="form-group col-lg-3">
-                        <?php echo $form->label($model, 'nombre'); ?>
-                        <?php echo $form->textField($model, 'nombre', array('size' => 60, 'maxlength' => 64, "class" => "form-control input-sm")); ?>
+                        <?php echo $form->label($model, 'name'); ?>
+                        <?php echo $form->textField($model, 'name', array('size' => 60, 'maxlength' => 64, "class" => "form-control input-sm")); ?>
                     </div>
 
                     <div class="form-group col-lg-3">
-                        <?php echo $form->label($model, 'id_departamento'); ?>
-                        <?php echo $form->dropDownList($model , 'id_departamento', 
-                                $this->getListaDepartamentos(), 
+                        <?php echo $form->label($model, 'department_id'); ?>
+                        <?php echo $form->dropDownList($model , 'department_id', 
+                                $this->getDepartmentsList(), 
                                 array("empty"=> Yii::app()->params["labelEmptyComboBoxValue"],"class" => "form-control input-sm")) ?>
                     </div>
 

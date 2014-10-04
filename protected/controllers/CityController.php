@@ -1,6 +1,6 @@
 <?php
 
-class CiudadController extends AdminController {
+class CityController extends AdminController {
 
     protected $pageTitle = ". : Ciudades : .";
     
@@ -48,20 +48,20 @@ class CiudadController extends AdminController {
      * If creation is successful, the browser will be redirected to the 'view' page.
      */
     public function actionCreate() {
-        $model = new Ciudad;
+        $model = new City;
 
         // Uncomment the following line if AJAX validation is needed
         // $this->performAjaxValidation($model);
 
-        if (isset($_POST['Ciudad'])) {
-            $model->attributes = $_POST['Ciudad'];
+        if (isset($_POST['City'])) {
+            $model->attributes = $_POST['City'];
             if ($model->save()){
-                $this->audit->registrarAuditoria(Yii::app()->user->id, new DateTime, Constantes::AUDITORIA_OBJETO_CIUDAD, Constantes::AUDITORIA_OPERACION_ALTA, $model->id);
+                $this->audit->logAudit(Yii::app()->user->id, new DateTime, Constantes::AUDITORIA_OBJETO_CIUDAD, Constantes::AUDITORIA_OPERACION_ALTA, $model->id);
                 $this->render('/site/successfullOperation', array(
                     'header' => 'Ciudad creada con &eacute;xito' , 
                     'message' => 'Haga click en volver para regresar a la gestión de ciudades',
-                    'returnUrl'=>Yii::app()->createUrl('ciudad/admin'),
-                    'viewUrl'=>Yii::app()->createUrl("ciudad/view", array("id"=>$model->id))
+                    'returnUrl'=>Yii::app()->createUrl('city/admin'),
+                    'viewUrl'=>Yii::app()->createUrl("city/view", array("id"=>$model->id))
                 ));
                 return; 
             }                
@@ -83,15 +83,15 @@ class CiudadController extends AdminController {
         // Uncomment the following line if AJAX validation is needed
         // $this->performAjaxValidation($model);
 
-        if (isset($_POST['Ciudad'])) {
-            $model->attributes = $_POST['Ciudad'];
+        if (isset($_POST['City'])) {
+            $model->attributes = $_POST['City'];
             if ($model->save()){
-                $this->audit->registrarAuditoria(Yii::app()->user->id, new DateTime, Constantes::AUDITORIA_OBJETO_CIUDAD, Constantes::AUDITORIA_OPERACION_MODIFICACION, $model->id);
+                $this->audit->logAudit(Yii::app()->user->id, new DateTime, Constantes::AUDITORIA_OBJETO_CIUDAD, Constantes::AUDITORIA_OPERACION_MODIFICACION, $model->id);
                 $this->render('/site/successfullOperation', array(
                     'header' => 'Ciudad modificada con &eacute;xito' , 
                     'message' => 'Haga click en volver para regresar a la gestión de ciudades',
-                    'returnUrl'=>Yii::app()->createUrl('ciudad/admin'),
-                    'viewUrl'=>Yii::app()->createUrl("ciudad/view", array("id"=>$model->id))
+                    'returnUrl'=>Yii::app()->createUrl('city/admin'),
+                    'viewUrl'=>Yii::app()->createUrl("city/view", array("id"=>$model->id))
                 ));
                 return; 
             }
@@ -119,7 +119,7 @@ class CiudadController extends AdminController {
      * Lists all models.
      */
     public function actionIndex() {
-        $dataProvider = new CActiveDataProvider('Ciudad');
+        $dataProvider = new CActiveDataProvider('City');
         $this->render('index', array(
             'dataProvider' => $dataProvider,
         ));
@@ -129,10 +129,10 @@ class CiudadController extends AdminController {
      * Manages all models.
      */
     public function actionAdmin() {
-        $model = new Ciudad('search');
+        $model = new City('search');
         $model->unsetAttributes();  // clear any default values
-        if (isset($_GET['Ciudad']))
-            $model->attributes = $_GET['Ciudad'];
+        if (isset($_GET['City']))
+            $model->attributes = $_GET['City'];
 
         $this->render('admin', array(
             'model' => $model,
@@ -143,35 +143,35 @@ class CiudadController extends AdminController {
      * Returns the data model based on the primary key given in the GET variable.
      * If the data model is not found, an HTTP exception will be raised.
      * @param integer $id the ID of the model to be loaded
-     * @return Ciudad the loaded model
+     * @return City the loaded model
      * @throws CHttpException
      */
     public function loadModel($id) {
-        $model = Ciudad::model()->findByPk($id);
+        $model = City::model()->findByPk($id);
         if ($model === null)
             throw new CHttpException(404, 'The requested page does not exist.');
-        $model->departamento = Departamento::model()->findByPk($model->id_departamento);
+        //$model->departamento = Department::model()->findByPk($model->department_id);
         return $model;
     }
 
     /**
      * Performs the AJAX validation.
-     * @param Ciudad $model the model to be validated
+     * @param City $model the model to be validated
      */
     protected function performAjaxValidation($model) {
-        if (isset($_POST['ajax']) && $_POST['ajax'] === 'ciudad-form') {
+        if (isset($_POST['ajax']) && $_POST['ajax'] === 'city-form') {
             echo CActiveForm::validate($model);
             Yii::app()->end();
         }
     }
     
-    public function getListaDepartamentos() {
-        return CHtml::listData(Departamento::model()->findAll(), 'id', 'nombre');
+    public function getDepartmentsList() {
+        return CHtml::listData(Department::model()->findAll(), 'id', 'name');
     }
     
-    protected function renderNombreDepartamento($data,$row)
+    protected function renderDepartmentName($data,$row)
     {
-       return Departamento::model()->findByPk($data->id_departamento)->nombre;            
+       return Department::model()->findByPk($data->department_id)->name;            
     }
 
 }

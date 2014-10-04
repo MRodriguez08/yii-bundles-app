@@ -1,6 +1,6 @@
 <?php
-/* @var $this BarrioController */
-/* @var $model Barrio */
+/* @var $this CiudadController */
+/* @var $model Ciudad */
 
 Yii::app()->clientScript->registerScript('search', "
 $('.search-button').click(function(){
@@ -8,7 +8,7 @@ $('.search-button').click(function(){
 	return false;
 });
 $('.search-form form').submit(function(){
-	$('#barrio-grid').yiiGridView('update', {
+	$('#cities-grid').yiiGridView('update', {
 		data: $(this).serialize()
 	});
 	return false;
@@ -16,15 +16,15 @@ $('.search-form form').submit(function(){
 ");
 ?>
 
-<div class="row"> 
+<div class="row">
     <div class="col-lg-12">
         <div class="row top-admin-row">
             <div class="col-lg-12">
-                <?php echo Yii::app()->params["UiHeadersWrapperOMarkup"]; ?><span class="glyphicon glyphicon-map-marker"></span> <?php echo Yii::app()->params["labelFuncionalidadBarrios"] ?><?php echo Yii::app()->params["UiHeadersWrapperCMarkup"]; ?>
+                <?php echo Yii::app()->params["UiHeadersWrapperOMarkup"]; ?><span class="glyphicon glyphicon-map-marker"></span> <?php echo Yii::app()->params["labelFuncionalidadCiudades"] ?><?php echo Yii::app()->params["UiHeadersWrapperCMarkup"]; ?>
                 <ol class="breadcrumb">
                     <li><a href="<?php echo Yii::app()->createUrl("site/index") ?>">Inicio</a></li>
                     <li><a href="#">Configuraci&oacute;n</a></li>
-                    <li class="active"><?php echo Yii::app()->params["labelFuncionalidadBarrios"] ?></li>
+                    <li class="active"><?php echo Yii::app()->params["labelFuncionalidadCiudades"] ?></li>
                 </ol>
                 <?php
                 $this->renderPartial('_search', array(
@@ -33,7 +33,7 @@ $('.search-form form').submit(function(){
                 ?>
             </div>
             <div class="col-lg-12">
-                <div class="pull-right"><a href="<?php echo Yii::app()->createUrl('barrio/create'); ?>"><span title="nuevo" class="glyphicon glyphicon-plus"></span></a></div>
+                <div class="pull-right"><a href="<?php echo Yii::app()->createUrl('city/create'); ?>"><span title="nuevo" class="glyphicon glyphicon-plus"></span></a></div>
             </div>
         </div>
         <div class="row">
@@ -41,8 +41,11 @@ $('.search-form form').submit(function(){
 
                 <?php
                 $this->widget('zii.widgets.grid.CGridView', array(
-                    'id' => 'cliente-grid',
+                    'id' => 'cities-grid',
                     'summaryText' => '',
+                    'cssFile' => Yii::app()->params["gridViewStyleSheet"],
+                    'emptyText' => Yii::app()->params["labelTablaSinResultados"],
+                    'dataProvider' => $model->search(),
                     'pager' => array(
                         'cssFile' => Yii::app()->params["gridViewStyleSheet"],
                         'header' => Yii::app()->params["labelPaginacionTabla"],
@@ -51,14 +54,11 @@ $('.search-form form').submit(function(){
                         'nextPageLabel' => Yii::app()->params["nextPageLabel"],
                         'lastPageLabel' => '&gt;&gt;',
                     ),
-                    'cssFile' => Yii::app()->params["gridViewStyleSheet"],
-                    'emptyText' => Yii::app()->params["labelTablaSinResultados"],
-                    'dataProvider' => $model->search(),
                     'columns' => array(
-                        'nombre',
+                        'name',
                         array(            
-                            'name'=>'Ciudad',
-                            'value'=>array($this,'renderNombreCiudad')
+                            'name'=>'Departamento',
+                            'value'=> '$data->department->name'
                         ),
                         array(
                             'class' => 'CButtonColumn',
@@ -69,7 +69,7 @@ $('.search-form form').submit(function(){
                                     (
                                     'label' => Yii::app()->params["labelBotonGrillaVer"],
                                     'options' => array('title' => 'ver'),
-                                    'url' => 'Yii::app()->createUrl("barrio/view", array("id"=>$data->id))',
+                                    'url' => 'Yii::app()->createUrl("city/view", array("id"=>$data->id))',
                                 ),
                             ),
                         ),
@@ -82,7 +82,7 @@ $('.search-form form').submit(function(){
                                     (
                                     'label' => Yii::app()->params["labelBotonGrillaEditar"],
                                     'options' => array('title' => 'editar'),
-                                    'url' => 'Yii::app()->createUrl("barrio/update", array("id"=>$data->id))',
+                                    'url' => 'Yii::app()->createUrl("city/update", array("id"=>$data->id))',
                                 ),
                             ),
                         ),
@@ -95,7 +95,7 @@ $('.search-form form').submit(function(){
                                     (
                                     'label' => Yii::app()->params["labelBotonGrillaEliminar"],
                                     'options' => array('title' => 'eliminar'),
-                                    'url' => 'Yii::app()->createUrl("barrio/delete", array("id"=>$data->id))',
+                                    'url' => 'Yii::app()->createUrl("city/delete", array("id"=>$data->id))',
                                 ),
                             ),
                         ),

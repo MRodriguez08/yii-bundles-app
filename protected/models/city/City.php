@@ -5,22 +5,20 @@
  *
  * The followings are the available columns in table 'ciudades':
  * @property integer $id
- * @property string $nombre
- * @property integer $id_departamento
+ * @property string $name
+ * @property integer $department_id
  *
  * The followings are the available model relations:
  * @property Barrios[] $barrioses
  * @property Departamentos $idDepartamento
  */
-class Ciudad extends CActiveRecord {
-
-    public $departamento;
+class City extends CActiveRecord {
     
     /**
      * @return string the associated database table name
      */
     public function tableName() {
-        return 'ciudades';
+        return 'cities';
     }
 
     /**
@@ -30,23 +28,23 @@ class Ciudad extends CActiveRecord {
         // NOTE: you should only define rules for those attributes that
         // will receive user inputs.
         return array(
-            array('id_departamento,nombre', 'required' , "message" => Yii::app()->params["templateEmptyValueErrorMessage"]),
-            array('id_departamento', 'numerical', 'integerOnly' => true),
-            array('nombre', 'length', 'max' => 128),
-            array('nombre', 'duplicatedName', 'message' => Yii::app()->params["templateDuplicatedValueErrorMessage"]),
+            array('department_id,name', 'required' , "message" => Yii::app()->params["templateEmptyValueErrorMessage"]),
+            array('department_id', 'numerical', 'integerOnly' => true),
+            array('name', 'length', 'max' => 128),
+            array('name', 'duplicatedName', 'message' => Yii::app()->params["templateDuplicatedValueErrorMessage"]),
             // The following rule is used by search().
             // @todo Please remove those attributes that should not be searched.
-            array('id, nombre, id_departamento', 'safe', 'on' => 'search'),
+            array('id, name, department_id', 'safe', 'on' => 'search'),
         );
     }
     
     public function duplicatedName($attribute, $params) {
         if ($this->isNewRecord) {
-            if (count(Ciudad::model()->findALl('nombre=:nombre and id_departamento=:id_departamento', array("nombre" => $this->nombre, "id_departamento" => $this->id_departamento))) > 0)
-                $this->addError($attribute, "Ya existe una ciudad la ciudad {$this->nombre} en el departamento seleccionado");
+            if (count(City::model()->findAll('name=:name and department_id=:department_id', array("name" => $this->name, "department_id" => $this->department_id))) > 0)
+                $this->addError($attribute, "Ya existe una ciudad la ciudad {$this->name} en el departamento seleccionado");
         } else {
-            if (count(Ciudad::model()->findALl('id <> :id and nombre=:nombre and id_departamento=:id_departamento', array("nombre" => $this->nombre, "id_departamento" => $this->id_departamento, "id" => $this->id))) > 0)
-                $this->addError($attribute, "Ya existe una ciudad la ciudad {$this->nombre} en el departamento seleccionado");
+            if (count(City::model()->findAll('id <> :id and name=:name and department_id=:department_id', array("name" => $this->name, "department_id" => $this->department_id, "id" => $this->id))) > 0)
+                $this->addError($attribute, "Ya existe una ciudad la ciudad {$this->name} en el departamento seleccionado");
         }
     }
 
@@ -57,8 +55,8 @@ class Ciudad extends CActiveRecord {
         // NOTE: you may need to adjust the relation name and the related
         // class name for the relations automatically generated below.
         return array(
-            'barrioses' => array(self::HAS_MANY, 'Barrios', 'id_ciudad'),
-            'idDepartamento' => array(self::BELONGS_TO, 'Departamentos', 'id_departamento'),
+            'neighborhoods' => array(self::HAS_MANY, 'Neighborhood', 'city_id'),
+            'department' => array(self::BELONGS_TO, 'Department', 'department_id'),
         );
     }
 
@@ -68,8 +66,8 @@ class Ciudad extends CActiveRecord {
     public function attributeLabels() {
         return array(
             'id' => 'Id',
-            'nombre' => 'Nombre',
-            'id_departamento' => 'Departamento',
+            'name' => 'Nombre',
+            'department_id' => 'Departamento',
         );
     }
 
@@ -91,8 +89,8 @@ class Ciudad extends CActiveRecord {
         $criteria = new CDbCriteria;
 
         $criteria->compare('id', $this->id);
-        $criteria->compare('nombre', $this->nombre, true);
-        $criteria->compare('id_departamento', $this->id_departamento);
+        $criteria->compare('name', $this->name, true);
+        $criteria->compare('department_id', $this->department_id);
 
         return new CActiveDataProvider($this, array(
             'criteria' => $criteria,

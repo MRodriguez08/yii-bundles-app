@@ -35,8 +35,14 @@ return array(
         'application.models.department.*',
         
         
-        'application.models.ciudad.*',
-        'application.models.barrio.*',
+        /* city bundle */
+        'application.models.city.*',
+        
+        
+        /* neighbourhood bundle */
+        'application.models.neighbourhood.*',
+        
+        
         'application.models.notificacion.*',
         'application.models.estadoNotificacion.*',
         'application.components.*',

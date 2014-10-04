@@ -82,12 +82,12 @@
                                     if (strcmp(Yii::app()->session[Constantes::SESSION_CURRENT_TAB], Constantes::ITEM_MENU_BARRIOS) == 0) {
                                         echo 'active';
                                     }
-                                    ?>"><a href="<?php echo Yii::app()->createUrl('barrio/admin'); ?>"><span class="glyphicon glyphicon-map-marker"></span> <?php echo Yii::app()->params["labelFuncionalidadBarrios"] ?></a></li>
+                                    ?>"><a href="<?php echo Yii::app()->createUrl('neighbourhood/admin'); ?>"><span class="glyphicon glyphicon-map-marker"></span> <?php echo Yii::app()->params["labelFuncionalidadBarrios"] ?></a></li>
                                     <li class="<?php
                                     if (strcmp(Yii::app()->session[Constantes::SESSION_CURRENT_TAB], Constantes::ITEM_MENU_CIUDADES) == 0) {
                                         echo 'active';
                                     }
-                                    ?>"><a href="<?php echo Yii::app()->createUrl('ciudad/admin'); ?>"><span class="glyphicon glyphicon-map-marker"></span> <?php echo Yii::app()->params["labelFuncionalidadCiudades"] ?></a></li>
+                                    ?>"><a href="<?php echo Yii::app()->createUrl('city/admin'); ?>"><span class="glyphicon glyphicon-map-marker"></span> <?php echo Yii::app()->params["labelFuncionalidadCiudades"] ?></a></li>
                                     <li class="<?php
                                     if (strcmp(Yii::app()->session[Constantes::SESSION_CURRENT_TAB], Constantes::ITEM_MENU_DEPARTAMENTOS) == 0) {
                                         echo 'active';

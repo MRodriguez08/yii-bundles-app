@@ -20,18 +20,18 @@
     <?php if (count($model->getErrors()) > 0) { echo Yii::app()->params["formHasErrorPanel"]; }; ?>
 
     <div class="form-group">
-        <?php echo $form->labelEx($model, 'nombre'); ?>
-        <?php echo $form->textField($model, 'nombre', array('size' => 60, 'maxlength' => 64, "class" => "form-control input-sm")); ?>
-        <?php echo $form->error($model, 'nombre', array("class" => "yii-error-alert")); ?>
+        <?php echo $form->labelEx($model, 'name'); ?>
+        <?php echo $form->textField($model, 'name', array('size' => 60, 'maxlength' => 64, "class" => "form-control input-sm")); ?>
+        <?php echo $form->error($model, 'name', array("class" => "yii-error-alert")); ?>
     </div>
 
     <div class="form-group">
-        <?php echo $form->labelEx($model, 'id_ciudad'); ?>
-        <?php echo $form->dropDownList($model, 'id_ciudad', $this->getListaCiudades(), array("class" => "form-control combo-suggest input-sm")); ?>
-        <?php echo $form->error($model, 'id_ciudad', array("class" => "yii-error-alert")); ?>
+        <?php echo $form->labelEx($model, 'city_id'); ?>
+        <?php echo $form->dropDownList($model, 'city_id', $this->getCitiesList(), array("class" => "form-control combo-suggest input-sm")); ?>
+        <?php echo $form->error($model, 'city_id', array("class" => "yii-error-alert")); ?>
     </div>
 
-    <a href="<?php echo Yii::app()->createUrl("barrio/admin") ?>"><?php echo Yii::app()->params["labelBotonVolver"] ?></a>
+    <a href="<?php echo Yii::app()->createUrl("neighbourhood/admin") ?>"><?php echo Yii::app()->params["labelBotonVolver"] ?></a>
     <?php echo CHtml::submitButton($model->isNewRecord ? Yii::app()->params["labelBotonCrear"] : Yii::app()->params["labelBotonGuardar"], array("class" => "btn btn-default")); ?>
 
 

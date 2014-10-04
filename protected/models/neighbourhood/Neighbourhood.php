@@ -5,21 +5,19 @@
  *
  * The followings are the available columns in table 'barrios':
  * @property integer $id
- * @property string $nombre
- * @property integer $id_ciudad
+ * @property string $name
+ * @property integer $city_id
  *
  * The followings are the available model relations:
  * @property Ciudades $idCiudad
  */
-class Barrio extends CActiveRecord {
-
-    public $ciudad;
+class Neighbourhood extends CActiveRecord {
 
     /**
      * @return string the associated database table name
      */
     public function tableName() {
-        return 'barrios';
+        return 'neighborhoods';
     }
 
     /**
@@ -29,23 +27,23 @@ class Barrio extends CActiveRecord {
         // NOTE: you should only define rules for those attributes that
         // will receive user inputs.
         return array(
-            array('id_ciudad,nombre', 'required', "message" => Yii::app()->params["templateEmptyValueErrorMessage"]),
-            array('id_ciudad', 'numerical', 'integerOnly' => true),
-            array('nombre', 'length', 'max' => 128),
-            array('nombre', 'duplicatedName', 'message' => Yii::app()->params["templateDuplicatedValueErrorMessage"]),
+            array('city_id,name', 'required', "message" => Yii::app()->params["templateEmptyValueErrorMessage"]),
+            array('city_id', 'numerical', 'integerOnly' => true),
+            array('name', 'length', 'max' => 128),
+            array('name', 'duplicatedName', 'message' => Yii::app()->params["templateDuplicatedValueErrorMessage"]),
             // The following rule is used by search().
             // @todo Please remove those attributes that should not be searched.
-            array('id, nombre, id_ciudad', 'safe', 'on' => 'search'),
+            array('id, name, city_id', 'safe', 'on' => 'search'),
         );
     }
 
     public function duplicatedName($attribute, $params) {
         if ($this->isNewRecord) {
-            if (count(Barrio::model()->findALl('nombre=:nombre and id_ciudad=:id_ciudad', array("nombre" => $this->nombre, "id_ciudad" => $this->id_ciudad))) > 0)
-                $this->addError($attribute, "Ya existe un barrio {$this->nombre} en la ciudad seleccionada");
+            if (count(Neighbourhood::model()->findALl('name=:name and city_id=:city_id', array("name" => $this->name, "city_id" => $this->city_id))) > 0)
+                $this->addError($attribute, "Ya existe un barrio {$this->name} en la ciudad seleccionada");
         } else {
-            if (count(Barrio::model()->findALl('id <> :id and nombre=:nombre and id_ciudad=:id_ciudad', array("nombre" => $this->nombre, "id_ciudad" => $this->id_ciudad, "id" => $this->id))) > 0)
-                $this->addError($attribute, "Ya existe un barrio {$this->nombre} en la ciudad seleccionada");
+            if (count(Neighbourhood::model()->findALl('id <> :id and name=:name and city_id=:city_id', array("name" => $this->name, "city_id" => $this->city_id, "id" => $this->id))) > 0)
+                $this->addError($attribute, "Ya existe un barrio {$this->name} en la ciudad seleccionada");
         }
     }
 
@@ -56,7 +54,7 @@ class Barrio extends CActiveRecord {
         // NOTE: you may need to adjust the relation name and the related
         // class name for the relations automatically generated below.
         return array(
-            'idCiudad' => array(self::BELONGS_TO, 'Ciudades', 'id_ciudad'),
+            'city' => array(self::BELONGS_TO, 'City', 'city_id'),
         );
     }
 
@@ -66,8 +64,8 @@ class Barrio extends CActiveRecord {
     public function attributeLabels() {
         return array(
             'id' => 'Id',
-            'nombre' => 'Nombre',
-            'id_ciudad' => 'Ciudad',
+            'name' => 'Nombre',
+            'city_id' => 'Ciudad',
         );
     }
 
@@ -89,8 +87,8 @@ class Barrio extends CActiveRecord {
         $criteria = new CDbCriteria;
 
         $criteria->compare('id', $this->id);
-        $criteria->compare('nombre', $this->nombre, true);
-        $criteria->compare('id_ciudad', $this->id_ciudad);
+        $criteria->compare('name', $this->name, true);
+        $criteria->compare('city_id', $this->city_id);
 
         return new CActiveDataProvider($this, array(
             'criteria' => $criteria,
