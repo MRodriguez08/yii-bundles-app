@@ -17,13 +17,13 @@
  * @property EstadoNotificacion $idEstadoNotificacion
  * @property TipoNotificacion $idTipoNotificacion
  */
-class Notificacion extends CActiveRecord {
+class Notification extends CActiveRecord {
 
     /**
      * @return string the associated database table name
      */
     public function tableName() {
-        return 'emails_notificacion';
+        return 'notifications';
     }
 
     /**

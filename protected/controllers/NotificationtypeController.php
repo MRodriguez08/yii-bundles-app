@@ -1,6 +1,6 @@
 <?php
 
-class TipoNotificacionController extends AdminController {
+class NotificationtypeController extends AdminController {
 
     protected $pageTitle = ". : Tipos de notificacion : .";
 
@@ -48,20 +48,20 @@ class TipoNotificacionController extends AdminController {
      * If creation is successful, the browser will be redirected to the 'view' page.
      */
     public function actionCreate() {
-        $model = new TipoNotificacion;
+        $model = new NotificationType;
 
         // Uncomment the following line if AJAX validation is needed
         // $this->performAjaxValidation($model);
 
-        if (isset($_POST['TipoNotificacion'])) {
-            $model->attributes = $_POST['TipoNotificacion'];
+        if (isset($_POST['NotificationType'])) {
+            $model->attributes = $_POST['NotificationType'];
             if ($model->save()){
-                $this->audit->registrarAuditoria(Yii::app()->user->id, new DateTime, Constantes::AUDITORIA_OBJETO_TIPO_NOTIFICACION, Constantes::AUDITORIA_OPERACION_ALTA, $model->id);
+                $this->audit->logAudit(Yii::app()->user->id, new DateTime, Constantes::AUDITORIA_OBJETO_TIPO_NOTIFICACION, Constantes::AUDITORIA_OPERACION_ALTA, $model->id);
                 $this->render('/site/successfullOperation', array(
                     'header' => 'Tipo de notificaci&oacute;n creado con &eacute;xito' , 
                     'message' => 'Haga click en volver para regresar a la gestión de tipos de notificación',
-                    'returnUrl'=>Yii::app()->createUrl('tipoNotificacion/admin'),
-                    'viewUrl'=>Yii::app()->createUrl("tipoNotificacion/view", array("id"=>$model->id))
+                    'returnUrl'=>Yii::app()->createUrl('notificationtype/admin'),
+                    'viewUrl'=>Yii::app()->createUrl("notificationtype/view", array("id"=>$model->id))
                 ));
                 return;
             }
@@ -83,15 +83,15 @@ class TipoNotificacionController extends AdminController {
         // Uncomment the following line if AJAX validation is needed
         // $this->performAjaxValidation($model);
 
-        if (isset($_POST['TipoNotificacion'])) {
-            $model->attributes = $_POST['TipoNotificacion'];
+        if (isset($_POST['NotificationType'])) {
+            $model->attributes = $_POST['NotificationType'];
             if ($model->save()){
-                $this->audit->registrarAuditoria(Yii::app()->user->id, new DateTime, Constantes::AUDITORIA_OBJETO_TIPO_NOTIFICACION, Constantes::AUDITORIA_OPERACION_MODIFICACION, $model->id);
+                $this->audit->logAudit(Yii::app()->user->id, new DateTime, Constantes::AUDITORIA_OBJETO_TIPO_NOTIFICACION, Constantes::AUDITORIA_OPERACION_MODIFICACION, $model->id);
                 $this->render('/site/successfullOperation', array(
                     'header' => 'Tipo de notificaci&oacute;n modificado con &eacute;xito' , 
                     'message' => 'Haga click en volver para regresar a la gestión de tipos de notificación',
-                    'returnUrl'=>Yii::app()->createUrl('tipoNotificacion/admin'),
-                    'viewUrl'=>Yii::app()->createUrl("tipoNotificacion/view", array("id"=>$model->id))
+                    'returnUrl'=>Yii::app()->createUrl('notificationtype/admin'),
+                    'viewUrl'=>Yii::app()->createUrl("notificationtype/view", array("id"=>$model->id))
                 ));
                 return;
             }
@@ -119,7 +119,7 @@ class TipoNotificacionController extends AdminController {
      * Lists all models.
      */
     public function actionIndex() {
-        $dataProvider = new CActiveDataProvider('TipoNotificacion');
+        $dataProvider = new CActiveDataProvider('NotificationType');
         $this->render('index', array(
             'dataProvider' => $dataProvider,
         ));
@@ -129,10 +129,10 @@ class TipoNotificacionController extends AdminController {
      * Manages all models.
      */
     public function actionAdmin() {
-        $model = new TipoNotificacion('search');
+        $model = new NotificationType('search');
         $model->unsetAttributes();  // clear any default values
-        if (isset($_GET['TipoNotificacion']))
-            $model->attributes = $_GET['TipoNotificacion'];
+        if (isset($_GET['NotificationType']))
+            $model->attributes = $_GET['NotificationType'];
 
         $this->render('admin', array(
             'model' => $model,
@@ -143,11 +143,11 @@ class TipoNotificacionController extends AdminController {
      * Returns the data model based on the primary key given in the GET variable.
      * If the data model is not found, an HTTP exception will be raised.
      * @param integer $id the ID of the model to be loaded
-     * @return TipoNotificacion the loaded model
+     * @return NotificationType the loaded model
      * @throws CHttpException
      */
     public function loadModel($id) {
-        $model = TipoNotificacion::model()->findByPk($id);
+        $model = NotificationType::model()->findByPk($id);
         if ($model === null)
             throw new CHttpException(404, 'The requested page does not exist.');
         return $model;
@@ -155,10 +155,10 @@ class TipoNotificacionController extends AdminController {
 
     /**
      * Performs the AJAX validation.
-     * @param TipoNotificacion $model the model to be validated
+     * @param NotificationType $model the model to be validated
      */
     protected function performAjaxValidation($model) {
-        if (isset($_POST['ajax']) && $_POST['ajax'] === 'tipo-notificacion-form') {
+        if (isset($_POST['ajax']) && $_POST['ajax'] === 'notification-type-form') {
             echo CActiveForm::validate($model);
             Yii::app()->end();
         }

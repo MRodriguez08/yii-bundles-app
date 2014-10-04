@@ -22,18 +22,18 @@
             <?php echo $form->errorSummary($model); ?>
 
             <div class="form-group">
-                <?php echo $form->labelEx($model, 'nombre'); ?>
-                <?php echo $form->textField($model, 'nombre', array('size' => 60, 'maxlength' => 64, "class" => "form-control input-sm" , "disabled" => "true")); ?>
-                <?php echo $form->error($model, 'nombre'); ?>
+                <?php echo $form->labelEx($model, 'name'); ?>
+                <?php echo $form->textField($model, 'name', array('size' => 60, 'maxlength' => 64, "class" => "form-control input-sm" , "disabled" => "true")); ?>
+                <?php echo $form->error($model, 'name'); ?>
             </div>
 
             <div class="form-group">
-                <?php echo $form->labelEx($model, 'descripcion'); ?>
-                <?php echo $form->textArea($model, 'descripcion', array('size' => 60, 'maxlength' => 512, "class" => "form-control input-sm", "disabled" => "true")); ?>
-                <?php echo $form->error($model, 'descripcion'); ?>
+                <?php echo $form->labelEx($model, 'description'); ?>
+                <?php echo $form->textArea($model, 'description', array('size' => 60, 'maxlength' => 512, "class" => "form-control input-sm", "disabled" => "true")); ?>
+                <?php echo $form->error($model, 'description'); ?>
             </div>
 
-            <a href="<?php echo Yii::app()->createUrl("tipoNotificacion/admin") ?>"><?php echo Yii::app()->params["labelBotonVolver"] ?></a>
+            <a href="<?php echo Yii::app()->createUrl("notificationtype/admin") ?>"><?php echo Yii::app()->params["labelBotonVolver"] ?></a>
             <?php $this->endWidget(); ?>
 
         </div><!-- form -->

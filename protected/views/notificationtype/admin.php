@@ -33,7 +33,7 @@ $('.search-form form').submit(function(){
                     ?>
             </div>
             <div class="col-lg-12">
-                <div class="pull-right"><a href="<?php echo Yii::app()->createUrl('tipoNotificacion/create'); ?>"><span title="nuevo" class="glyphicon glyphicon-plus"></span></a></div>
+                <div class="pull-right"><a href="<?php echo Yii::app()->createUrl('notificationtype/create'); ?>"><span title="nuevo" class="glyphicon glyphicon-plus"></span></a></div>
             </div>
         </div>
         <div class="row">
@@ -53,8 +53,8 @@ $('.search-form form').submit(function(){
                         'lastPageLabel' => '&gt;&gt;',
                     ),
                     'columns' => array(
-                        'nombre',
-                        'descripcion',
+                        'name',
+                        'description',
                         array(
                             'class' => 'CButtonColumn',
                             'template' => '{ver}',
@@ -64,7 +64,7 @@ $('.search-form form').submit(function(){
                                     (
                                     'label' => Yii::app()->params["labelBotonGrillaVer"],
                                     'options' => array('title' => 'ver'),
-                                    'url' => 'Yii::app()->createUrl("tipoNotificacion/view", array("id"=>$data->id))',
+                                    'url' => 'Yii::app()->createUrl("notificationtype/view", array("id"=>$data->id))',
                                 ),
                             ),
                         ),
@@ -77,7 +77,7 @@ $('.search-form form').submit(function(){
                                     (
                                     'label' => Yii::app()->params["labelBotonGrillaEditar"],
                                     'options' => array('title' => 'editar'),
-                                    'url' => 'Yii::app()->createUrl("tipoNotificacion/update", array("id"=>$data->id))',
+                                    'url' => 'Yii::app()->createUrl("notificationtype/update", array("id"=>$data->id))',
                                 ),
                             ),
                         ),
@@ -90,7 +90,7 @@ $('.search-form form').submit(function(){
                                     (
                                     'label' => Yii::app()->params["labelBotonGrillaEliminar"],
                                     'options' => array('title' => 'eliminar'),
-                                    'url' => 'Yii::app()->createUrl("tipoNotificacion/delete", array("id"=>$data->id))',
+                                    'url' => 'Yii::app()->createUrl("notificationtype/delete", array("id"=>$data->id))',
                                 ),
                             ),
                         ),

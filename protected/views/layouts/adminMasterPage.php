@@ -108,7 +108,7 @@
                                     if (strcmp(Yii::app()->session[Constantes::SESSION_CURRENT_TAB], Constantes::ITEM_MENU_TIPOS_NOTIFICACION) == 0) {
                                         echo 'active';
                                     }
-                                    ?>"><a href="<?php echo Yii::app()->createUrl('tipoNotificacion/admin'); ?>"><span class="glyphicon glyphicon-comment"></span> <?php echo Yii::app()->params["labelFuncionalidadTiposNotificacion"] ?></a></li>
+                                    ?>"><a href="<?php echo Yii::app()->createUrl('notificationtype/admin'); ?>"><span class="glyphicon glyphicon-comment"></span> <?php echo Yii::app()->params["labelFuncionalidadTiposNotificacion"] ?></a></li>
                                 </ul>
                                 <!-- /.nav-second-level -->
                             </li>

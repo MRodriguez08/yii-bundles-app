@@ -4,16 +4,16 @@
  * This is the model class for table "tipo_notificacion".
  *
  * The followings are the available columns in table 'tipo_notificacion':
- * @property string $nombre
- * @property string $descripcion
+ * @property string $name
+ * @property string $description
  */
-class TipoNotificacion extends CActiveRecord {
+class NotificationType extends CActiveRecord {
 
     /**
      * @return string the associated database table name
      */
     public function tableName() {
-        return 'tipo_notificacion';
+        return 'notification_types';
     }
 
     /**
@@ -23,22 +23,22 @@ class TipoNotificacion extends CActiveRecord {
         // NOTE: you should only define rules for those attributes that
         // will receive user inputs.
         return array(
-            array('nombre', 'required', 'message' => Yii::app()->params["templateEmptyValueErrorMessage"]),
-            array('nombre', 'length', 'max' => 64),
-            array('nombre', 'duplicatedName', 'message' => Yii::app()->params["templateDuplicatedValueErrorMessage"]),
-            array('descripcion', 'length', 'max' => 512),
+            array('name', 'required', 'message' => Yii::app()->params["templateEmptyValueErrorMessage"]),
+            array('name', 'length', 'max' => 64),
+            array('name', 'duplicatedName', 'message' => Yii::app()->params["templateDuplicatedValueErrorMessage"]),
+            array('description', 'length', 'max' => 512),
             // The following rule is used by search().
             // @todo Please remove those attributes that should not be searched.
-            array('nombre, descripcion', 'safe', 'on' => 'search'),
+            array('name, description', 'safe', 'on' => 'search'),
         );
     }
 
     public function duplicatedName($attribute, $params) {
         if ($this->isNewRecord) {
-            if (count(TipoNotificacion::model()->findALl('nombre=:nombre', array("nombre" => $this->nombre))) > 0)
+            if (count(NotificationType::model()->findALl('name=:name', array("name" => $this->name))) > 0)
                 $this->addError($attribute, str_replace("{attribute}", $attribute, Yii::app()->params["templateDuplicatedValueErrorMessage"]));
         } else {
-            if (count(TipoNotificacion::model()->findALl('id<>:id and nombre=:nombre', array("nombre" => $this->nombre, "id"=>  $this->id))) > 0)
+            if (count(NotificationType::model()->findALl('id<>:id and name=:name', array("name" => $this->name, "id"=>  $this->id))) > 0)
                 $this->addError($attribute, str_replace("{attribute}", $attribute, Yii::app()->params["templateDuplicatedValueErrorMessage"]));
         }
     }
@@ -59,8 +59,8 @@ class TipoNotificacion extends CActiveRecord {
     public function attributeLabels() {
         return array(
             'id' => 'Id',
-            'nombre' => 'Nombre',
-            'descripcion' => 'Descripcion',
+            'name' => 'Nombre',
+            'description' => 'Descripcion',
         );
     }
 
@@ -81,8 +81,8 @@ class TipoNotificacion extends CActiveRecord {
 
         $criteria = new CDbCriteria;
 
-        $criteria->compare('nombre', $this->nombre, true);
-        $criteria->compare('descripcion', $this->descripcion, true);
+        $criteria->compare('name', $this->name, true);
+        $criteria->compare('description', $this->description, true);
 
         return new CActiveDataProvider($this, array(
             'criteria' => $criteria,
@@ -91,15 +91,15 @@ class TipoNotificacion extends CActiveRecord {
 
     public function findByName($name) {
         $criteria = new CDbCriteria;
-        $criteria->compare('nombre', $name, true);
-        return TipoNotificacion::model()->findAll($criteria);
+        $criteria->compare('name', $name, true);
+        return NotificationType::model()->findAll($criteria);
     }
 
     /**
      * Returns the static model of the specified AR class.
      * Please note that you should have this exact method in all your CActiveRecord descendants!
      * @param string $className active record class name.
-     * @return TipoNotificacion the static model class
+     * @return NotificationType the static model class
      */
     public static function model($className = __CLASS__) {
         return parent::model($className);

@@ -43,7 +43,9 @@ return array(
         'application.models.neighbourhood.*',
         
         
-        'application.models.notificacion.*',
+        /* notification type bundle */
+        'application.models.notificationtype.*',
+        
         'application.models.estadoNotificacion.*',
         'application.components.*',
         

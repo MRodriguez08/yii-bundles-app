@@ -20,18 +20,18 @@
     <?php if (count($model->getErrors()) > 0) { echo Yii::app()->params["formHasErrorPanel"]; }; ?>
 
     <div class="form-group">
-        <?php echo $form->labelEx($model, 'nombre'); ?>
-        <?php echo $form->textField($model, 'nombre', array('size' => 60, 'maxlength' => 64, "class" => "form-control input-sm")); ?>
-        <?php echo $form->error($model, 'nombre', array("class" => "yii-error-alert")); ?>
+        <?php echo $form->labelEx($model, 'name'); ?>
+        <?php echo $form->textField($model, 'name', array('size' => 60, 'maxlength' => 64, "class" => "form-control input-sm")); ?>
+        <?php echo $form->error($model, 'name', array("class" => "yii-error-alert")); ?>
     </div>
 
     <div class="form-group">
-        <?php echo $form->labelEx($model, 'descripcion'); ?>
-        <?php echo $form->textArea($model, 'descripcion', array('size' => 60, 'maxlength' => 512, "class" => "form-control input-sm")); ?>
-        <?php echo $form->error($model, 'descripcion', array("class" => "yii-error-alert")); ?>
+        <?php echo $form->labelEx($model, 'description'); ?>
+        <?php echo $form->textArea($model, 'description', array('size' => 60, 'maxlength' => 512, "class" => "form-control input-sm")); ?>
+        <?php echo $form->error($model, 'description', array("class" => "yii-error-alert")); ?>
     </div>
 
-    <a href="<?php echo Yii::app()->createUrl("tipoNotificacion/admin") ?>"><?php echo Yii::app()->params["labelBotonVolver"] ?></a>
+    <a href="<?php echo Yii::app()->createUrl("notificationtype/admin") ?>"><?php echo Yii::app()->params["labelBotonVolver"] ?></a>
     <?php echo CHtml::submitButton($model->isNewRecord ? Yii::app()->params["labelBotonCrear"] : Yii::app()->params["labelBotonGuardar"], array("class" => "btn btn-default")); ?>
 
     <?php $this->endWidget(); ?>
