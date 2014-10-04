@@ -7,13 +7,13 @@
  * @property string $name
  * @property string $description
  */
-class NotificationType extends CActiveRecord {
+class NotificationState extends CActiveRecord {
 
     /**
      * @return string the associated database table name
      */
     public function tableName() {
-        return 'notification_types';
+        return 'notification_states';
     }
 
     /**
@@ -35,10 +35,10 @@ class NotificationType extends CActiveRecord {
 
     public function duplicatedName($attribute, $params) {
         if ($this->isNewRecord) {
-            if (count(NotificationType::model()->findALl('name=:name', array("name" => $this->name))) > 0)
+            if (count(NotificationState::model()->findALl('name=:name', array("name" => $this->name))) > 0)
                 $this->addError($attribute, str_replace("{attribute}", $attribute, Yii::app()->params["templateDuplicatedValueErrorMessage"]));
         } else {
-            if (count(NotificationType::model()->findALl('id<>:id and name=:name', array("name" => $this->name, "id"=>  $this->id))) > 0)
+            if (count(NotificationState::model()->findALl('id<>:id and name=:name', array("name" => $this->name, "id"=>  $this->id))) > 0)
                 $this->addError($attribute, str_replace("{attribute}", $attribute, Yii::app()->params["templateDuplicatedValueErrorMessage"]));
         }
     }
@@ -89,17 +89,11 @@ class NotificationType extends CActiveRecord {
         ));
     }
 
-    public function findByName($name) {
-        $criteria = new CDbCriteria;
-        $criteria->compare('name', $name, true);
-        return NotificationType::model()->findAll($criteria);
-    }
-
     /**
      * Returns the static model of the specified AR class.
      * Please note that you should have this exact method in all your CActiveRecord descendants!
      * @param string $className active record class name.
-     * @return NotificationType the static model class
+     * @return NotificationState the static model class
      */
     public static function model($className = __CLASS__) {
         return parent::model($className);

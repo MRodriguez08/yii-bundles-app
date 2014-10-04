@@ -9,7 +9,7 @@ class SysparamController extends AdminController {
      */
     public function filters() {
         parent::initController();
-        Yii::app()->session[Constantes::SESSION_CURRENT_TAB] = Constantes::ITEM_MENU_PARAMETROS;
+        Yii::app()->session[Constants::SESSION_CURRENT_TAB] = Constants::ITEM_MENU_PARAMETROS;
         return array(
             'accessControl', 
             'postOnly + delete',
@@ -25,7 +25,7 @@ class SysparamController extends AdminController {
         return array(
             array('allow',
                 'actions' => array('admin', 'update'),
-                'roles' => array(Constantes::USER_ROLE_DIRECTOR),
+                'roles' => array(Constants::USER_ROLE_DIRECTOR),
             ),
             array('deny', // deny all users
                 'users' => array('*'),
@@ -65,7 +65,7 @@ class SysparamController extends AdminController {
         if (isset($_POST['Sysparam'])) {
             $model->attributes = $_POST['Sysparam'];
             if ($model->save()) {
-                $this->audit->logAudit(Yii::app()->user->id, new DateTime, Constantes::AUDITORIA_OBJETO_PARAMETRO, Constantes::AUDITORIA_OPERACION_MODIFICACION, "sysparam = " . $model->name . ", nuevo_valor = " . $model->value);
+                $this->audit->logAudit(Yii::app()->user->id, new DateTime, Constants::AUDITORIA_OBJETO_PARAMETRO, Constants::AUDITORIA_OPERACION_MODIFICACION, "sysparam = " . $model->name . ", nuevo_valor = " . $model->value);
                 $this->render('/site/successfullOperation', array(
                     'header' => 'Par&aacute;metro modificado con &eacute;xito' , 
                     'message' => 'Haga click en volver para regresar a la gestión de parámetros',

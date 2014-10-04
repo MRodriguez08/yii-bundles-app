@@ -31,7 +31,7 @@
                     <div class="form-group col-lg-3">
                         <?php echo $form->label($model, "object"); ?>                        
                         <?php
-                        echo $form->dropDownList($model, 'object', array("" => Yii::app()->params["labelEmptyComboBoxValue"], Constantes::AUDITORIA_OBJETO_EVENTO => "Eventos", Constantes::AUDITORIA_OBJETO_INMUEBLE => "Inmuebles", Constantes::AUDITORIA_OBJETO_PARAMETRO => "Parametros", Constantes::AUDITORIA_OBJETO_USUARIO => "Usuario"), array("class" => "form-control input-sm"));
+                        echo $form->dropDownList($model, 'object', array("" => Yii::app()->params["labelEmptyComboBoxValue"], Constants::AUDITORIA_OBJETO_EVENTO => "Eventos", Constants::AUDITORIA_OBJETO_INMUEBLE => "Inmuebles", Constants::AUDITORIA_OBJETO_PARAMETRO => "Parametros", Constants::AUDITORIA_OBJETO_USUARIO => "Usuario"), array("class" => "form-control input-sm"));
                         ?>       
                     </div>
 
@@ -39,7 +39,7 @@
                         <div class="form-group">
                             <?php echo $form->label($model, "operation"); ?>
                             <?php
-                            echo $form->dropDownList($model, 'operation', array("" => Yii::app()->params["labelEmptyComboBoxValue"], Constantes::AUDITORIA_OPERACION_ALTA => "Altas", Constantes::AUDITORIA_OPERACION_BAJA => "Bajas", Constantes::AUDITORIA_OPERACION_LOGIN => "Login", Constantes::AUDITORIA_OPERACION_LOGOUT => "Logout", Constantes::AUDITORIA_OPERACION_MODIFICACION => "Modificaciones"), array("class" => "form-control input-sm"));
+                            echo $form->dropDownList($model, 'operation', array("" => Yii::app()->params["labelEmptyComboBoxValue"], Constants::AUDITORIA_OPERACION_ALTA => "Altas", Constants::AUDITORIA_OPERACION_BAJA => "Bajas", Constants::AUDITORIA_OPERACION_LOGIN => "Login", Constants::AUDITORIA_OPERACION_LOGOUT => "Logout", Constants::AUDITORIA_OPERACION_MODIFICACION => "Modificaciones"), array("class" => "form-control input-sm"));
                             ?>    
                         </div>
                     </div>

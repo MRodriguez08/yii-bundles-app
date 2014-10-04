@@ -18,7 +18,7 @@ class UserController extends AdminController {
      */
     public function filters() {
         parent::initController();
-        Yii::app()->session[Constantes::SESSION_CURRENT_TAB] = Constantes::ITEM_MENU_USUARIOS;
+        Yii::app()->session[Constants::SESSION_CURRENT_TAB] = Constants::ITEM_MENU_USUARIOS;
         return array(
             'accessControl',
             'postOnly + delete',
@@ -42,7 +42,7 @@ class UserController extends AdminController {
             ),
             array('allow',
                 'actions' => array('create', 'update', 'view', 'admin', 'updateState', 'resetPassword'),
-                'roles' => array(Constantes::USER_ROLE_DIRECTOR),
+                'roles' => array(Constants::USER_ROLE_DIRECTOR),
             ),
             array('deny',
                 'users' => array('*'),
@@ -75,7 +75,7 @@ class UserController extends AdminController {
 
         if (isset($_POST['User'])) {
             $model->attributes = $_POST['User'];
-            $model->password = crypt(Sysparam::model()->findByPk(Constantes::PARAMETRO_CONTRASENIA_REINICIO)->value);
+            $model->password = crypt(Sysparam::model()->findByPk(Constants::PARAMETRO_CONTRASENIA_REINICIO)->value);
             if ($model->save()) {
                 $authAssign = new AuthAssignment();
                 $authAssign->itemname = $model->role;
@@ -83,7 +83,7 @@ class UserController extends AdminController {
                 $authAssign->save();
                 $fsu = new FileSystemUtil;
                 $fsu->createUserTmpFoderIfNotExists($model->nick);
-                $this->audit->logAudit(Yii::app()->user->id, new DateTime, Constantes::AUDITORIA_OBJETO_USUARIO, Constantes::AUDITORIA_OPERACION_ALTA, $model->nick);
+                $this->audit->logAudit(Yii::app()->user->id, new DateTime, Constants::AUDITORIA_OBJETO_USUARIO, Constants::AUDITORIA_OPERACION_ALTA, $model->nick);
                 $this->render('/site/successfullOperation', array(
                     'header' => 'Usuario creado con &eacute;xito',
                     'message' => 'Haga click en volver para regresar a la gestión de usuarios',
@@ -116,7 +116,7 @@ class UserController extends AdminController {
                 $authAsign = AuthAssignment::model()->findByAttributes(array('userid' => $model->nick));
                 $authAsign->itemname = $model->role;
                 if ($authAsign->save()) {
-                    $this->audit->logAudit(Yii::app()->user->id, new DateTime, Constantes::AUDITORIA_OBJETO_USUARIO, Constantes::AUDITORIA_OPERACION_MODIFICACION, $model->nick);
+                    $this->audit->logAudit(Yii::app()->user->id, new DateTime, Constants::AUDITORIA_OBJETO_USUARIO, Constants::AUDITORIA_OPERACION_MODIFICACION, $model->nick);
                     $this->render('/site/successfullOperation', array(
                         'header' => 'Usuario modificado con &eacute;xito',
                         'message' => 'Haga click en volver para regresar a la gestión de usuarios',
@@ -142,7 +142,7 @@ class UserController extends AdminController {
         if (isset($_POST['User'])) {
             $model->attributes = $_POST['User'];
             if ($model->save()) {
-                $this->audit->logAudit(Yii::app()->user->id, new DateTime, Constantes::AUDITORIA_OBJETO_USUARIO, Constantes::AUDITORIA_OPERACION_MODIFICACION, $model->nick);
+                $this->audit->logAudit(Yii::app()->user->id, new DateTime, Constants::AUDITORIA_OBJETO_USUARIO, Constants::AUDITORIA_OPERACION_MODIFICACION, $model->nick);
                 $this->render('/site/successfullOperation', array(
                     'header' => 'Perfil editado con &eacute;xito',
                     'message' => 'Haga click en volver para regresar a Mi Perfil',
@@ -164,7 +164,7 @@ class UserController extends AdminController {
         if (isset($_POST['ChangePassword'])) {
             $model->attributes = $_POST['ChangePassword'];
             if ($model->save()) {
-                $this->audit->logAudit(Yii::app()->user->id, new DateTime, Constantes::AUDITORIA_OBJETO_USUARIO, Constantes::AUDITORIA_OPERACION_CAMBIAR_CONTRASENIA, Yii::app()->user->id);
+                $this->audit->logAudit(Yii::app()->user->id, new DateTime, Constants::AUDITORIA_OBJETO_USUARIO, Constants::AUDITORIA_OPERACION_CAMBIAR_CONTRASENIA, Yii::app()->user->id);
                 $this->render('/site/successfullOperation', array(
                     'header' => 'Contrase&ntilde;a modificada con &eacute;xito',
                     'message' => 'Haga click en volver para regresar a Mi Perfil',
@@ -191,7 +191,7 @@ class UserController extends AdminController {
             else
                 $model->enabled = 1;
             if ($model->save()) {
-                $this->audit->logAudit(Yii::app()->user->id, new DateTime, Constantes::AUDITORIA_OBJETO_USUARIO, Constantes::AUDITORIA_OPERACION_MODIFICACION, $model->nick);
+                $this->audit->logAudit(Yii::app()->user->id, new DateTime, Constants::AUDITORIA_OBJETO_USUARIO, Constants::AUDITORIA_OPERACION_MODIFICACION, $model->nick);
                 $this->render('/site/successfullOperation', array(
                     'header' => 'Usuario modificado con &eacute;xito',
                     'message' => 'Haga click en volver para regresar a la gestión de usuarios',
@@ -225,7 +225,7 @@ class UserController extends AdminController {
         if (isset($_POST['User'])) {
             $model->resetPassword();
             if ($model->save()) {
-                $this->audit->logAudit(Yii::app()->user->id, new DateTime, Constantes::AUDITORIA_OBJETO_USUARIO, Constantes::AUDITORIA_OPERACION_MODIFICACION, $model->nick);
+                $this->audit->logAudit(Yii::app()->user->id, new DateTime, Constants::AUDITORIA_OBJETO_USUARIO, Constants::AUDITORIA_OPERACION_MODIFICACION, $model->nick);
                 $this->render('/site/successfullOperation', array(
                     'header' => 'Contrase&ntilde;a reinicializada con &eacute;xito',
                     'message' => 'Haga click en volver para regresar a la gestión de usuarios',
@@ -319,7 +319,7 @@ class UserController extends AdminController {
             $model->attributes = $_POST['LoginForm'];
             // validate user input and redirect to the previous page if valid
             if ($model->validate() && $model->login()) {
-                $this->audit->logAudit(Yii::app()->user->id, new DateTime, Constantes::AUDITORIA_OBJETO_USUARIO, Constantes::AUDITORIA_OPERACION_LOGIN, '');
+                $this->audit->logAudit(Yii::app()->user->id, new DateTime, Constants::AUDITORIA_OBJETO_USUARIO, Constants::AUDITORIA_OPERACION_LOGIN, '');
                 $this->redirect(Yii::app()->user->returnUrl);
             }
         }
@@ -329,7 +329,7 @@ class UserController extends AdminController {
     }
 
     public function actionLogout() {
-        $this->audit->logAudit(Yii::app()->user->id, new DateTime, Constantes::AUDITORIA_OBJETO_USUARIO, Constantes::AUDITORIA_OPERACION_LOGOUT, '');
+        $this->audit->logAudit(Yii::app()->user->id, new DateTime, Constants::AUDITORIA_OBJETO_USUARIO, Constants::AUDITORIA_OPERACION_LOGOUT, '');
         Yii::app()->user->logout();
         $this->redirect(array('login'));
     }

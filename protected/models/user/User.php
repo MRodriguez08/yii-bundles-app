@@ -132,7 +132,7 @@ class User extends CActiveRecord {
     }
     
     public function resetPassword(){
-        $defPassword = Sysparam::model()->findByPk(Constantes::PARAMETRO_CONTRASENIA_REINICIO);
+        $defPassword = Sysparam::model()->findByPk(Constants::PARAMETRO_CONTRASENIA_REINICIO);
         $this->password = crypt($defPassword->value);
     }
 

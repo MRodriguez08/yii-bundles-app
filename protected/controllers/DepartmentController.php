@@ -9,7 +9,7 @@ class DepartmentController extends AdminController {
      */
     public function filters() {
         parent::initController();
-        Yii::app()->session[Constantes::SESSION_CURRENT_TAB] =  Constantes::ITEM_MENU_DEPARTAMENTOS ;
+        Yii::app()->session[Constants::SESSION_CURRENT_TAB] =  Constants::ITEM_MENU_DEPARTAMENTOS ;
         return array(
             'accessControl', // perform access control for CRUD operations
             'postOnly + delete', // we only allow deletion via POST request
@@ -25,7 +25,7 @@ class DepartmentController extends AdminController {
         return array(
             array('allow',
                 'actions' => array('create', 'update', 'view', 'admin'),
-                'roles' => array(Constantes::USER_ROLE_DIRECTOR),
+                'roles' => array(Constants::USER_ROLE_DIRECTOR),
             ),
             array('deny',
                 'users' => array('*'),
@@ -56,7 +56,7 @@ class DepartmentController extends AdminController {
         if (isset($_POST['Department'])) {            
             $model->attributes = $_POST['Department'];
             if ($model->save()){
-                $this->audit->logAudit(Yii::app()->user->id, new DateTime, Constantes::AUDITORIA_OBJETO_DEPARTAMENTO, Constantes::AUDITORIA_OPERACION_ALTA, $model->id);
+                $this->audit->logAudit(Yii::app()->user->id, new DateTime, Constants::AUDITORIA_OBJETO_DEPARTAMENTO, Constants::AUDITORIA_OPERACION_ALTA, $model->id);
                 $this->render('/site/successfullOperation', array(
                     'header' => 'Departamento creado con &eacute;xito' , 
                     'message' => 'Haga click en volver para regresar a la gestión de departamentos',
@@ -86,7 +86,7 @@ class DepartmentController extends AdminController {
         if (isset($_POST['Department'])) {
             $model->attributes = $_POST['Department'];
             if ($model->save()){
-                $this->audit->logAudit(Yii::app()->user->id, new DateTime, Constantes::AUDITORIA_OBJETO_DEPARTAMENTO, Constantes::AUDITORIA_OPERACION_MODIFICACION, $model->id);
+                $this->audit->logAudit(Yii::app()->user->id, new DateTime, Constants::AUDITORIA_OBJETO_DEPARTAMENTO, Constants::AUDITORIA_OPERACION_MODIFICACION, $model->id);
                 $this->render('/site/successfullOperation', array(
                     'header' => 'Departamento modificado con &eacute;xito' , 
                     'message' => 'Haga click en volver para regresar a la gestión de departamentos',

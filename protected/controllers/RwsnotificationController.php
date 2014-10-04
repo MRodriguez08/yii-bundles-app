@@ -1,6 +1,6 @@
 <?php
 
-class RwsnotificacionController extends RWSController {
+class RwsnotificationController extends RWSController {
 
     public function __construct() {
         parent::__construct();
@@ -10,17 +10,17 @@ class RwsnotificacionController extends RWSController {
      * Displays a particular model.
      * @param integer $id the ID of the model to be displayed
      */
-    private function ingresarNotificacion() {
+    private function createNotification() {
         try {
-            $ntf = new Notificacion;
+            $ntf = new Notification;
             $ntf->customSetAttributes($this->arguments);
             if ($ntf->save()) {
-                Response::ok(CJSON::encode(array("resultado" => Constantes::RESULTADO_OPERACION_EXITO, "mensaje" => "notificacion con id = {$ntf->id} ingresada con exito")));
+                Response::ok(CJSON::encode(array("result" => Constants::RESULTADO_OPERACION_EXITO, "message" => "notificacion con id = {$ntf->id} ingresada con exito")));
             } else {
-                Response::ok(CJSON::encode(array("resultado" => Constantes::RESULTADO_OPERACION_FALLA, "mensaje" => $ntf->getErrors())));
+                Response::ok(CJSON::encode(array("result" => Constants::RESULTADO_OPERACION_FALLA, "message" => $ntf->getErrors())));
             }
         } catch (\Exception $e) {
-            Response::error(CJSON::encode(array("resultado" => Constantes::RESULTADO_OPERACION_FALLA, "mensaje" => $e->getMessage())));
+            Response::error(CJSON::encode(array("result" => Constants::RESULTADO_OPERACION_FALLA, "message" => $e->getMessage())));
         }
     }
 
@@ -38,7 +38,7 @@ class RwsnotificacionController extends RWSController {
     }
 
     public function processPost() {
-        $this->ingresarNotificacion();
+        $this->createNotification();
     }
 
     public function processPut() {

@@ -23,7 +23,8 @@ return array(
         /* system parameters bundle */
         'application.models.sysparam.*',
         
-        'application.models.evento.*',
+        /* calendar bundle */
+        'application.models.calendar.*',
         
         /* customers bundle */
         'application.models.customer.*',
@@ -42,13 +43,15 @@ return array(
         /* neighbourhood bundle */
         'application.models.neighbourhood.*',
         
+        /* notifications bundle */
+        'application.models.notification.*',
         
-        /* notification type bundle */
-        'application.models.notificationtype.*',
         
-        'application.models.estadoNotificacion.*',
+        /* components */
         'application.components.*',
         
+        
+        /* extensions */
         'application.extensions.XTChilen.*',
     ),
     'aliases' => array(
@@ -90,8 +93,8 @@ return array(
                 
                 'rwsinmueble/<data:.*\S*>' => 'rwsinmueble/processRequest',                
                 'rwsinmueble' => 'rwsinmueble/processRequest',
-                'rwsnotificacion/\w+' => 'rwsnotificacion/processRequest',
-                'rwsnotificacion' => 'rwsnotificacion/processRequest',
+                'rwsnotification/\w+' => 'rwsnotification/processRequest',
+                'rwsnotification' => 'rwsnotification/processRequest',
                 
                 'emailNotificacion/createClient' => 'emailNotificacion/createClient',
                 

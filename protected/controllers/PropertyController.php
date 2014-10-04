@@ -9,7 +9,7 @@ class PropertyController extends AdminController {
      */
     public function filters() {
         parent::initController();
-        Yii::app()->session[Constantes::SESSION_CURRENT_TAB] = Constantes::ITEM_MENU_INMUEBLES;
+        Yii::app()->session[Constants::SESSION_CURRENT_TAB] = Constants::ITEM_MENU_INMUEBLES;
         return array(
             'accessControl', // perform access control for CRUD operations
             'postOnly + delete', // we only allow deletion via POST request
@@ -27,7 +27,7 @@ class PropertyController extends AdminController {
                 'actions' => array('barrioDinamico', 
                     'ciudadDinamica', 'create', 'view', 'update', 'admin', 'delete', 
                     'upload', 'uploadImages','inmueblesPorTipo','inmueblesPorEstado','inmueblesPorBarrio'),
-                'roles' => array(Constantes::USER_ROLE_DIRECTOR, Constantes::USER_ROLE_ADMINISTRATIVO),
+                'roles' => array(Constants::USER_ROLE_DIRECTOR, Constants::USER_ROLE_ADMINISTRATIVO),
             ),
             array('deny',
                 'users' => array('*'),
@@ -74,7 +74,7 @@ class PropertyController extends AdminController {
                     }
                 }
 
-                $this->audit->registrarAuditoria(Yii::app()->user->id, new DateTime, Constantes::AUDITORIA_OBJETO_INMUEBLE, Constantes::AUDITORIA_OPERACION_ALTA, $model->id);
+                $this->audit->registrarAuditoria(Yii::app()->user->id, new DateTime, Constants::AUDITORIA_OBJETO_INMUEBLE, Constants::AUDITORIA_OPERACION_ALTA, $model->id);
                 $this->render('/site/successfullOperation', array(
                     'header' => 'Inmueble creado con &eacute;xito',
                     'message' => 'Haga click en volver para regresar a la gestión de inmuebles',
@@ -117,7 +117,7 @@ class PropertyController extends AdminController {
                         $fsUtil->copyFileFromTmpToFs($imgInm->ruta, $model->id);
                     }
                 }
-                $this->audit->registrarAuditoria(Yii::app()->user->id, new DateTime, Constantes::AUDITORIA_OBJETO_INMUEBLE, Constantes::AUDITORIA_OPERACION_MODIFICACION, $model->id);
+                $this->audit->registrarAuditoria(Yii::app()->user->id, new DateTime, Constants::AUDITORIA_OBJETO_INMUEBLE, Constants::AUDITORIA_OPERACION_MODIFICACION, $model->id);
                 $this->render('/site/successfullOperation', array(
                     'header' => 'Inmueble modificado con &eacute;xito',
                     'message' => 'Haga click en volver para regresar a la gestión de inmuebles',
@@ -224,25 +224,25 @@ class PropertyController extends AdminController {
 
     public function getTipoOperacion() {
         $opciones = array();
-        $opciones[Constantes::OPERACION_PUBLICACION_ALQUILER] = CHtml::encode("Alquiler");
-        $opciones[Constantes::OPERACION_PUBLICACION_VENTA] = CHtml::encode("Venta");
+        $opciones[Constants::OPERACION_PUBLICACION_ALQUILER] = CHtml::encode("Alquiler");
+        $opciones[Constants::OPERACION_PUBLICACION_VENTA] = CHtml::encode("Venta");
         return $opciones;
     }
 
     public function getPropertyTypes() {
         $opciones = array();
-        $opciones[Constantes::TIPO_INMUEBLE_APARTAMENTO] = CHtml::encode("Apartamento");
-        $opciones[Constantes::TIPO_INMUEBLE_CASA] = CHtml::encode("Casa");
-        $opciones[Constantes::TIPO_INMUEBLE_LOCAL] = CHtml::encode("Local");
+        $opciones[Constants::TIPO_INMUEBLE_APARTAMENTO] = CHtml::encode("Apartamento");
+        $opciones[Constants::TIPO_INMUEBLE_CASA] = CHtml::encode("Casa");
+        $opciones[Constants::TIPO_INMUEBLE_LOCAL] = CHtml::encode("Local");
         return $opciones;
     }
 
     public function getPropertyTypesFilterList() {
         $opciones = array();
         $opciones[""] = CHtml::encode("Todos");
-        $opciones[Constantes::TIPO_INMUEBLE_APARTAMENTO] = CHtml::encode("Apartamento");
-        $opciones[Constantes::TIPO_INMUEBLE_CASA] = CHtml::encode("Casa");
-        $opciones[Constantes::TIPO_INMUEBLE_LOCAL] = CHtml::encode("Local");
+        $opciones[Constants::TIPO_INMUEBLE_APARTAMENTO] = CHtml::encode("Apartamento");
+        $opciones[Constants::TIPO_INMUEBLE_CASA] = CHtml::encode("Casa");
+        $opciones[Constants::TIPO_INMUEBLE_LOCAL] = CHtml::encode("Local");
         return $opciones;
     }
 

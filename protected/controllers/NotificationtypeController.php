@@ -9,7 +9,7 @@ class NotificationtypeController extends AdminController {
      */
     public function filters() {
         parent::initController();
-        Yii::app()->session[Constantes::SESSION_CURRENT_TAB] = Constantes::ITEM_MENU_TIPOS_NOTIFICACION;
+        Yii::app()->session[Constants::SESSION_CURRENT_TAB] = Constants::ITEM_MENU_TIPOS_NOTIFICACION;
         return array(
             'accessControl',
             'postOnly + delete',
@@ -25,7 +25,7 @@ class NotificationtypeController extends AdminController {
         return array(
             array('allow',
                 'actions' => array('admin', 'create', 'view', 'delete', 'update'),
-                'roles' => array(Constantes::USER_ROLE_DIRECTOR),
+                'roles' => array(Constants::USER_ROLE_DIRECTOR),
             ),
             array('deny',
                 'users' => array('*'),
@@ -56,7 +56,7 @@ class NotificationtypeController extends AdminController {
         if (isset($_POST['NotificationType'])) {
             $model->attributes = $_POST['NotificationType'];
             if ($model->save()){
-                $this->audit->logAudit(Yii::app()->user->id, new DateTime, Constantes::AUDITORIA_OBJETO_TIPO_NOTIFICACION, Constantes::AUDITORIA_OPERACION_ALTA, $model->id);
+                $this->audit->logAudit(Yii::app()->user->id, new DateTime, Constants::AUDITORIA_OBJETO_TIPO_NOTIFICACION, Constants::AUDITORIA_OPERACION_ALTA, $model->id);
                 $this->render('/site/successfullOperation', array(
                     'header' => 'Tipo de notificaci&oacute;n creado con &eacute;xito' , 
                     'message' => 'Haga click en volver para regresar a la gestión de tipos de notificación',
@@ -86,7 +86,7 @@ class NotificationtypeController extends AdminController {
         if (isset($_POST['NotificationType'])) {
             $model->attributes = $_POST['NotificationType'];
             if ($model->save()){
-                $this->audit->logAudit(Yii::app()->user->id, new DateTime, Constantes::AUDITORIA_OBJETO_TIPO_NOTIFICACION, Constantes::AUDITORIA_OPERACION_MODIFICACION, $model->id);
+                $this->audit->logAudit(Yii::app()->user->id, new DateTime, Constants::AUDITORIA_OBJETO_TIPO_NOTIFICACION, Constants::AUDITORIA_OPERACION_MODIFICACION, $model->id);
                 $this->render('/site/successfullOperation', array(
                     'header' => 'Tipo de notificaci&oacute;n modificado con &eacute;xito' , 
                     'message' => 'Haga click en volver para regresar a la gestión de tipos de notificación',

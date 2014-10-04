@@ -11,7 +11,7 @@
  *
  * @author ubuntu
  */
-class Constantes {
+class Constants {
     
     
     const PARAMETRO_RUTA_BASE = "directorioBaseImagenes";
@@ -51,6 +51,7 @@ class Constantes {
     const AUDITORIA_OBJETO_DEPARTAMENTO = "departamento";
     const AUDITORIA_OBJETO_ESTADO_INMUEBLE = "estado inmueble";
     const AUDITORIA_OBJETO_TIPO_NOTIFICACION = "tipo notificacion";
+    const AUDITORIA_OBJETO_ESTADO_NOTIFICACION = "estado notificacion";
     const AUDITORIA_OBJETO_PORTADA = "portada";
     
     const OPERACION_PUBLICACION_ALQUILER = "alquiler";
@@ -70,6 +71,7 @@ class Constantes {
     const ITEM_MENU_DEPARTAMENTOS = "departamentos";
     const ITEM_MENU_PARAMETROS = "parametros";
     const ITEM_MENU_TIPOS_NOTIFICACION = "tipos_notificacion";
+    const ITEM_MENU_ESTADOS_NOTIFICACION = "estados_notificacion";
     const ITEM_MENU_ESTADOS_INMUEBLES = "estados_inmuebles";
     
     const USER_ROLE_ADMINISTRATIVO = "administrativo";
@@ -84,4 +86,5 @@ class Constantes {
     const TIPO_INMUEBLE_LOCAL = "local";
     
 }
+
 

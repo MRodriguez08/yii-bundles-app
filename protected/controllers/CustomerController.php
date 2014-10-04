@@ -9,7 +9,7 @@ class CustomerController extends AdminController {
      */
     public function filters() {
         parent::initController();
-        Yii::app()->session[Constantes::SESSION_CURRENT_TAB] =  Constantes::ITEM_MENU_CLIENTES ;
+        Yii::app()->session[Constants::SESSION_CURRENT_TAB] =  Constants::ITEM_MENU_CLIENTES ;
         return array(
             'accessControl', 
             'postOnly + delete',
@@ -25,7 +25,7 @@ class CustomerController extends AdminController {
         return array(
             array('allow',
                 'actions' => array('admin', 'delete', 'view', 'create' , 'update'),
-                'roles' => array(Constantes::USER_ROLE_DIRECTOR,  Constantes::USER_ROLE_ADMINISTRATIVO),
+                'roles' => array(Constants::USER_ROLE_DIRECTOR,  Constants::USER_ROLE_ADMINISTRATIVO),
             ),
             array('deny',
                 'users'=>array('*'),
@@ -56,7 +56,7 @@ class CustomerController extends AdminController {
         if (isset($_POST['Customer'])) {
             $model->attributes = $_POST['Customer'];
             if ($model->save()){
-                $this->audit->logAudit(Yii::app()->user->id, new DateTime, Constantes::AUDITORIA_OBJETO_CLIENTE, Constantes::AUDITORIA_OPERACION_ALTA, $model->id);
+                $this->audit->logAudit(Yii::app()->user->id, new DateTime, Constants::AUDITORIA_OBJETO_CLIENTE, Constants::AUDITORIA_OPERACION_ALTA, $model->id);
                 $this->render('/site/successfullOperation', array(
                     'header' => 'Cliente creado con &eacute;xito' , 
                     'message' => 'Haga click en volver para regresar a la gestión de clientes',
@@ -86,7 +86,7 @@ class CustomerController extends AdminController {
         if (isset($_POST['Customer'])) {
             $model->attributes = $_POST['Customer'];
             if ($model->save()){
-                $this->audit->logAudit(Yii::app()->user->id, new DateTime, Constantes::AUDITORIA_OBJETO_CLIENTE, Constantes::AUDITORIA_OPERACION_MODIFICACION, $model->id);
+                $this->audit->logAudit(Yii::app()->user->id, new DateTime, Constants::AUDITORIA_OBJETO_CLIENTE, Constants::AUDITORIA_OPERACION_MODIFICACION, $model->id);
                 $this->render('/site/successfullOperation', array(
                     'header' => 'Cliente modificado con &eacute;xito' , 
                     'message' => 'Haga click en volver para regresar a la gestión de clientes',

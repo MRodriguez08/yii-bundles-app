@@ -9,7 +9,7 @@ class CityController extends AdminController {
      */
     public function filters() {
         parent::initController();
-        Yii::app()->session[Constantes::SESSION_CURRENT_TAB] =  Constantes::ITEM_MENU_CIUDADES ;
+        Yii::app()->session[Constants::SESSION_CURRENT_TAB] =  Constants::ITEM_MENU_CIUDADES ;
         return array(
             'accessControl', 
             'postOnly + delete',
@@ -25,7 +25,7 @@ class CityController extends AdminController {
         return array(
             array('allow', 
                 'actions' => array('create', 'update', 'view', 'admin'),
-                'roles' => array(Constantes::USER_ROLE_DIRECTOR),
+                'roles' => array(Constants::USER_ROLE_DIRECTOR),
             ),
             array('deny',
                 'users' => array('*'),
@@ -56,7 +56,7 @@ class CityController extends AdminController {
         if (isset($_POST['City'])) {
             $model->attributes = $_POST['City'];
             if ($model->save()){
-                $this->audit->logAudit(Yii::app()->user->id, new DateTime, Constantes::AUDITORIA_OBJETO_CIUDAD, Constantes::AUDITORIA_OPERACION_ALTA, $model->id);
+                $this->audit->logAudit(Yii::app()->user->id, new DateTime, Constants::AUDITORIA_OBJETO_CIUDAD, Constants::AUDITORIA_OPERACION_ALTA, $model->id);
                 $this->render('/site/successfullOperation', array(
                     'header' => 'Ciudad creada con &eacute;xito' , 
                     'message' => 'Haga click en volver para regresar a la gestión de ciudades',
@@ -86,7 +86,7 @@ class CityController extends AdminController {
         if (isset($_POST['City'])) {
             $model->attributes = $_POST['City'];
             if ($model->save()){
-                $this->audit->logAudit(Yii::app()->user->id, new DateTime, Constantes::AUDITORIA_OBJETO_CIUDAD, Constantes::AUDITORIA_OPERACION_MODIFICACION, $model->id);
+                $this->audit->logAudit(Yii::app()->user->id, new DateTime, Constants::AUDITORIA_OBJETO_CIUDAD, Constants::AUDITORIA_OPERACION_MODIFICACION, $model->id);
                 $this->render('/site/successfullOperation', array(
                     'header' => 'Ciudad modificada con &eacute;xito' , 
                     'message' => 'Haga click en volver para regresar a la gestión de ciudades',

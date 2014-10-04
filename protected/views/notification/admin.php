@@ -8,7 +8,7 @@ $('.search-button').click(function(){
 	return false;
 });
 $('.search-form form').submit(function(){
-	$('#notificacion-grid').yiiGridView('update', {
+	$('#notifications-grid').yiiGridView('update', {
 		data: $(this).serialize()
 	});
 	return false;
@@ -36,7 +36,7 @@ $('.search-form form').submit(function(){
             <div class="col-lg-12">
                 <?php
                 $this->widget('zii.widgets.grid.CGridView', array(
-                    'id' => 'notificacion-grid',
+                    'id' => 'notifications-grid',
                     'dataProvider' => $model->search(),
                     'summaryText' => '',
                     'cssFile' => Yii::app()->params["gridViewStyleSheet"],
@@ -50,14 +50,14 @@ $('.search-form form').submit(function(){
                         'lastPageLabel' => '&gt;&gt;',
                     ),
                     'columns' => array(
-                        'email_cliente',
+                        'clientemail',
                         array(            
                             'name'=>'Tipo',
-                            'value'=>'$data->tipoNotificacion->name'
+                            'value'=>'$data->type->name'
                         ),
                         array(            
                             'name'=>'Estado',
-                            'value'=>'$data->estadoNotificacion->name'
+                            'value'=>'$data->state->name'
                         ),
                         array(
                             'class' => 'CButtonColumn',
@@ -68,7 +68,7 @@ $('.search-form form').submit(function(){
                                     (
                                     'label' => Yii::app()->params["labelBotonGrillaVer"],
                                     'options' => array('title' => 'ver'),
-                                    'url' => 'Yii::app()->createUrl("emailNotificacion/view", array("id"=>$data->id))',
+                                    'url' => 'Yii::app()->createUrl("notification/view", array("id"=>$data->id))',
                                 ),
                             ),
                         ),
@@ -81,7 +81,7 @@ $('.search-form form').submit(function(){
                                     (
                                     'label' => Yii::app()->params["labelBotonGrillaEditar"],
                                     'options' => array('title' => 'editar'),
-                                    'url' => 'Yii::app()->createUrl("emailNotificacion/resolve", array("id"=>$data->id))',
+                                    'url' => 'Yii::app()->createUrl("notification/resolve", array("id"=>$data->id))',
                                 ),
                             ),
                         ),

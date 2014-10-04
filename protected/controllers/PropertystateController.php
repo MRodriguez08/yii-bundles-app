@@ -9,7 +9,7 @@ class PropertystateController extends AdminController {
      */
     public function filters() {
         parent::initController();
-        Yii::app()->session[Constantes::SESSION_CURRENT_TAB] = Constantes::ITEM_MENU_ESTADOS_INMUEBLES;
+        Yii::app()->session[Constants::SESSION_CURRENT_TAB] = Constants::ITEM_MENU_ESTADOS_INMUEBLES;
         return array(
             'accessControl', // perform access control for CRUD operations
             'postOnly + delete', // we only allow deletion via POST request
@@ -25,7 +25,7 @@ class PropertystateController extends AdminController {
         return array(
             array('allow',
                 'actions' => array('admin', 'delete', 'create', 'view' , 'update'),
-                'roles' => array(Constantes::USER_ROLE_DIRECTOR),
+                'roles' => array(Constants::USER_ROLE_DIRECTOR),
             ),
             array('deny',
                 'roles' => array('*'),
@@ -56,7 +56,7 @@ class PropertystateController extends AdminController {
         if (isset($_POST['PropertyState'])) {
             $model->attributes = $_POST['PropertyState'];
             if ($model->save()){
-                $this->audit->logAudit(Yii::app()->user->id, new DateTime, Constantes::AUDITORIA_OBJETO_ESTADO_INMUEBLE, Constantes::AUDITORIA_OPERACION_ALTA, $model->id);
+                $this->audit->logAudit(Yii::app()->user->id, new DateTime, Constants::AUDITORIA_OBJETO_ESTADO_INMUEBLE, Constants::AUDITORIA_OPERACION_ALTA, $model->id);
                 $this->render('/site/successfullOperation', array(
                     'header' => 'Estado de inmueble creado con &eacute;xito' , 
                     'message' => 'Haga click en volver para regresar a la gestión de estado de inmueble',
@@ -87,7 +87,7 @@ class PropertystateController extends AdminController {
         if (isset($_POST['PropertyState'])) {
             $model->attributes = $_POST['PropertyState'];
             if ($model->save()){
-                $this->audit->logAudit(Yii::app()->user->id, new DateTime, Constantes::AUDITORIA_OBJETO_ESTADO_INMUEBLE, Constantes::AUDITORIA_OPERACION_MODIFICACION, $model->id);
+                $this->audit->logAudit(Yii::app()->user->id, new DateTime, Constants::AUDITORIA_OBJETO_ESTADO_INMUEBLE, Constants::AUDITORIA_OPERACION_MODIFICACION, $model->id);
                 $this->render('/site/successfullOperation', array(
                     'header' => 'Estado de inmueble modificado con &eacute;xito' , 
                     'message' => 'Haga click en volver para regresar a la gestión de estado de inmueble',

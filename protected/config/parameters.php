@@ -40,6 +40,7 @@ return array(
     "labelFuncionalidadNotificaciones" => "Notificaciones",
     "labelFuncionalidadPortada" => "Portada",
     "labelFuncionalidadCalendario" => "Mis eventos",
+    "labelFuncionalidadEstadosNotificacion" => "Estados de notificaci&oacute;n",
 
     "labelEmptyComboBoxValue" => "Todos",
 

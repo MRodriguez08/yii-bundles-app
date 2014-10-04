@@ -20,34 +20,34 @@
     <?php echo $form->errorSummary($model); ?>
 
     <div class="form-group">
-        <?php echo $form->labelEx($model, 'email_cliente'); ?>
-        <?php echo $form->textField($model, 'email_cliente', array('size' => 60, 'maxlength' => 100, "class" => "form-control")); ?>
-        <?php echo $form->error($model, 'email_cliente'); ?>
+        <?php echo $form->labelEx($model, 'clientemail'); ?>
+        <?php echo $form->textField($model, 'clientemail', array('size' => 60, 'maxlength' => 100, "class" => "form-control")); ?>
+        <?php echo $form->error($model, 'clientemail'); ?>
     </div>
 
     <div class="form-group">
-        <?php echo $form->labelEx($model, 'name_cliente'); ?>
-        <?php echo $form->textField($model, 'name_cliente', array('size' => 60, 'maxlength' => 100, "class" => "form-control")); ?>
-        <?php echo $form->error($model, 'name_cliente'); ?>
+        <?php echo $form->labelEx($model, 'clientname'); ?>
+        <?php echo $form->textField($model, 'clientname', array('size' => 60, 'maxlength' => 100, "class" => "form-control")); ?>
+        <?php echo $form->error($model, 'clientname'); ?>
     </div>
 
     <div class="form-group">
-        <?php echo $form->labelEx($model, 'mensaje'); ?>
-        <?php echo CHtml::activeTextArea($model, "mensaje", array('size' => 60, 'maxlength' => 1024, "class" => "form-control")) ?>       
-        <?php echo $form->error($model, 'mensaje'); ?>
+        <?php echo $form->labelEx($model, 'message'); ?>
+        <?php echo CHtml::activeTextArea($model, "message", array('size' => 60, 'maxlength' => 1024, "class" => "form-control")) ?>       
+        <?php echo $form->error($model, 'message'); ?>
     </div>
     
     <div id="grp-inmueble-tipo" class="form-group">
-        <?php echo $form->labelEx($model, 'id_estado_notificacion'); ?>
+        <?php echo $form->labelEx($model, 'state_id'); ?>
         <?php
-        echo $form->dropDownList($model,'id_estado_notificacion',
-                $this->getEstadosNotificacion(), 
+        echo $form->dropDownList($model,'state_id',
+                $this->getNotificationStatesList(), 
                 array("class" => "form-control"));
         ?>  
-        <?php echo $form->error($model, 'tipo_inmueble'); ?>
+        <?php echo $form->error($model, 'state_id'); ?>
     </div>
 
-    <a href="<?php echo Yii::app()->createUrl("emailNotificacion/admin") ?>"><?php echo Yii::app()->params["labelBotonVolver"] ?></a>
+    <a href="<?php echo Yii::app()->createUrl("notification/admin") ?>"><?php echo Yii::app()->params["labelBotonVolver"] ?></a>
     <?php echo CHtml::submitButton($model->isNewRecord ? Yii::app()->params["labelBotonCrear"] : Yii::app()->params["labelBotonGuardar"], array("class" => "btn btn-default")); ?>
 
     <?php $this->endWidget(); ?>

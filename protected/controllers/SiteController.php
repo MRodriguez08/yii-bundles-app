@@ -8,7 +8,7 @@ class SiteController extends AdminController {
      * @return array action filters
      */
     public function filters() {
-        Yii::app()->session[Constantes::SESSION_CURRENT_TAB] = Constantes::ITEM_MENU_HOME;
+        Yii::app()->session[Constants::SESSION_CURRENT_TAB] = Constants::ITEM_MENU_HOME;
         return array(
             'accessControl',
             'postOnly + delete',
@@ -24,7 +24,7 @@ class SiteController extends AdminController {
         return array(
             array('allow',
                 'actions' => array('error','index','successfullOperation'),
-                'roles' => array(Constantes::USER_ROLE_DIRECTOR, Constantes::USER_ROLE_AGENTE, Constantes::USER_ROLE_ADMINISTRATIVO),
+                'roles' => array(Constants::USER_ROLE_DIRECTOR, Constants::USER_ROLE_AGENTE, Constants::USER_ROLE_ADMINISTRATIVO),
             ),            
             array('deny',
                 'users' => array('*'),
@@ -42,7 +42,7 @@ class SiteController extends AdminController {
     }
     
     public function actionIndex(){
-        Yii::app()->session[Constantes::SESSION_CURRENT_TAB] =  Constantes::ITEM_MENU_HOME ;
+        Yii::app()->session[Constants::SESSION_CURRENT_TAB] =  Constants::ITEM_MENU_HOME ;
         $this->render('index');
     }
 

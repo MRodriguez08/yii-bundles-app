@@ -41,7 +41,7 @@ class RwsinmuebleController extends RWSController {
             Response::ok(CJSON::encode($resp));
         } catch (Exception $ex) {
             Response::error(CJSON::encode(array(
-                "resultado" => Constantes::RESULTADO_OPERACION_FALLA,
+                "resultado" => Constants::RESULTADO_OPERACION_FALLA,
                 "mensaje" => $ex->getMessage()
             )));
         }

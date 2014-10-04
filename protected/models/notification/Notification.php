@@ -5,13 +5,13 @@
  *
  * The followings are the available columns in table 'emails_notificacion':
  * @property string $id
- * @property string $fecha_hora_envio
- * @property string $mensaje
- * @property string $id_tipo_notificacion
- * @property string $id_estado_notificacion
- * @property string $email_cliente
- * @property string $name_cliente
- * @property string $telefono_cliente
+ * @property string $datetimesent
+ * @property string $message
+ * @property string $type_id
+ * @property string $state_id
+ * @property string $clientemail
+ * @property string $clientname
+ * @property string $clienttelephonenumber
  *
  * The followings are the available model relations:
  * @property EstadoNotificacion $idEstadoNotificacion
@@ -33,13 +33,13 @@ class Notification extends CActiveRecord {
         // NOTE: you should only define rules for those attributes that
         // will receive user inputs.
         return array(
-            array('fecha_hora_envio, mensaje, id_tipo_notificacion, id_estado_notificacion, email_cliente', 'required'),
-            array('mensaje', 'length', 'max' => 2048),
-            array('id_tipo_notificacion, id_estado_notificacion, telefono_cliente', 'length', 'max' => 20),
-            array('email_cliente, name_cliente', 'length', 'max' => 64),
+            array('datetimesent, message, type_id, state_id, clientemail', 'required'),
+            array('message', 'length', 'max' => 2048),
+            array('type_id, state_id, clienttelephonenumber', 'length', 'max' => 20),
+            array('clientemail, clientname', 'length', 'max' => 64),
             // The following rule is used by search().
             // @todo Please remove those attributes that should not be searched.
-            array('id, fecha_hora_envio, mensaje, id_tipo_notificacion, id_estado_notificacion, email_cliente, name_cliente, telefono_cliente', 'safe', 'on' => 'search'),
+            array('id, datetimesent, message, type_id, state_id, clientemail, clientname, clienttelephonenumber', 'safe', 'on' => 'search'),
         );
     }
 
@@ -50,8 +50,8 @@ class Notification extends CActiveRecord {
         // NOTE: you may need to adjust the relation name and the related
         // class name for the relations automatically generated below.
         return array(
-            'estadoNotificacion' => array(self::BELONGS_TO, 'EstadoNotificacion', 'id_estado_notificacion'),
-            'tipoNotificacion' => array(self::BELONGS_TO, 'TipoNotificacion', 'id_tipo_notificacion'),
+            'state' => array(self::BELONGS_TO, 'NotificationState', 'state_id'),
+            'type' => array(self::BELONGS_TO, 'NotificationType', 'type_id'),
         );
     }
 
@@ -61,13 +61,13 @@ class Notification extends CActiveRecord {
     public function attributeLabels() {
         return array(
             'id' => 'ID',
-            'fecha_hora_envio' => 'Fecha de envio',
-            'mensaje' => 'Mensaje',
-            'id_tipo_notificacion' => 'Tipo',
-            'id_estado_notificacion' => 'Estado',
-            'email_cliente' => 'Email',
-            'name_cliente' => 'name',
-            'telefono_cliente' => 'Telefono',
+            'datetimesent' => 'Fecha de envio',
+            'message' => 'Mensaje',
+            'type_id' => 'Tipo',
+            'state_id' => 'Estado',
+            'clientemail' => 'Email',
+            'clientname' => 'Nombre',
+            'clienttelephonenumber' => 'Telefono',
         );
     }
 
@@ -89,13 +89,13 @@ class Notification extends CActiveRecord {
         $criteria = new CDbCriteria;
 
         $criteria->compare('id', $this->id, true);
-        $criteria->compare('fecha_hora_envio', $this->fecha_hora_envio, true);
-        $criteria->compare('mensaje', $this->mensaje, true);
-        $criteria->compare('id_tipo_notificacion', $this->id_tipo_notificacion, true);
-        $criteria->compare('id_estado_notificacion', $this->id_estado_notificacion, true);
-        $criteria->compare('email_cliente', $this->email_cliente, true);
-        $criteria->compare('name_cliente', $this->name_cliente, true);
-        $criteria->compare('telefono_cliente', $this->telefono_cliente, true);
+        $criteria->compare('datetimesent', $this->datetimesent, true);
+        $criteria->compare('message', $this->message, true);
+        $criteria->compare('type_id', $this->type_id, true);
+        $criteria->compare('state_id', $this->state_id, true);
+        $criteria->compare('clientemail', $this->clientemail, true);
+        $criteria->compare('clientname', $this->clientname, true);
+        $criteria->compare('clienttelephonenumber', $this->clienttelephonenumber, true);
 
         return new CActiveDataProvider($this, array(
             'criteria' => $criteria,
@@ -114,22 +114,24 @@ class Notification extends CActiveRecord {
 
     public function customSetAttributes($arguments) {
         //error_reporting(E_ERROR | E_PARSE | E_CORE_ERROR | E_CORE_WARNING | E_COMPILE_ERROR | E_COMPILE_WARNING);
-        if (!isset($arguments["mensaje"]))
+        if (!isset($arguments["message"]))
             throw new Exception("mensaje no definido");
-        if (!isset($arguments["telefonoCliente"]))
+        if (!isset($arguments["messageType"]))
+            throw new Exception("tipo no definido");
+        if (!isset($arguments["clientTelephoneNumber"]))
             throw new Exception("telefono no definido");
-        if (!isset($arguments["nameCliente"]))
+        if (!isset($arguments["clientName"]))
             throw new Exception("name no definido");
-        if (!isset($arguments["emailCliente"]))
+        if (!isset($arguments["clientEmail"]))
             throw new Exception("email no definido");
-        $this->mensaje = $arguments["mensaje"];
-        $this->telefono_cliente = $arguments["telefonoCliente"];
-        $this->name_cliente = $arguments["nameCliente"];
-        $this->email_cliente = $arguments["emailCliente"];
-        $this->id_tipo_notificacion = /* (isset($arguments["tipoNotificacion"]) ? $arguments["tipoNotificacion"] : "") */ 1;
+        $this->message = $arguments["message"];
+        $this->clienttelephonenumber = $arguments["clientTelephoneNumber"];
+        $this->clientname = $arguments["clientName"];
+        $this->clientemail = $arguments["clientEmail"];
+        $this->type_id = $arguments["messageType"];
         $dtNow = new DateTime;
-        $this->fecha_hora_envio = $dtNow->format(Constantes::DATETIME_STRING_FORMAT);
-        $this->id_estado_notificacion = 1; /* ingreso notificacion como pendiente */
+        $this->datetimesent = $dtNow->format(Constants::DATETIME_STRING_FORMAT);
+        $this->state_id = 1; /* set the default state */
     }
 
 }

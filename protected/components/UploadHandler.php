@@ -44,7 +44,7 @@ class UploadHandler
         $this->options = array(
             'script_url' => $this->get_full_url().'/index.php/file/upload',
             //'upload_dir' => dirname($this->get_server_var('SCRIPT_FILENAME')).'/files/tmp/'. Yii::app()->user->id . "/",
-            'upload_dir' => Parametro::model()->findByPk(Constantes::PARAMETRO_RUTA_BASE)->valor . '/tmp/'. Yii::app()->user->id . "/",
+            'upload_dir' => Parametro::model()->findByPk(Constants::PARAMETRO_RUTA_BASE)->valor . '/tmp/'. Yii::app()->user->id . "/",
             //'upload_url' => $this->get_full_url().'/files/tmp/'. Yii::app()->user->id. "/",
             'upload_url' => $this->get_full_url() . '/index.php/file/display/',
             'user_dirs' => false,

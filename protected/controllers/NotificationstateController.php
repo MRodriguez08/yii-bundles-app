@@ -1,14 +1,15 @@
 <?php
 
-class AuditController extends AdminController {
+class NotificationstateController extends AdminController {
 
-    protected $pageTitle = ". : Auditoria : .";
+    protected $pageTitle = ". : Estados de notificacion : .";
 
     /**
      * @return array action filters
      */
     public function filters() {
-        Yii::app()->session[Constants::SESSION_CURRENT_TAB] = Constants::ITEM_MENU_AUDITORIA;
+        parent::initController();
+        Yii::app()->session[Constants::SESSION_CURRENT_TAB] = Constants::ITEM_MENU_ESTADOS_NOTIFICACION;
         return array(
             'accessControl',
             'postOnly + delete',
@@ -22,11 +23,11 @@ class AuditController extends AdminController {
      */
     public function accessRules() {
         return array(
-            array('allow', // allow admin user to perform 'admin' and 'delete' actions
-                'actions' => array('admin'),
+            array('allow',
+                'actions' => array('admin', 'create', 'view', 'delete', 'update'),
                 'roles' => array(Constants::USER_ROLE_DIRECTOR),
             ),
-            array('deny', // deny all users
+            array('deny',
                 'users' => array('*'),
             ),
         );
@@ -47,15 +48,23 @@ class AuditController extends AdminController {
      * If creation is successful, the browser will be redirected to the 'view' page.
      */
     public function actionCreate() {
-        $model = new Audit;
+        $model = new NotificationState;
 
         // Uncomment the following line if AJAX validation is needed
         // $this->performAjaxValidation($model);
 
-        if (isset($_POST['Audit'])) {
-            $model->attributes = $_POST['Audit'];
-            if ($model->save())
-                $this->redirect(array('view', 'id' => $model->id));
+        if (isset($_POST['NotificationState'])) {
+            $model->attributes = $_POST['NotificationState'];
+            if ($model->save()){
+                $this->audit->logAudit(Yii::app()->user->id, new DateTime, Constants::AUDITORIA_OBJETO_TIPO_NOTIFICACION, Constants::AUDITORIA_OPERACION_ALTA, $model->id);
+                $this->render('/site/successfullOperation', array(
+                    'header' => 'Estado de notificaci&oacute;n creado con &eacute;xito' , 
+                    'message' => 'Haga click en volver para regresar a la gestión de estados de notificación',
+                    'returnUrl'=>Yii::app()->createUrl('notificationstate/admin'),
+                    'viewUrl'=>Yii::app()->createUrl("notificationstate/view", array("id"=>$model->id))
+                ));
+                return;
+            }
         }
 
         $this->render('create', array(
@@ -74,10 +83,18 @@ class AuditController extends AdminController {
         // Uncomment the following line if AJAX validation is needed
         // $this->performAjaxValidation($model);
 
-        if (isset($_POST['Audit'])) {
-            $model->attributes = $_POST['Audit'];
-            if ($model->save())
-                $this->redirect(array('view', 'id' => $model->id));
+        if (isset($_POST['NotificationState'])) {
+            $model->attributes = $_POST['NotificationState'];
+            if ($model->save()){
+                $this->audit->logAudit(Yii::app()->user->id, new DateTime, Constants::AUDITORIA_OBJETO_TIPO_NOTIFICACION, Constants::AUDITORIA_OPERACION_MODIFICACION, $model->id);
+                $this->render('/site/successfullOperation', array(
+                    'header' => 'Estado de notificaci&oacute;n modificado con &eacute;xito' , 
+                    'message' => 'Haga click en volver para regresar a la gestión de estados de notificación',
+                    'returnUrl'=>Yii::app()->createUrl('notificationstate/admin'),
+                    'viewUrl'=>Yii::app()->createUrl("notificationstate/view", array("id"=>$model->id))
+                ));
+                return;
+            }
         }
 
         $this->render('update', array(
@@ -102,7 +119,7 @@ class AuditController extends AdminController {
      * Lists all models.
      */
     public function actionIndex() {
-        $dataProvider = new CActiveDataProvider('Audit');
+        $dataProvider = new CActiveDataProvider('NotificationState');
         $this->render('index', array(
             'dataProvider' => $dataProvider,
         ));
@@ -112,25 +129,11 @@ class AuditController extends AdminController {
      * Manages all models.
      */
     public function actionAdmin() {
+        $model = new NotificationState('search');
+        $model->unsetAttributes();  // clear any default values
+        if (isset($_GET['NotificationState']))
+            $model->attributes = $_GET['NotificationState'];
 
-        $model = new Audit('search');
-        $model->unsetAttributes();
-        if (isset($_GET['Audit'])) {
-            $model->attributes = $_GET['Audit'];
-        }
-
-        $dH = new DateTimeHelper;   
-        if (isset($_GET["Audit"]["dateTimeFrom"]) && strcmp($_GET["Audit"]["dateTimeFrom"],"") !== 0) {
-            $model->dateTimeFrom = $_GET["Audit"]["dateTimeFrom"];
-        } else {
-            $model->dateTimeFrom = $dH->getDefaultStartRangeFilter("")->format(Yii::app()->params["dateTimeDisplayFormat"]);
-        }
-        if (isset($_GET["Audit"]["dateTimeTo"]) && strcmp($_GET["Audit"]["dateTimeTo"],"") !== 0) {
-            $model->dateTimeTo = $_GET["Audit"]["dateTimeTo"];
-        } else {
-            $model->dateTimeTo = $dH->getDefaultEndRangeFilter("")->format(Yii::app()->params["dateTimeDisplayFormat"]);
-        }
-        
         $this->render('admin', array(
             'model' => $model,
         ));
@@ -140,11 +143,11 @@ class AuditController extends AdminController {
      * Returns the data model based on the primary key given in the GET variable.
      * If the data model is not found, an HTTP exception will be raised.
      * @param integer $id the ID of the model to be loaded
-     * @return Audit the loaded model
+     * @return NotificationState the loaded model
      * @throws CHttpException
      */
     public function loadModel($id) {
-        $model = Audit::model()->findByPk($id);
+        $model = NotificationState::model()->findByPk($id);
         if ($model === null)
             throw new CHttpException(404, 'The requested page does not exist.');
         return $model;
@@ -152,10 +155,10 @@ class AuditController extends AdminController {
 
     /**
      * Performs the AJAX validation.
-     * @param Audit $model the model to be validated
+     * @param NotificationState $model the model to be validated
      */
     protected function performAjaxValidation($model) {
-        if (isset($_POST['ajax']) && $_POST['ajax'] === 'audit-form') {
+        if (isset($_POST['ajax']) && $_POST['ajax'] === 'notification-state-form') {
             echo CActiveForm::validate($model);
             Yii::app()->end();
         }

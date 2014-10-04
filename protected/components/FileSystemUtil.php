@@ -19,14 +19,14 @@ class FileSystemUtil {
 
     function checkCurrentUserTmpFolder() {
         $currUser = Yii::app()->user->title;
-        $tmpFolder = join(DIRECTORY_SEPARATOR, array(Sysparam::model()->findByPk(Constantes::PARAMETRO_RUTA_BASE)->value, FileSystemUtil::TMP_FOLDER_NAME));
+        $tmpFolder = join(DIRECTORY_SEPARATOR, array(Sysparam::model()->findByPk(Constants::PARAMETRO_RUTA_BASE)->value, FileSystemUtil::TMP_FOLDER_NAME));
         if (!file_exists($tmpFolder . $currUser)) {
             mkdir($tmpFolder . $currUser, FileSystemUtil::RIGHTS_MODE, true);
         }
     }
 
     function getCurrentUserTmpFolder() {
-        $rutaBase = Sysparam::model()->findByPk(Constantes::PARAMETRO_RUTA_BASE)->value;
+        $rutaBase = Sysparam::model()->findByPk(Constants::PARAMETRO_RUTA_BASE)->value;
         $userTmpFolder = join(DIRECTORY_SEPARATOR, array($rutaBase, FileSystemUtil::TMP_FOLDER_NAME, Yii::app()->user->id));
         if (!file_exists($userTmpFolder)) {
             mkdir($userTmpFolder, FileSystemUtil::RIGHTS_MODE, true);
@@ -40,19 +40,19 @@ class FileSystemUtil {
      * @return type
      */
     function getTmpFile($fileName) {
-        $rutaBase = Sysparam::model()->findByPk(Constantes::PARAMETRO_RUTA_BASE)->value;
+        $rutaBase = Sysparam::model()->findByPk(Constants::PARAMETRO_RUTA_BASE)->value;
         $file = join(DIRECTORY_SEPARATOR, array($rutaBase, FileSystemUtil::TMP_FOLDER_NAME, Yii::app()->user->id, $fileName));
         return $file;
     }
 
     function getInmuebleFile($idInmueble, $fileName) {
-        $rutaBase = Sysparam::model()->findByPk(Constantes::PARAMETRO_RUTA_BASE)->value;
+        $rutaBase = Sysparam::model()->findByPk(Constants::PARAMETRO_RUTA_BASE)->value;
         $file = join(DIRECTORY_SEPARATOR, array($rutaBase, FileSystemUtil::IMAGES_FOLDER_NAME, $idInmueble, $fileName));
         return $file;
     }
 
     function clearUserTmpFolder() {
-        $rutaBase = Sysparam::model()->findByPk(Constantes::PARAMETRO_RUTA_BASE)->value;
+        $rutaBase = Sysparam::model()->findByPk(Constants::PARAMETRO_RUTA_BASE)->value;
         $tmpFolder = glob(join(DIRECTORY_SEPARATOR, array($rutaBase, FileSystemUtil::TMP_FOLDER_NAME, Yii::app()->user->id)) . DIRECTORY_SEPARATOR . '*');
         foreach ($tmpFolder as $file) { // iterate files
             if (is_file($file))
@@ -61,7 +61,7 @@ class FileSystemUtil {
     }
 
     function deleteImagesFromProperty($idImueble) {
-        $rutaBase = Sysparam::model()->findByPk(Constantes::PARAMETRO_RUTA_BASE)->value;
+        $rutaBase = Sysparam::model()->findByPk(Constants::PARAMETRO_RUTA_BASE)->value;
         $propertyImages = glob(join(DIRECTORY_SEPARATOR, array($rutaBase, FileSystemUtil::IMAGES_FOLDER_NAME, $idImueble)) . DIRECTORY_SEPARATOR . '*');
         foreach ($propertyImages as $file) {
             if (is_file($file))
@@ -86,14 +86,14 @@ class FileSystemUtil {
      * para el inmueble pasado como parametro {idInmueble}
      */
     function copyFileFromTmpToFs($fileName, $idInmueble) {
-        $rutaBase = Sysparam::model()->findByPk(Constantes::PARAMETRO_RUTA_BASE)->value;
+        $rutaBase = Sysparam::model()->findByPk(Constants::PARAMETRO_RUTA_BASE)->value;
         $tmpFolder = $this->getCurrentUserTmpFolder() . DIRECTORY_SEPARATOR;
         $finalFolder = join(DIRECTORY_SEPARATOR, array($rutaBase, FileSystemUtil::IMAGES_FOLDER_NAME , $idInmueble)) . DIRECTORY_SEPARATOR;
         return copy($tmpFolder . $fileName, $finalFolder . $fileName);
     }
 
     function copyPropertyFilesFromFsToTmp($idInmueble) {
-        $rutaBase = Sysparam::model()->findByPk(Constantes::PARAMETRO_RUTA_BASE)->value;
+        $rutaBase = Sysparam::model()->findByPk(Constants::PARAMETRO_RUTA_BASE)->value;
         $tmpFolder = $this->getCurrentUserTmpFolder() . DIRECTORY_SEPARATOR;
         $str = join(DIRECTORY_SEPARATOR, array($rutaBase, FileSystemUtil::IMAGES_FOLDER_NAME, $idInmueble)) . DIRECTORY_SEPARATOR . '*';
         $fsFiles = glob($str);
@@ -112,7 +112,7 @@ class FileSystemUtil {
      * @param type $idInmueble: identificador del inmueble para el cual se creara el directorio de imagenes.
      */
     function createInmuebleImageFolder($idInmueble) {
-        $rutaBase = Sysparam::model()->findByPk(Constantes::PARAMETRO_RUTA_BASE)->value;
+        $rutaBase = Sysparam::model()->findByPk(Constants::PARAMETRO_RUTA_BASE)->value;
         $finalFolder = join(DIRECTORY_SEPARATOR, array($rutaBase, FileSystemUtil::IMAGES_FOLDER_NAME, $idInmueble));
         if (!file_exists($finalFolder)) {
             mkdir($finalFolder, FileSystemUtil::RIGHTS_MODE, true);
@@ -125,7 +125,7 @@ class FileSystemUtil {
     }
 
     public function createPropertyFoderIfNotExists($idInmueble) {
-        $rutaBase = Sysparam::model()->findByPk(Constantes::PARAMETRO_RUTA_BASE)->value;
+        $rutaBase = Sysparam::model()->findByPk(Constants::PARAMETRO_RUTA_BASE)->value;
         $propertyFolder = join(DIRECTORY_SEPARATOR, array($rutaBase, FileSystemUtil::IMAGES_FOLDER_NAME, $idInmueble));
         if (!file_exists($propertyFolder)) {
             mkdir($propertyFolder, FileSystemUtil::RIGHTS_MODE, true);
@@ -134,7 +134,7 @@ class FileSystemUtil {
     }
 
     public function createUserTmpFoderIfNotExists($nickUsuario) {
-        $rutaBase = Sysparam::model()->findByPk(Constantes::PARAMETRO_RUTA_BASE)->value;
+        $rutaBase = Sysparam::model()->findByPk(Constants::PARAMETRO_RUTA_BASE)->value;
         $userTmpFolder = join(DIRECTORY_SEPARATOR, array($rutaBase, FileSystemUtil::TMP_FOLDER_NAME, $nickUsuario));
         if (!file_exists($userTmpFolder)) {
             mkdir($userTmpFolder, FileSystemUtil::RIGHTS_MODE, true);
@@ -143,7 +143,7 @@ class FileSystemUtil {
     }
 
     public function getPropertyFolder($idInmueble) {
-        $rutaBase = Sysparam::model()->findByPk(Constantes::PARAMETRO_RUTA_BASE)->value;
+        $rutaBase = Sysparam::model()->findByPk(Constants::PARAMETRO_RUTA_BASE)->value;
         return join(DIRECTORY_SEPARATOR, array($rutaBase, FileSystemUtil::IMAGES_FOLDER_NAME, $idInmueble));
     }
 

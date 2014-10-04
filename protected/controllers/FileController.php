@@ -21,7 +21,7 @@ class FileController extends CController {
         return array(
             array('allow',
                 'actions' => array('upload'),
-                'roles' => array(Constantes::USER_ROLE_ADMINISTRATIVO, Constantes::USER_ROLE_DIRECTOR),
+                'roles' => array(Constants::USER_ROLE_ADMINISTRATIVO, Constants::USER_ROLE_DIRECTOR),
             ),
             array('allow',
                 'actions' => array('display','displayPropertyImage'),

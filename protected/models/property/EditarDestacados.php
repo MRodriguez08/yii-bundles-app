@@ -70,7 +70,7 @@ class EditarDestacados extends CFormModel {
             if ($destacado->id_inmueble != $valor){
                 $destacado->id_inmueble = $valor;
                 $dtNow = new DateTime;
-                $destacado->update_timestamp = $dtNow->format(Constantes::DATETIME_STRING_FORMAT);
+                $destacado->update_timestamp = $dtNow->format(Constants::DATETIME_STRING_FORMAT);
                 if ($destacado->save() == false){
                     return false;
                 }                    

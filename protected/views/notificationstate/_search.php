@@ -1,6 +1,6 @@
 <?php
-/* @var $this NotificacionController */
-/* @var $model Notificacion */
+/* @var $this TipoNotificacionController */
+/* @var $model TipoNotificacion */
 /* @var $form CActiveForm */
 ?>
 
@@ -23,19 +23,15 @@
                         'method' => 'get',
                     ));
                     ?>
-                    
+
                     <div class="form-group col-lg-3">
-                        <?php echo $form->label($model, 'id_tipo_notificacion'); ?>
-                        <?php echo $form->dropDownList($model , 'id_tipo_notificacion', 
-                                $this->getListaTiposNotificacion(), 
-                                array('empty'=> Yii::app()->params["labelEmptyComboBoxValue"],"class" => "form-control input-sm")) ?>
+                        <?php echo $form->label($model, 'name'); ?>
+                        <?php echo $form->textField($model, 'name', array('size' => 60, 'maxlength' => 64, "class" => "form-control input-sm")); ?>
                     </div>
-                    
+
                     <div class="form-group col-lg-3">
-                        <?php echo $form->label($model, 'id_estado_notificacion'); ?>
-                        <?php echo $form->dropDownList($model , 'id_estado_notificacion', 
-                                $this->getListaEstadosNotificacion(), 
-                                array('empty'=> Yii::app()->params["labelEmptyComboBoxValue"],"class" => "form-control input-sm")) ?>
+                        <?php echo $form->label($model, 'description'); ?>
+                        <?php echo $form->textField($model, 'description', array('size' => 60, 'maxlength' => 512, "class" => "form-control input-sm")); ?>
                     </div>
 
                     <div class="form-group col-lg-12">

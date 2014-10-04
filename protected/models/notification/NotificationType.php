@@ -1,20 +1,19 @@
 <?php
 
 /**
- * This is the model class for table "parametros".
+ * This is the model class for table "tipo_notificacion".
  *
- * The followings are the available columns in table 'parametros':
+ * The followings are the available columns in table 'tipo_notificacion':
  * @property string $name
  * @property string $description
- * @property string $value
  */
-class Sysparam extends CActiveRecord {
+class NotificationType extends CActiveRecord {
 
     /**
      * @return string the associated database table name
      */
     public function tableName() {
-        return 'sysparams';
+        return 'notification_types';
     }
 
     /**
@@ -24,43 +23,24 @@ class Sysparam extends CActiveRecord {
         // NOTE: you should only define rules for those attributes that
         // will receive user inputs.
         return array(
-            array('name, value, description', 'required', "message" => Yii::app()->params["templateEmptyValueErrorMessage"]),
-            array('value', 'validateParameter', 'message' => Yii::app()->params["templateInvalidEmailFormatMessage"]),
+            array('name', 'required', 'message' => Yii::app()->params["templateEmptyValueErrorMessage"]),
             array('name', 'length', 'max' => 64),
-            array('description', 'length', 'max' => 1024),
-            array('value', 'length', 'max' => 512),
+            array('name', 'duplicatedName', 'message' => Yii::app()->params["templateDuplicatedValueErrorMessage"]),
+            array('description', 'length', 'max' => 512),
             // The following rule is used by search().
             // @todo Please remove those attributes that should not be searched.
-            array('name, description, value', 'safe', 'on' => 'search'),
+            array('name, description', 'safe', 'on' => 'search'),
         );
     }
-    
-    public function validateParameter($attribute, $params) {
-        
-        //Valido segun type de parametro
-        if ((strcmp($this->type,  Constants::TIPO_PARAMETRO_INTEGER) == 0) && !ctype_digit(strval($this->value))){
-            $this->addError($attribute, "Este parametro es de type entero");
-            return;
-        }            
-        
-        if ((strcmp($this->name,  Constants::PARAMETRO_DESV_LATITUD) == 0)){
-            if ((int)$this->value > 150){
-                $this->addError($attribute, "No se recomienda que la desviacion de latitud supere los 150 puntos");
-                return;
-            }
-        } else if ((strcmp($this->name,  Constants::PARAMETRO_DESV_LONGITUD) == 0)){
-            if ((int)$this->value > 150){
-                $this->addError($attribute, "No se recomienda que la desviacion de longitud supere los 150 puntos");
-                return;
-            }
-        } else if ((strcmp($this->name,  Constants::PARAMETRO_EMAIL_ADMINISTRADOR) == 0)){
-            if (!filter_var($this->value, FILTER_VALIDATE_EMAIL)){
-                $this->addError($attribute, "Este parametro debe ser un email valido (ej. juan@gmail.com)");
-                return;
-            }
+
+    public function duplicatedName($attribute, $params) {
+        if ($this->isNewRecord) {
+            if (count(NotificationType::model()->findALl('name=:name', array("name" => $this->name))) > 0)
+                $this->addError($attribute, str_replace("{attribute}", $attribute, Yii::app()->params["templateDuplicatedValueErrorMessage"]));
+        } else {
+            if (count(NotificationType::model()->findALl('id<>:id and name=:name', array("name" => $this->name, "id"=>  $this->id))) > 0)
+                $this->addError($attribute, str_replace("{attribute}", $attribute, Yii::app()->params["templateDuplicatedValueErrorMessage"]));
         }
-        
-        
     }
 
     /**
@@ -78,9 +58,9 @@ class Sysparam extends CActiveRecord {
      */
     public function attributeLabels() {
         return array(
+            'id' => 'Id',
             'name' => 'name',
-            'description' => 'Descripci&oacute;n',
-            'value' => 'Valor',
+            'description' => 'description',
         );
     }
 
@@ -103,7 +83,6 @@ class Sysparam extends CActiveRecord {
 
         $criteria->compare('name', $this->name, true);
         $criteria->compare('description', $this->description, true);
-        $criteria->compare('value', $this->value, true);
 
         return new CActiveDataProvider($this, array(
             'criteria' => $criteria,
@@ -114,7 +93,7 @@ class Sysparam extends CActiveRecord {
      * Returns the static model of the specified AR class.
      * Please note that you should have this exact method in all your CActiveRecord descendants!
      * @param string $className active record class name.
-     * @return Parametro the static model class
+     * @return NotificationType the static model class
      */
     public static function model($className = __CLASS__) {
         return parent::model($className);
