@@ -1,6 +1,6 @@
 <?php
 
-class InmuebleController extends AdminController {
+class PropertyController extends AdminController {
 
     protected $pageTitle = ". : Inmuebles : .";
 
@@ -51,13 +51,13 @@ class InmuebleController extends AdminController {
      * If creation is successful, the browser will be redirected to the 'view' page.
      */
     public function actionCreate() {
-        $model = new Inmueble;
+        $model = new Property;
 
         $fsUtil = new FileSystemUtil;
 
-        if (isset($_POST['Inmueble'])) {
+        if (isset($_POST['Property'])) {
 
-            $model->attributes = $_POST['Inmueble'];
+            $model->attributes = $_POST['Property'];
             if ($model->save()) {
 
                 //creo el directorio para las imagenes del inmueble
@@ -66,7 +66,7 @@ class InmuebleController extends AdminController {
                 //guardo las imagenes para el inmueble
                 $images = $fsUtil->getTmpFilesNames();
                 foreach ($images as $img) {
-                    $imgInm = new ImagenInmueble;
+                    $imgInm = new ImagenProperty;
                     $imgInm->id_inmueble = $model->id;
                     $imgInm->ruta = $img;
                     if ($imgInm->save()) {
@@ -99,8 +99,8 @@ class InmuebleController extends AdminController {
         $model = $this->loadModel($id);
         $fsUtil = new FileSystemUtil;
 
-        if (isset($_POST['Inmueble'])) {
-            $model->attributes = $_POST['Inmueble'];
+        if (isset($_POST['Property'])) {
+            $model->attributes = $_POST['Property'];
             if ($model->save()) {
 
                 //elimino las imagenes viejas de el sistema de archivos y de la bd (las referencias)
@@ -150,7 +150,7 @@ class InmuebleController extends AdminController {
      * Lists all models.
      */
     public function actionIndex() {
-        $dataProvider = new CActiveDataProvider('Inmueble');
+        $dataProvider = new CActiveDataProvider('Property');
         $this->render('index', array(
             'dataProvider' => $dataProvider,
         ));
@@ -161,10 +161,10 @@ class InmuebleController extends AdminController {
      */
     public function actionAdmin() {
 
-        $model = new Inmueble('search');
+        $model = new Property('search');
         $model->unsetAttributes();  // clear any default values
-        if (isset($_GET['Inmueble']))
-            $model->attributes = $_GET['Inmueble'];
+        if (isset($_GET['Property']))
+            $model->attributes = $_GET['Property'];
 
         $this->render('admin', array(
             'model' => $model,
@@ -175,11 +175,11 @@ class InmuebleController extends AdminController {
      * Returns the data model based on the primary key given in the GET variable.
      * If the data model is not found, an HTTP exception will be raised.
      * @param integer $id the ID of the model to be loaded
-     * @return Inmueble the loaded model
+     * @return Property the loaded model
      * @throws CHttpException
      */
     public function loadModel($id) {
-        $model = Inmueble::model()->findByPk($id);
+        $model = Property::model()->findByPk($id);
         if ($model === null)
             throw new CHttpException(404, 'The requested page does not exist.');
         $model->strArrayImagenes = $model->imagesToStringArray();
@@ -188,7 +188,7 @@ class InmuebleController extends AdminController {
 
     /**
      * Performs the AJAX validation.
-     * @param Inmueble $model the model to be validated
+     * @param Property $model the model to be validated
      */
     protected function performAjaxValidation($model) {
         if (isset($_POST['ajax']) && $_POST['ajax'] === 'inmueble-form') {
@@ -202,7 +202,7 @@ class InmuebleController extends AdminController {
     }
 
     public function actionCiudadDinamica() {
-        $idDep = $_POST["Inmueble"]["id_departamento"];
+        $idDep = $_POST["Property"]["id_departamento"];
         $data = Ciudad::model()->findAll('id_departamento=:id_departamento', array(':id_departamento' => (int) $idDep));
 
         $data = CHtml::listData($data, 'id', 'name');
@@ -213,7 +213,7 @@ class InmuebleController extends AdminController {
     }
 
     public function actionBarrioDinamico() {
-        $idBar = $_POST["Inmueble"]["id_ciudad"];
+        $idBar = $_POST["Property"]["id_ciudad"];
         $data = Barrio::model()->findAll('id_ciudad=:id_ciudad', array(':id_ciudad' => (int) $idBar));
 
         $data = CHtml::listData($data, 'id', 'name');
@@ -229,7 +229,7 @@ class InmuebleController extends AdminController {
         return $opciones;
     }
 
-    public function getTipoInmueble() {
+    public function getPropertyTypes() {
         $opciones = array();
         $opciones[Constantes::TIPO_INMUEBLE_APARTAMENTO] = CHtml::encode("Apartamento");
         $opciones[Constantes::TIPO_INMUEBLE_CASA] = CHtml::encode("Casa");
@@ -237,7 +237,7 @@ class InmuebleController extends AdminController {
         return $opciones;
     }
 
-    public function getTipoInmuebleFiltros() {
+    public function getPropertyTypesFilterList() {
         $opciones = array();
         $opciones[""] = CHtml::encode("Todos");
         $opciones[Constantes::TIPO_INMUEBLE_APARTAMENTO] = CHtml::encode("Apartamento");
@@ -246,10 +246,10 @@ class InmuebleController extends AdminController {
         return $opciones;
     }
 
-    public function actionInmueblesPorTipo() {
+    public function actionPropertiesByType() {
         $result = array();
         $data = array();
-        $inm = new Inmueble;
+        $inm = new Property;
         $arr = $inm->countByTipo();
         $count = $inm->count();
         foreach (array_keys($arr) as $i) {
@@ -265,10 +265,10 @@ class InmuebleController extends AdminController {
         Response::send(CJSON::encode($result));
     }
 
-    public function actionInmueblesPorEstado() {
+    public function actionPropertiesByState() {
         $result = array();
         $data = array();
-        $inm = new Inmueble;
+        $inm = new Property;
         $arr = $inm->countByEstado();
         $count = $inm->count();
         foreach (array_keys($arr) as $i) {
@@ -284,10 +284,10 @@ class InmuebleController extends AdminController {
         Response::send(CJSON::encode($result));
     }
 
-    public function actionInmueblesPorBarrio() {
+    public function actionPropertiesByNeighbourhood() {
         $result = array();
         $data = array();
-        $inm = new Inmueble;
+        $inm = new Property;
         $arr = $inm->countByBarrio();
         $count = $inm->count();
         foreach (array_keys($arr) as $i) {

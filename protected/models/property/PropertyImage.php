@@ -5,19 +5,19 @@
  *
  * The followings are the available columns in table 'imagenes_inmueble':
  * @property integer $id
- * @property integer $id_inmueble
- * @property string $ruta
+ * @property integer $property_id
+ * @property string $path
  *
  * The followings are the available model relations:
  * @property Inmuebles $idInmueble
  */
-class ImagenInmueble extends CActiveRecord {
+class PropertyImage extends CActiveRecord {
 
     /**
      * @return string the associated database table name
      */
     public function tableName() {
-        return 'imagenes_inmueble';
+        return 'property_images';
     }
 
     /**
@@ -27,12 +27,12 @@ class ImagenInmueble extends CActiveRecord {
         // NOTE: you should only define rules for those attributes that
         // will receive user inputs.
         return array(
-            array('id_inmueble, ruta', 'required'),
-            array('id_inmueble', 'numerical', 'integerOnly' => true),
-            array('ruta', 'length', 'max' => 512),
+            array('property_id, path', 'required'),
+            array('property_id', 'numerical', 'integerOnly' => true),
+            array('path', 'length', 'max' => 512),
             // The following rule is used by search().
             // @todo Please remove those attributes that should not be searched.
-            array('id, id_inmueble, ruta', 'safe', 'on' => 'search'),
+            array('id, property_id, path', 'safe', 'on' => 'search'),
         );
     }
 
@@ -43,7 +43,7 @@ class ImagenInmueble extends CActiveRecord {
         // NOTE: you may need to adjust the relation name and the related
         // class name for the relations automatically generated below.
         return array(
-            'idInmueble' => array(self::BELONGS_TO, 'Inmuebles', 'id_inmueble'),
+            'property' => array(self::BELONGS_TO, 'Property', 'property_id'),
         );
     }
 
@@ -53,8 +53,8 @@ class ImagenInmueble extends CActiveRecord {
     public function attributeLabels() {
         return array(
             'id' => 'ID',
-            'id_inmueble' => 'Id Inmueble',
-            'ruta' => 'Ruta',
+            'property_id' => 'Id Inmueble',
+            'path' => 'Ruta',
         );
     }
 
@@ -76,8 +76,8 @@ class ImagenInmueble extends CActiveRecord {
         $criteria = new CDbCriteria;
 
         $criteria->compare('id', $this->id);
-        $criteria->compare('id_inmueble', $this->id_inmueble);
-        $criteria->compare('ruta', $this->ruta, true);
+        $criteria->compare('property_id', $this->property_id);
+        $criteria->compare('path', $this->path, true);
 
         return new CActiveDataProvider($this, array(
             'criteria' => $criteria,
@@ -97,7 +97,7 @@ class ImagenInmueble extends CActiveRecord {
     public static function findAllByInmueble($idInmueble) {
         return ImagenInmueble::model()->findAll(
             array(
-                'condition' => 'id_inmueble=:idInmueble',
+                'condition' => 'property_id=:idInmueble',
                 'params' => array(':idInmueble' => $idInmueble)
             )
         );
