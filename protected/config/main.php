@@ -85,7 +85,10 @@ return array(
                 'sysparam/admin' => 'sysparam/admin',
                 'user/admin' => 'user/admin',
                 
-                'evento/admin' => 'evento/admin',
+                /* calendar bundle */
+                'event/getAll' => 'calendar/getAllEvents',
+                'event/new' => 'calendar/createEvent',
+                'event/update' => 'calendar/updateEvent',
                 
                 'image/<id:.*\S.*>' => 'file/display',
                 'propertyImage' => 'file/displayPropertyImage',

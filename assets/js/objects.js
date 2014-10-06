@@ -6,8 +6,8 @@
 /* el filtro barrios es un array con los ids de los barrios */
 
 CONF = {
-    backendIp: '/riasAltas/backend/index.php/',
-    backendIpNoScript: '/riasAltas/backend/',
+    backendIp: '/yii-bundles-app/index.php/',
+    backendIpNoScript: '/yii-bundles-app/',
     mapIcon: '../backend/images/home-blue.png',
     mapCharged: false,
     searchResult: '',

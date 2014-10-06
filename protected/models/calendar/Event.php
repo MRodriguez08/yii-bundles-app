@@ -1,28 +1,21 @@
 <?php
 
 /**
- * This is the model class for table "eventos".
+ * This is the model class for table "calendar".
  *
- * The followings are the available columns in table 'eventos':
+ * The followings are the available columns in table 'calendar':
  * @property string $id
- * @property string $titulo
- * @property string $description
- * @property string $fecha_hora_desde
- * @property string $fecha_hora_hasta
- * @property integer $id_inmueble
- * @property integer $id_cliente
- * @property string $id_usuario
+ * @property string $title
+ * @property string $body
+ * @property string $start
+ * @property string $end
+ * @property string $user_id
  *
  * The followings are the available model relations:
- * @property Inmuebles $idInmueble
- * @property Clientes $idCliente
- * @property Usuarios $idUsuario
+ * @property Users $user
  */
 class Event extends CActiveRecord {
 
-    public $fechaDesde;
-    public $fechaHasta;
-    
     /**
      * @return string the associated database table name
      */
@@ -37,15 +30,14 @@ class Event extends CActiveRecord {
         // NOTE: you should only define rules for those attributes that
         // will receive user inputs.
         return array(
-            array('titulo, fecha_hora_desde, id_inmueble, id_cliente, id_usuario', 'required', 'message' => Yii::app()->params["templateEmptyValueErrorMessage"]),
-            array('id_inmueble, id_cliente', 'numerical', 'integerOnly' => true),
-            array('titulo', 'length', 'max' => 100),
-            array('description', 'length', 'max' => 512),
-            array('id_usuario', 'length', 'max' => 64),
-            array('fecha_hora_hasta', 'safe'),
+            array('title, body, start, end, user_id', 'required'),
+            array('title', 'length', 'max' => 100),
+            array('body', 'length', 'max' => 1024),
+            array('start, end', 'length', 'max' => 20),
+            array('user_id', 'length', 'max' => 64),
             // The following rule is used by search().
             // @todo Please remove those attributes that should not be searched.
-            array('titulo, description', 'safe', 'on' => 'search'),
+            array('id, title, body, start, end, user_id', 'safe', 'on' => 'search'),
         );
     }
 
@@ -56,9 +48,7 @@ class Event extends CActiveRecord {
         // NOTE: you may need to adjust the relation name and the related
         // class name for the relations automatically generated below.
         return array(
-            'inmueble' => array(self::BELONGS_TO, 'Inmueble', 'id_inmueble'),
-            'cliente' => array(self::BELONGS_TO, 'Cliente', 'id_cliente'),
-            'usuario' => array(self::BELONGS_TO, 'Usuario', 'id_usuario'),
+            'user' => array(self::BELONGS_TO, 'Users', 'user_id'),
         );
     }
 
@@ -68,15 +58,11 @@ class Event extends CActiveRecord {
     public function attributeLabels() {
         return array(
             'id' => 'ID',
-            'titulo' => 'T&iacute;tulo',
-            'description' => 'description',
-            'fecha_hora_desde' => 'Inicio',
-            'fecha_hora_hasta' => 'Fin',
-            'id_inmueble' => 'Inmueble',
-            'id_cliente' => 'Cliente',
-            'id_usuario' => 'Usuario',
-            'fechaDesde' => 'Desde',
-            'fechaHasta' => 'Hasta',
+            'title' => 'Title',
+            'body' => 'Body',
+            'start' => 'Start',
+            'end' => 'End',
+            'user_id' => 'User',
         );
     }
 
@@ -98,27 +84,11 @@ class Event extends CActiveRecord {
         $criteria = new CDbCriteria;
 
         $criteria->compare('id', $this->id, true);
-        $criteria->compare('titulo', $this->titulo, true);
-        $criteria->compare('description', $this->description, true);
-        
-        if (isset($_GET["Evento"])) {
-            $dH = new DateTimeHelper;            
-            $desde = $dH->getDateTimeFromUI($_GET["Evento"]["fechaDesde"]);
-            $hasta = $dH->getDateTimeFromUI($_GET["Evento"]["fechaHasta"]);
-            if ($desde !== false) {
-                $criteria->addCondition('fecha_hora_desde >= ' . $desde->getTimestamp());
-            } else {
-                $criteria->addCondition('fecha_hora_desde >= ' . $dH->getDefaultStartRangeFilter("eventos")->getTimestamp());
-            }
-            if ($hasta !== false) {
-                $criteria->addCondition('fecha_hora_desde <= ' . $hasta->getTimestamp());
-            } else {
-                $criteria->addCondition('fecha_hora_desde <= ' . $dH->getDefaultEndRangeFilter("eventos")->getTimestamp());
-            }
-        }
-        $criteria->compare('id_inmueble', $this->id_inmueble);
-        $criteria->compare('id_cliente', $this->id_cliente);
-        $criteria->compare('id_usuario', $this->id_usuario, true);
+        $criteria->compare('title', $this->title, true);
+        $criteria->compare('body', $this->body, true);
+        $criteria->compare('start', $this->start, true);
+        $criteria->compare('end', $this->end, true);
+        $criteria->compare('user_id', $this->user_id, true);
 
         return new CActiveDataProvider($this, array(
             'criteria' => $criteria,
@@ -129,7 +99,7 @@ class Event extends CActiveRecord {
      * Returns the static model of the specified AR class.
      * Please note that you should have this exact method in all your CActiveRecord descendants!
      * @param string $className active record class name.
-     * @return Evento the static model class
+     * @return Event the static model class
      */
     public static function model($className = __CLASS__) {
         return parent::model($className);
