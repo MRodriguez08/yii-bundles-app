@@ -6,7 +6,7 @@
 // CWebApplication properties can be configured here.
 return array(
     'basePath' => dirname(__FILE__) . DIRECTORY_SEPARATOR . '..',
-    'name' => 'Yii Bundles',
+    'name' => 'My Desktop',
     'defaultController' => 'site/index',
     // preloading 'log' component
     'preload' => array('log'),
@@ -86,9 +86,10 @@ return array(
                 'user/admin' => 'user/admin',
                 
                 /* calendar bundle */
-                'event/getAll' => 'calendar/getAllEvents',
+                'events' => 'calendar/getAllEvents',
                 'event/new' => 'calendar/createEvent',
                 'event/update' => 'calendar/updateEvent',
+                'event/<id:\d+>' => 'calendar/view',      
                 
                 'image/<id:.*\S.*>' => 'file/display',
                 'propertyImage' => 'file/displayPropertyImage',

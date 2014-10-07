@@ -24,7 +24,7 @@ class CalendarController extends AdminController {
     public function accessRules() {
         return array(
             array('allow',
-                'actions' => array('admin', 'createEvent', 'updateEvent', 'getAllEvents'),
+                'actions' => array('admin', 'createEvent', 'updateEvent', 'getAllEvents','view'),
                 'roles' => array(Constants::USER_ROLE_ADMINISTRATIVO, Constants::USER_ROLE_AGENTE, Constants::USER_ROLE_DIRECTOR),
             ),
             array('deny',
@@ -39,6 +39,13 @@ class CalendarController extends AdminController {
     public function actionAdmin() {
         $this->render('admin');
     }
+    
+    public function actionView($id) {
+        $this->layout = '';
+        $this->render('view', array(
+            'model' => $this->loadModel($id),
+        ));
+    }
 
     /**
      * Returns the data model based on the primary key given in the GET variable.
@@ -51,10 +58,6 @@ class CalendarController extends AdminController {
         $model = Event::model()->findByPk($id);
         if ($model === null)
             throw new CHttpException(404, 'The requested page does not exist.');
-
-        $dH = new DateTimeHelper();
-        $model->fecha_hora_desde = $dH->getUIDateTimeString($model->fecha_hora_desde);
-        $model->fecha_hora_hasta = $dH->getUIDateTimeString($model->fecha_hora_hasta);
 
         return $model;
     }
@@ -73,20 +76,25 @@ class CalendarController extends AdminController {
     public function actionCreateEvent() {
         $transaction = Yii::app()->db->beginTransaction();
         try {
+
+            $dU = new DateTimeHelper();
+
             $e = new Event;
             $e->title = $_POST['title'];
             $e->body = $_POST['body'];
-            $dt = new DateTime($_POST['end']);
+            $dt = $dU->getDateTimeFromUI($_POST['end']);
             $e->end = $dt->getTimestamp();
-            $dt = new DateTime($_POST['start']);
+            $dt = $dU->getDateTimeFromUI($_POST['start']);
             $e->start = $dt->getTimestamp();
+            $e->user_id = Yii::app()->user->id;
 
-            $e->save();
+            if (!$e->save())
+                throw new \Exception(CJSON::encode($e->getErrors()));
             $transaction->commit();
             Response::ok(CJSON::encode(array("result" => "success", "message" => $e->id)));
         } catch (Exception $exc) {
             $transaction->rollback();
-            Response::ok(CJSON::encode(array("result" => "error", "message" => $exc->getMessage())));
+            Response::error(CJSON::encode(array("result" => "error", "message" => $exc->getMessage())));
         }
     }
 
@@ -96,17 +104,24 @@ class CalendarController extends AdminController {
 
     public function actionGetAllEvents() {
         $out = array();
-
-        for ($i = 1; $i <= 15; $i++) {   //from day 01 to day 15
-            $data = date('Y-m-d', strtotime("+" . $i . " days"));
-            $out[] = array(
-                'id' => $i,
-                'title' => 'Event name ' . $i,
-                'url' => '',
-                'class' => 'event-important',
-                'start' => strtotime($data) . '000'
-            );
+        try {
+            $events = Event::model()->findAll("user_id=:userId", array("userId" => Yii::app()->user->id));
+            foreach ($events as $e) { 
+                $item = array(
+                    'id' => $e->id,
+                    'title' => $e->title,
+                    'url' => Yii::app()->baseUrl . '/index.php/event/' . $e->id,
+                    'class' => 'event-important',
+                    'start' => $e->start . '000',
+                    'end' => $e->end . '000'
+                );
+                array_push($out, $item);
+            }
+        } catch (Exception $exc) {
+            Response::error(CJSON::encode(array("result" => "error", "message" => $exc->getMessage())));
         }
+
+
 
         Response::ok(CJSON::encode(array('success' => 1, 'result' => $out)));
     }

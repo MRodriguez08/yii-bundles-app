@@ -7,7 +7,7 @@
 
         <script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl; ?>/assets/js/lib/jquery1.11.0.min.js"></script>
         <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/bootstrap-inmobiliaria.css" media="screen, projection" />
-        <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/lib/bootstrap/bootstrap-theme.min.css" media="screen, projection" />
+      
         <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/lib/alertify.core.css" media="screen, projection" />
         <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/lib/alertify.bootstrap.css" media="screen, projection" />
         <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/lib/bootstrap-combobox.css" media="screen, projection" />
@@ -15,9 +15,9 @@
         <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/plataforma-inmobiliaria.css" media="screen, projection" />
         <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/font-awesome/css/font-awesome.css" media="screen, projection" />
         <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/theme/sb-admin.css" />
-        
+
         <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/lib/calendar/calendar.min.css" />
-        
+
 
         <!-- blueimp Gallery styles -->
         <link rel="stylesheet" href="http://blueimp.github.io/Gallery/css/blueimp-gallery.min.css">
@@ -52,10 +52,14 @@
                                         <span class="glyphicon glyphicon-user"></span>  <?php echo Yii::app()->user->getNameAndRole(); ?> <i class="fa fa-caret-down"></i>  
                                     </a>
                                     <ul class="dropdown-menu dropdown-user">
-                                        <li><a href="<?php echo Yii::app()->createUrl("user/miPerfil") ?>"><span class="glyphicon glyphicon-user"></span> Mi perfil</a>
+                                        <li>
+                                            <a href="<?php echo Yii::app()->createUrl("user/miPerfil") ?>"><span class="glyphicon glyphicon-user"></span> Mi perfil</a>
                                         </li>
                                         <li class="divider"></li>
-                                        <li><a href="<?php echo Yii::app()->createUrl("user/logout") ?>"><span class="glyphicon glyphicon-log-out"></span> Salir</a>
+                                        <a href="#"><i class="fa fa-bug"></i> Reportar error</a>
+                                        <li class="divider"></li>
+                                        <li>
+                                            <a href="<?php echo Yii::app()->createUrl("user/logout") ?>"><span class="glyphicon glyphicon-log-out"></span> Salir</a>
                                         </li>
                                     </ul>
                                     <!-- /.dropdown-user -->
@@ -197,6 +201,9 @@
                         <script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl; ?>/assets/js/lib/calendar/language/es-ES.js"></script>
                         <script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl; ?>/assets/js/lib/calendar/calendar.min.js"></script>
                         <script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl; ?>/assets/js/lib/calendar/app.js"></script>
+
+                        <script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl; ?>/assets/js/bundles/calendar/presentation.js"></script>
+                        <script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl; ?>/assets/js/bundles/calendar/ajaxcalls.js"></script>
 
                     </body>
                     </html>

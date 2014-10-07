@@ -16,7 +16,7 @@ body{
     padding-top: 20px;
 }
 
-.hidden-field {
+.hidden-field, .hidden {
     display: none;
 }
 

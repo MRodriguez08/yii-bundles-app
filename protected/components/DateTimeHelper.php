@@ -13,6 +13,11 @@
  */
 class DateTimeHelper {
   
+    /**
+     * 
+     * @param type $uiDt
+     * @return boolean
+     */
     public function getDateTimeFromUI($uiDt){
         $dt = DateTime::createFromFormat(Yii::app()->params["dateTimeDisplayFormat"], $uiDt);
         if ($dt !== false)

@@ -26,10 +26,14 @@ filterSearch = {
     precioHasta: 5000,
 }
 
-function BackendConstants() {
+function AppConstants() {
     this.GRAFICA_INMUEBLE_POR_TIPO = "inmueblesPorTipo";
     this.GRAFICA_INMUEBLE_POR_ESTADO = "inmueblesPorEstado";
     this.GRAFICA_INMUEBLE_POR_BARRIO = "inmueblesPorBarrio";
+    
+    this.OPERATION_RESULT_SUCCESS = "success";
+    this.OPERATION_RESULT_ERROR = "error";
+    
 }
 
-var backendConstants = new BackendConstants();
+var appConstants = new AppConstants();
