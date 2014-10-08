@@ -88,13 +88,16 @@ class CalendarController extends AdminController {
             $e->start = $dt->getTimestamp();
             $e->user_id = Yii::app()->user->id;
 
-            if (!$e->save())
-                throw new \Exception(CJSON::encode($e->getErrors()));
-            $transaction->commit();
-            Response::ok(CJSON::encode(array("result" => "success", "message" => $e->id)));
+            if (!$e->save()){
+                $transaction->commit();
+                Response::ok(CJSON::encode(array("result" => "error", "message" => CJSON::encode($e->getErrors()))));
+            } else {                
+                Response::ok(CJSON::encode(array("result" => "success", "message" => $e->id)));
+            }
         } catch (Exception $exc) {
             $transaction->rollback();
-            Response::error(CJSON::encode(array("result" => "error", "message" => $exc->getMessage())));
+            Yii::log($exc->getMessage(), DBLog::LOG_LEVEL_ERROR);
+            Response::error(CJSON::encode(array("result" => "error", "message" => Yii::app()->params["httpErrorCode500Message"])));
         }
     }
 
@@ -117,13 +120,11 @@ class CalendarController extends AdminController {
                 );
                 array_push($out, $item);
             }
+            Response::ok(CJSON::encode(array('success' => 1, 'result' => $out)));
         } catch (Exception $exc) {
-            Response::error(CJSON::encode(array("result" => "error", "message" => $exc->getMessage())));
+            Yii::log($exc->getMessage(), DBLog::LOG_LEVEL_ERROR);
+            Response::error(CJSON::encode(array("result" => "error", "message" => Yii::app()->params["httpErrorCode500Message"])));
         }
-
-
-
-        Response::ok(CJSON::encode(array('success' => 1, 'result' => $out)));
     }
 
 }
