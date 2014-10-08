@@ -69,6 +69,7 @@ return array(
     
     /* application error messages */
     "InvalidAuthenticationInfo" => 'Usuario o contrase&ntilde;a inv&aacute;lidos / usuario deshabilitado',
-    "httpErrorCode404Message" => 'The requested page does not exist.'
+    "httpErrorCode404Message" => 'The requested page does not exist.',
+    "httpErrorCode500Message" => 'Internal server error!! please contant the system administrator or report the bug. Thanks!!',
     
 );
