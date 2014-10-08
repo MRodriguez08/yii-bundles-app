@@ -130,17 +130,21 @@ return array(
         ),
         'log' => array(
             'class' => 'CLogRouter',
-            'routes' => array(
+            'routes'=>array(
                 array(
-                    'class' => 'CFileLogRoute',
-                    'levels' => 'error, warning',
+                    'class'=>'CFileLogRoute',
+                    'levels'=>'error',
+                    'categories'=>'system.*',
                 ),
-            // uncomment the following to show log messages on web pages
-            /*
-              array(
-              'class'=>'CWebLogRoute',
-              ),
-             */
+                array(
+                    'class'=>'ext.DBLog',
+                    //'autoCreateLogTable'=>false,
+                    'logTableName' => 'error_log', 
+                    'connectionID'=>'db',
+                    'categories'=>'application.*',
+                    'enabled'=>true,
+                    'levels'=>'error',//You can replace trace,info,warning,error
+                ),
             ),
         ),
     ),
