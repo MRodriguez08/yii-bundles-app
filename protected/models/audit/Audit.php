@@ -117,15 +117,25 @@ class Audit extends CActiveRecord {
     }
 
     public function logAudit($user, $dateTime, $object, $operation, $description) {
-        $a = new Audit;
+        $transaction = Yii::app()->db->beginTransaction();
+        try {
+            $a = new Audit;
 
-        $a->description = $description;
-        $a->date_time = $dateTime->getTimestamp();
-        $a->user = $user;
-        $a->object = $object;
-        $a->operation = $operation;
+            $a->description = $description;
+            $a->date_time = $dateTime->getTimestamp();
+            $a->user = $user;
+            $a->object = $object;
+            $a->operation = $operation;           
+            
+            if (!$a->save())
+                throw new \Exception("Error logging audit: " + CJSON::encode($a->getErrors()));            
+            $transaction->commit();
+        } catch (Exception $exc) {
+            $transaction->rollback();
+            Yii::log($exc->getMessage(), DBLog::LOG_LEVEL_ERROR);
+        }
 
-        $a->save();
+        
     }
 
 }

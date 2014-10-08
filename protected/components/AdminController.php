@@ -35,7 +35,7 @@ class AdminController extends CController {
      * @var type Audit
      */
     protected $audit;
-    
+
     protected function setCustomError($message){
         $this->hasError = true; 
         $this->errorMessage = $message;

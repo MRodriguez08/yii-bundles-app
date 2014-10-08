@@ -61,7 +61,7 @@ class UserController extends AdminController {
     }
 
     public function actionMiPerfil() {
-        $this->render('miPerfil', array(
+        $this->render('myProfile', array(
             'model' => $this->loadModel(Yii::app()->user->id),
         ));
     }
