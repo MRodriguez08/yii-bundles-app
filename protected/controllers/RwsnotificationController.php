@@ -11,16 +11,21 @@ class RwsnotificationController extends RWSController {
      * @param integer $id the ID of the model to be displayed
      */
     private function createNotification() {
+        $transaction = Yii::app()->db->beginTransaction();
         try {
             $ntf = new Notification;
             $ntf->customSetAttributes($this->arguments);
             if ($ntf->save()) {
+                $transaction->commit();
                 Response::ok(CJSON::encode(array("result" => Constants::RESULTADO_OPERACION_EXITO, "message" => "notificacion con id = {$ntf->id} ingresada con exito")));
             } else {
+                $transaction->rollback();
                 Response::ok(CJSON::encode(array("result" => Constants::RESULTADO_OPERACION_FALLA, "message" => $ntf->getErrors())));
             }
         } catch (\Exception $e) {
-            Response::error(CJSON::encode(array("result" => Constants::RESULTADO_OPERACION_FALLA, "message" => $e->getMessage())));
+            $transaction->rollback();
+            Yii::log($e->getMessage(), DBLog::LOG_LEVEL_ERROR);
+            Response::error(CJSON::encode(array("result" => Constants::RESULTADO_OPERACION_FALLA, "message" => Yii::app()->params["httpErrorCode500Message"])));
         }
     }
 
