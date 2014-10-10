@@ -12,7 +12,7 @@
         <div class="row">
                 <?php
                 $form = $this->beginWidget('CActiveForm', array(
-                    'id' => 'usuario-form',
+                    'id' => 'user-form',
                     'enableAjaxValidation' => false,
                 ));
                 ?>
@@ -24,9 +24,9 @@
                 ?>
 
                 <div class="form-group">
-                    <?php echo $form->labelEx($model, 'usuario'); ?>
-                    <?php echo $form->textField($model, 'usuario', array('disabled' => ($model->isNewRecord ? '' : 'true'), 'size' => 60, 'maxlength' => 64, "class" => "form-control input-sm")); ?>
-                    <?php echo $form->error($model, 'usuario', array("class" => "yii-error-alert")); ?>
+                    <?php echo $form->labelEx($model, 'nick'); ?>
+                    <?php echo $form->textField($model, 'nick', array('disabled' => ($model->isNewRecord ? '' : 'true'), 'size' => 60, 'maxlength' => 64, "class" => "form-control input-sm")); ?>
+                    <?php echo $form->error($model, 'nick', array("class" => "yii-error-alert")); ?>
                 </div>
 
                 <div class="form-group">
@@ -42,12 +42,12 @@
                 </div>
 
                 <div class="form-group">
-                    <?php echo $form->labelEx($model, 'apellido'); ?>
-                    <?php echo $form->textField($model, 'apellido', array('size' => 60, 'maxlength' => 100, "class" => "form-control input-sm")); ?>
-                    <?php echo $form->error($model, 'apellido', array("class" => "yii-error-alert")); ?>
+                    <?php echo $form->labelEx($model, 'surname'); ?>
+                    <?php echo $form->textField($model, 'surname', array('size' => 60, 'maxlength' => 100, "class" => "form-control input-sm")); ?>
+                    <?php echo $form->error($model, 'surname', array("class" => "yii-error-alert")); ?>
                 </div>
 
-                <a href="<?php echo Yii::app()->createUrl("usuario/miPerfil") ?>"><?php echo Yii::app()->params["labelBotonVolver"] ?></a>
+                <a href="<?php echo Yii::app()->createUrl("user/myProfile") ?>"><?php echo Yii::app()->params["labelBotonVolver"] ?></a>
                 <?php echo CHtml::submitButton(Yii::app()->params["labelBotonGuardar"], array("class" => "btn btn-default")); ?>
 
                 <?php $this->endWidget(); ?>

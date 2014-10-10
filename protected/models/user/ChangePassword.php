@@ -23,12 +23,12 @@ class ChangePassword extends CFormModel {
     }
     
     public function checkOldPassword() {
-        $u = Usuario::model()->findByPk(Yii::app()->user->id);
+        $u = User::model()->findByPk(Yii::app()->user->id);
         if ($u == null){
-            die("Todo mal");
+            die("Really bad case!!!");
         }
         
-        if ($u->contrasenia !== crypt($this->oldPassword, $u->contrasenia)){
+        if ($u->password !== crypt($this->oldPassword, $u->password)){
             $this->addError("oldPassword", "Su contrase&ntilde;a anterior no es v&aacute;lida");
             return false;
         }        
@@ -59,8 +59,8 @@ class ChangePassword extends CFormModel {
         $chk2 = $this->checkNewPassword();
         if ($chk1 == false || $chk2 == false)
             return false;
-        $u = Usuario::model()->findByAttributes(array('usuario'=>Yii::app()->user->id));
-        $u->contrasenia = crypt($this->newPassword);
+        $u = User::model()->findByAttributes(array('nick'=>Yii::app()->user->id));
+        $u->password = crypt($this->newPassword);
         return $u->save();
     }
 

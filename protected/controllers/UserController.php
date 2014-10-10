@@ -37,7 +37,7 @@ class UserController extends AdminController {
                 'users' => array('?'),
             ),
             array('allow',
-                'actions' => array('logout', 'miPerfil', 'editarMiPerfil','changePassword'),
+                'actions' => array('logout', 'myProfile', 'editMyProfile','changePassword'),
                 'users' => array('@'),
             ),
             array('allow',
@@ -60,7 +60,7 @@ class UserController extends AdminController {
         ));
     }
 
-    public function actionMiPerfil() {
+    public function actionMyProfile() {
         $this->render('myProfile', array(
             'model' => $this->loadModel(Yii::app()->user->id),
         ));
@@ -133,7 +133,7 @@ class UserController extends AdminController {
         ));
     }
 
-    public function actionEditarMiPerfil() {
+    public function actionEditMyProfile() {
         $model = $this->loadModel(Yii::app()->user->id);
 
         // Uncomment the following line if AJAX validation is needed
@@ -146,13 +146,13 @@ class UserController extends AdminController {
                 $this->render('/site/successfullOperation', array(
                     'header' => 'Perfil editado con &eacute;xito',
                     'message' => 'Haga click en volver para regresar a Mi Perfil',
-                    'returnUrl' => Yii::app()->createUrl('user/miPerfil')
+                    'returnUrl' => Yii::app()->createUrl('user/myProfile')
                 ));
                 return;
             }
         }
 
-        $this->render('editarMiPerfil', array(
+        $this->render('editMyProfile', array(
             'model' => $model,
         ));
     }

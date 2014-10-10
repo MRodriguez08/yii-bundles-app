@@ -49,10 +49,7 @@ return array(
         
         /* components */
         'application.components.*',
-        
-        
-        /* extensions */
-        'application.extensions.XTChilen.*',
+
     ),
     'aliases' => array(
         

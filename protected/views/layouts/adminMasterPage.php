@@ -53,7 +53,7 @@
                                     </a>
                                     <ul class="dropdown-menu dropdown-user">
                                         <li>
-                                            <a href="<?php echo Yii::app()->createUrl("user/miPerfil") ?>"><span class="glyphicon glyphicon-user"></span> Mi perfil</a>
+                                            <a href="<?php echo Yii::app()->createUrl("user/myProfile") ?>"><span class="glyphicon glyphicon-user"></span> Mi perfil</a>
                                         </li>
                                         <li class="divider"></li>
                                         <a href="#"><i class="fa fa-bug"></i> Reportar error</a>

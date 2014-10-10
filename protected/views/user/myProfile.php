@@ -11,10 +11,10 @@
         <?php echo Yii::app()->params["UiHeadersWrapperOMarkup"]; ?><span class="glyphicon glyphicon-user"></span> Mi perfil<?php echo Yii::app()->params["UiHeadersWrapperCMarkup"]; ?>
         <div class="row">
             <div class="btn-group">
-                <a href="<?php echo Yii::app()->createUrl("usuario/editarMiPerfil") ?>">
+                <a href="<?php echo Yii::app()->createUrl("user/editMyProfile") ?>">
                     <button type="button" class="btn btn-default">Editar</button>
                 </a>
-                <a href="<?php echo Yii::app()->createUrl("usuario/changePassword") ?>">
+                <a href="<?php echo Yii::app()->createUrl("user/changePassword") ?>">
                     <button type="button" class="btn btn-default">Cambiar contrase&ntilde;a</button>
                 </a>
             </div>
