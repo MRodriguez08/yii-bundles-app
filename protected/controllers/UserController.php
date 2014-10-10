@@ -340,9 +340,9 @@ class UserController extends AdminController {
 
     protected function renderChangeState($data, $row) {
         if ($data->enabled == 1)
-            echo "<a href=" . Yii::app()->createUrl("user/updateState", array("id" => $data->nick)) . "> " . Yii::app()->params["labelBotonGrillaLockUser"] . "</a>";
+            echo "<a href=" . Yii::app()->createUrl("user/updateState", array("id" => $data->nick)) . "> " . Yii::app()->params["lockUserGridButton"] . "</a>";
         else
-            echo "<a href=" . Yii::app()->createUrl("user/updateState", array("id" => $data->nick)) . "> " . Yii::app()->params["labelBotonGrillaUnlockUser"] . "</a>";
+            echo "<a href=" . Yii::app()->createUrl("user/updateState", array("id" => $data->nick)) . "> " . Yii::app()->params["unlockUserGridButton"] . "</a>";
     }
 
 }

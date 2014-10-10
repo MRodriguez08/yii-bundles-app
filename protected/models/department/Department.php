@@ -26,7 +26,7 @@ class Department extends CActiveRecord {
         // NOTE: you should only define rules for those attributes that
         // will receive user inputs.
         return array(
-            array('name', 'required', 'message' => Yii::app()->params["templateEmptyValueErrorMessage"]),
+            array('name', 'required', 'message' => Yii::app()->params["emptyValueErrorMessage"]),
             array('name', 'duplicatedName', 'message' => Yii::app()->params["templateDuplicatedValueErrorMessage"]),
             array('name', 'length', 'max' => 64),
             // The following rule is used by search().

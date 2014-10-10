@@ -5,7 +5,7 @@
 
 <div class="row">
     <div class="col-lg-4">
-        <?php echo Yii::app()->params["UiHeadersWrapperOMarkup"]; ?><span class="glyphicon glyphicon-user"></span> Informaci&oacute;n de cliente<?php echo Yii::app()->params["UiHeadersWrapperCMarkup"]; ?>
+        <?php echo Yii::app()->params["uiHeadersWrapperOMarkup"]; ?><span class="glyphicon glyphicon-user"></span> Informaci&oacute;n de cliente<?php echo Yii::app()->params["uiHeadersWrapperCMarkup"]; ?>
 
         <form role="form">
             <div class="form-group">
@@ -28,7 +28,7 @@
                 <label for="inputComentarios">Comentarios</label>
                 <textarea disabled="true" type="text" class="form-control input-sm" id="inputComentarios" ><?php echo $model->comments; ?></textarea>
             </div>
-            <a href="<?php echo Yii::app()->createUrl("customer/admin") ?>"><?php echo Yii::app()->params["labelBotonVolver"] ?></a>
+            <a href="<?php echo Yii::app()->createUrl("customer/admin") ?>"><?php echo Yii::app()->params["goBackButtonLabel"] ?></a>
         </form>
     </div>
     <div class="col-lg-8"></div>

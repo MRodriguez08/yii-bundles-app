@@ -20,11 +20,11 @@ $('.search-form form').submit(function(){
     <div class="col-lg-12">
         <div class="row top-admin-row">
             <div class="col-lg-12">
-                <?php echo Yii::app()->params["UiHeadersWrapperOMarkup"]; ?><span class="glyphicon glyphicon-map-marker"></span> <?php echo Yii::app()->params["labelFuncionalidadDepartamentos"] ?><?php echo Yii::app()->params["UiHeadersWrapperCMarkup"]; ?>
+                <?php echo Yii::app()->params["uiHeadersWrapperOMarkup"]; ?><span class="glyphicon glyphicon-map-marker"></span> <?php echo Yii::app()->params["departmentFunctionalityLabel"] ?><?php echo Yii::app()->params["uiHeadersWrapperCMarkup"]; ?>
                 <ol class="breadcrumb">
                     <li><a href="<?php echo Yii::app()->createUrl("site/index") ?>">Inicio</a></li>
                     <li><a href="#">Configuraci&oacute;n</a></li>
-                    <li class="active"><?php echo Yii::app()->params["labelFuncionalidadDepartamentos"] ?></li>
+                    <li class="active"><?php echo Yii::app()->params["departmentFunctionalityLabel"] ?></li>
                 </ol>
                 <?php
                 $this->renderPartial('_search', array(
@@ -44,7 +44,7 @@ $('.search-form form').submit(function(){
                     'id' => 'departments-grid',
                     'summaryText' => '',
                     'cssFile' => Yii::app()->params["gridViewStyleSheet"],
-                    'emptyText' => Yii::app()->params["labelTablaSinResultados"],
+                    'emptyText' => Yii::app()->params["emptyTableLabel"],
                     'dataProvider' => $model->search(),
                     'columns' => array(
                         'name',
@@ -55,7 +55,7 @@ $('.search-form form').submit(function(){
                                 (
                                 'ver' => array
                                     (
-                                    'label' => Yii::app()->params["labelBotonGrillaVer"],
+                                    'label' => Yii::app()->params["viewGridButtonLabel"],
                                     'options' => array('title' => 'ver'),
                                     'url' => 'Yii::app()->createUrl("department/view", array("id"=>$data->id))',
                                 ),
@@ -68,7 +68,7 @@ $('.search-form form').submit(function(){
                                 (
                                 'editar' => array
                                     (
-                                    'label' => Yii::app()->params["labelBotonGrillaEditar"],
+                                    'label' => Yii::app()->params["editGridButtonLabel"],
                                     'options' => array('title' => 'editar'),
                                     'url' => 'Yii::app()->createUrl("department/update", array("id"=>$data->id))',
                                 ),
@@ -81,7 +81,7 @@ $('.search-form form').submit(function(){
                                 (
                                 'eliminar' => array
                                     (
-                                    'label' => Yii::app()->params["labelBotonGrillaEliminar"],
+                                    'label' => Yii::app()->params["deleteGridButtonLabel"],
                                     'options' => array('title' => 'eliminar'),
                                     'url' => 'Yii::app()->createUrl("department/delete", array("id"=>$data->id))',
                                 ),

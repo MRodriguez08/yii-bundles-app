@@ -5,7 +5,7 @@
 
 <div class="row">
     <div class="col-lg-4">
-        <?php echo Yii::app()->params["UiHeadersWrapperOMarkup"]; ?><span class="glyphicon glyphicon-retweet"></span> Informaci&oacute;n de estado de inmueble<?php echo Yii::app()->params["UiHeadersWrapperCMarkup"]; ?>
+        <?php echo Yii::app()->params["uiHeadersWrapperOMarkup"]; ?><span class="glyphicon glyphicon-retweet"></span> Informaci&oacute;n de estado de inmueble<?php echo Yii::app()->params["uiHeadersWrapperCMarkup"]; ?>
 
         <form role="form">
             <div class="form-group">

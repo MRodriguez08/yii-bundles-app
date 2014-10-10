@@ -1,10 +1,10 @@
 <?php ?>
 <div class="row">
     <div class="col-lg-12">
-        <?php echo Yii::app()->params["UiHeadersWrapperOMarkup"]; ?><span class="glyphicon glyphicon-th"></span> <?php echo Yii::app()->params["labelFuncionalidadPortada"] ?><?php echo Yii::app()->params["UiHeadersWrapperCMarkup"]; ?>
+        <?php echo Yii::app()->params["uiHeadersWrapperOMarkup"]; ?><span class="glyphicon glyphicon-th"></span> <?php echo Yii::app()->params["topPropertiesFunctionalityLabel"] ?><?php echo Yii::app()->params["uiHeadersWrapperCMarkup"]; ?>
         <ol class="breadcrumb">
             <li><a href="<?php echo Yii::app()->createUrl("site/index") ?>">Inicio</a></li>
-            <li class="active"><?php echo Yii::app()->params["labelFuncionalidadPortada"] ?></li>
+            <li class="active"><?php echo Yii::app()->params["topPropertiesFunctionalityLabel"] ?></li>
         </ol>
         
         <div class="row">
@@ -54,7 +54,7 @@
 
             </div>
             <div class="col-lg-12">
-                <?php echo CHtml::submitButton(Yii::app()->params["labelBotonGuardar"], array("class" => "btn btn-default")); ?>
+                <?php echo CHtml::submitButton(Yii::app()->params["createButtonLabel"], array("class" => "btn btn-default")); ?>
             </div>
             <?php $this->endWidget(); ?>
         </div>

@@ -20,10 +20,10 @@ $('.search-form form').submit(function(){
     <div class="col-lg-12">
         <div class="row top-admin-row">
             <div class="col-lg-12">
-                <?php echo Yii::app()->params["UiHeadersWrapperOMarkup"]; ?><span class="glyphicon glyphicon-list"></span> <?php echo Yii::app()->params["labelFuncionalidadClientes"] ?><?php echo Yii::app()->params["UiHeadersWrapperCMarkup"]; ?>
+                <?php echo Yii::app()->params["uiHeadersWrapperOMarkup"]; ?><span class="glyphicon glyphicon-list"></span> <?php echo Yii::app()->params["clientFunctionalityLabel"] ?><?php echo Yii::app()->params["uiHeadersWrapperCMarkup"]; ?>
                 <ol class="breadcrumb">
                     <li><a href="<?php echo Yii::app()->createUrl("site/index") ?>">Inicio</a></li>
-                    <li class="active"><?php echo Yii::app()->params["labelFuncionalidadClientes"] ?></li>
+                    <li class="active"><?php echo Yii::app()->params["clientFunctionalityLabel"] ?></li>
                 </ol>
                     <?php
                     $this->renderPartial('_search', array(
@@ -41,10 +41,10 @@ $('.search-form form').submit(function(){
                 $this->widget('zii.widgets.grid.CGridView', array(
                     'id' => 'cliente-grid',
                     'summaryText' => '',
-                    'emptyText' => Yii::app()->params["labelTablaSinResultados"],
+                    'emptyText' => Yii::app()->params["emptyTableLabel"],
                     'pager' => array(
                         'cssFile' => Yii::app()->params["gridViewStyleSheet"],
-                        'header' => Yii::app()->params["labelPaginacionTabla"],
+                        'header' => Yii::app()->params["tablePagingLabel"],
                         'firstPageLabel' => '&lt;&lt;',
                         'prevPageLabel' => Yii::app()->params["prevPageLabel"],
                         'nextPageLabel' => Yii::app()->params["nextPageLabel"],
@@ -63,7 +63,7 @@ $('.search-form form').submit(function(){
                                 (
                                 'ver' => array
                                     (
-                                    'label' => Yii::app()->params["labelBotonGrillaVer"],
+                                    'label' => Yii::app()->params["viewGridButtonLabel"],
                                     'options' => array('title' => 'ver'),
                                     'url' => 'Yii::app()->createUrl("customer/view", array("id"=>$data->id))',
                                 ),
@@ -76,7 +76,7 @@ $('.search-form form').submit(function(){
                                 (
                                 'editar' => array
                                     (
-                                    'label' => Yii::app()->params["labelBotonGrillaEditar"],
+                                    'label' => Yii::app()->params["editGridButtonLabel"],
                                     'options' => array('title' => 'editar'),
                                     'url' => 'Yii::app()->createUrl("customer/update", array("id"=>$data->id))',
                                 ),
@@ -89,7 +89,7 @@ $('.search-form form').submit(function(){
                                 (
                                 'eliminar' => array
                                     (
-                                    'label' => Yii::app()->params["labelBotonGrillaEliminar"],
+                                    'label' => Yii::app()->params["deleteGridButtonLabel"],
                                     'options' => array('title' => 'eliminar'),
                                     'url' => 'Yii::app()->createUrl("customer/delete", array("id"=>$data->id))',
                                 ),

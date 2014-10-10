@@ -6,7 +6,7 @@
 <script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl; ?>/assets/javascript/lib/open-street-map_ver.js"></script>
 <div class="row">
     <div class="col-lg-12">
-        <?php echo Yii::app()->params["UiHeadersWrapperOMarkup"]; ?><span class="glyphicon glyphicon-home"></span> Ver info de inmueble (<?php echo $model->id; ?>)<?php echo Yii::app()->params["UiHeadersWrapperCMarkup"]; ?>
+        <?php echo Yii::app()->params["uiHeadersWrapperOMarkup"]; ?><span class="glyphicon glyphicon-home"></span> Ver info de inmueble (<?php echo $model->id; ?>)<?php echo Yii::app()->params["uiHeadersWrapperCMarkup"]; ?>
         <ul id="myTab" class="nav nav-tabs">
             <li class="active"><a href="#datos-comunes" data-toggle="tab">Datos com&uacute;nes</a></li>
             <li><a id="tab-ubicacion" href="#ubicacion" data-toggle="tab">Ubicaci&oacute;n</a></li>
@@ -190,7 +190,7 @@
                 </div>
                 <div class="row row-botonera-inferior">
                     <div class="col-lg-12">
-                        <a href="<?php echo Yii::app()->createUrl("inmueble/admin") ?>"><?php echo Yii::app()->params["labelBotonVolver"] ?></a>
+                        <a href="<?php echo Yii::app()->createUrl("inmueble/admin") ?>"><?php echo Yii::app()->params["goBackButtonLabel"] ?></a>
                     </div>
                 </div>
                 <?php echo $form->textField($model, 'strArrayImagenes', array("class" => "form-control hidden", "disabled" => "true")); ?>

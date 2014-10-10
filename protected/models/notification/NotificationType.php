@@ -23,7 +23,7 @@ class NotificationType extends CActiveRecord {
         // NOTE: you should only define rules for those attributes that
         // will receive user inputs.
         return array(
-            array('name', 'required', 'message' => Yii::app()->params["templateEmptyValueErrorMessage"]),
+            array('name', 'required', 'message' => Yii::app()->params["emptyValueErrorMessage"]),
             array('name', 'length', 'max' => 64),
             array('name', 'duplicatedName', 'message' => Yii::app()->params["templateDuplicatedValueErrorMessage"]),
             array('description', 'length', 'max' => 512),

@@ -6,7 +6,7 @@
 
 <div class="row">
     <div class="col-lg-4">
-        <?php echo Yii::app()->params["UiHeadersWrapperOMarkup"]; ?><i class="fa fa-key"></i> Cambiar contrase&ntilde;a<?php echo Yii::app()->params["UiHeadersWrapperCMarkup"]; ?>
+        <?php echo Yii::app()->params["uiHeadersWrapperOMarkup"]; ?><i class="fa fa-key"></i> Cambiar contrase&ntilde;a<?php echo Yii::app()->params["uiHeadersWrapperCMarkup"]; ?>
         <div class="row">
 
             <?php
@@ -44,8 +44,8 @@
                 <?php echo $form->error($model, 'newPasswordConfirmation', array("class" => "yii-error-alert")); ?>
             </div>
 
-            <a href="<?php echo Yii::app()->createUrl("usuario/miPerfil") ?>"><?php echo Yii::app()->params["labelBotonVolver"] ?></a>
-            <?php echo CHtml::submitButton(Yii::app()->params["labelBotonGuardar"], array("class" => "btn btn-default")); ?>
+            <a href="<?php echo Yii::app()->createUrl("usuario/miPerfil") ?>"><?php echo Yii::app()->params["goBackButtonLabel"] ?></a>
+            <?php echo CHtml::submitButton(Yii::app()->params["createButtonLabel"], array("class" => "btn btn-default")); ?>
 
             <?php $this->endWidget(); ?>
 

@@ -14,10 +14,10 @@ class ChangePassword extends CFormModel {
      */
     public function rules() {
         return array(            
-            array('oldPassword, newPassword, newPasswordConfirmation', 'required', 'message' => Yii::app()->params["templateEmptyValueErrorMessage"]),
+            array('oldPassword, newPassword, newPasswordConfirmation', 'required', 'message' => Yii::app()->params["emptyValueErrorMessage"]),
             /*
-            array('oldPassword','checkOldPassword', 'message' => Yii::app()->params["templateEmptyValueErrorMessage"]),
-            array('newPassword','checkNewPassword', 'message' => Yii::app()->params["templateEmptyValueErrorMessage"])
+            array('oldPassword','checkOldPassword', 'message' => Yii::app()->params["emptyValueErrorMessage"]),
+            array('newPassword','checkNewPassword', 'message' => Yii::app()->params["emptyValueErrorMessage"])
             */
         );
     }

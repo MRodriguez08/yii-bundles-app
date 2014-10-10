@@ -84,34 +84,34 @@
                                                     if (strcmp(Yii::app()->session[Constants::SESSION_CURRENT_TAB], Constants::ITEM_MENU_AUDITORIA) == 0) {
                                                         echo 'active';
                                                     }
-                                                    ?>"><a href="<?php echo Yii::app()->createUrl('audit/admin'); ?>"><span class="glyphicon glyphicon-book"></span> <?php echo Yii::app()->params["labelFuncionalidadAuditoria"] ?></a></li>
+                                                    ?>"><a href="<?php echo Yii::app()->createUrl('audit/admin'); ?>"><span class="glyphicon glyphicon-book"></span> <?php echo Yii::app()->params["auditFunctionalityLabel"] ?></a></li>
                                                     <li class="divider"></li>
                                                     <li class="<?php
                                                     if (strcmp(Yii::app()->session[Constants::SESSION_CURRENT_TAB], Constants::ITEM_MENU_BARRIOS) == 0) {
                                                         echo 'active';
                                                     }
-                                                    ?>"><a href="<?php echo Yii::app()->createUrl('neighbourhood/admin'); ?>"><span class="glyphicon glyphicon-map-marker"></span> <?php echo Yii::app()->params["labelFuncionalidadBarrios"] ?></a></li>
+                                                    ?>"><a href="<?php echo Yii::app()->createUrl('neighbourhood/admin'); ?>"><span class="glyphicon glyphicon-map-marker"></span> <?php echo Yii::app()->params["neighbourhoodFunctionalityLabel"] ?></a></li>
                                                     <li class="<?php
                                                     if (strcmp(Yii::app()->session[Constants::SESSION_CURRENT_TAB], Constants::ITEM_MENU_CIUDADES) == 0) {
                                                         echo 'active';
                                                     }
-                                                    ?>"><a href="<?php echo Yii::app()->createUrl('city/admin'); ?>"><span class="glyphicon glyphicon-map-marker"></span> <?php echo Yii::app()->params["labelFuncionalidadCiudades"] ?></a></li>
+                                                    ?>"><a href="<?php echo Yii::app()->createUrl('city/admin'); ?>"><span class="glyphicon glyphicon-map-marker"></span> <?php echo Yii::app()->params["cityFunctionalityLabel"] ?></a></li>
                                                     <li class="<?php
                                                     if (strcmp(Yii::app()->session[Constants::SESSION_CURRENT_TAB], Constants::ITEM_MENU_DEPARTAMENTOS) == 0) {
                                                         echo 'active';
                                                     }
-                                                    ?>"><a href="<?php echo Yii::app()->createUrl('department/admin'); ?>"><span class="glyphicon glyphicon-map-marker"></span> <?php echo Yii::app()->params["labelFuncionalidadDepartamentos"] ?></a></li>
+                                                    ?>"><a href="<?php echo Yii::app()->createUrl('department/admin'); ?>"><span class="glyphicon glyphicon-map-marker"></span> <?php echo Yii::app()->params["departmentFunctionalityLabel"] ?></a></li>
                                                     <li class="divider"></li>
                                                     <li class="<?php
                                                     if (strcmp(Yii::app()->session[Constants::SESSION_CURRENT_TAB], Constants::ITEM_MENU_ESTADOS_INMUEBLES) == 0) {
                                                         echo 'active';
                                                     }
-                                                    ?>"><a href="<?php echo Yii::app()->createUrl('propertystate/admin'); ?>"><span class="glyphicon glyphicon-retweet"></span> <?php echo Yii::app()->params["labelFuncionalidadEstadosInmueble"] ?></a></li>
+                                                    ?>"><a href="<?php echo Yii::app()->createUrl('propertystate/admin'); ?>"><span class="glyphicon glyphicon-retweet"></span> <?php echo Yii::app()->params["propertyStateFunctionalityLabel"] ?></a></li>
                                                     <li class="<?php
                                                     if (strcmp(Yii::app()->session[Constants::SESSION_CURRENT_TAB], Constants::ITEM_MENU_PARAMETROS) == 0) {
                                                         echo 'active';
                                                     }
-                                                    ?>"><a href="<?php echo Yii::app()->createUrl('sysparam/admin'); ?>"><span class="glyphicon glyphicon-wrench"></span> <?php echo Yii::app()->params["labelFuncionalidadParametros"] ?></a></li>
+                                                    ?>"><a href="<?php echo Yii::app()->createUrl('sysparam/admin'); ?>"><span class="glyphicon glyphicon-wrench"></span> <?php echo Yii::app()->params["sysparamFunctionalityLabel"] ?></a></li>
                                                     <li class="<?php
                                                     if (strcmp(Yii::app()->session[Constants::SESSION_CURRENT_TAB], Constants::ITEM_MENU_TIPOS_NOTIFICACION) == 0) {
                                                         echo 'active';
@@ -121,7 +121,7 @@
                                                     if (strcmp(Yii::app()->session[Constants::SESSION_CURRENT_TAB], Constants::ITEM_MENU_ESTADOS_NOTIFICACION) == 0) {
                                                         echo 'active';
                                                     }
-                                                    ?>"><a href="<?php echo Yii::app()->createUrl('notificationstate/admin'); ?>"><span class="glyphicon glyphicon-comment"></span> <?php echo Yii::app()->params["labelFuncionalidadEstadosNotificacion"] ?></a></li>
+                                                    ?>"><a href="<?php echo Yii::app()->createUrl('notificationstate/admin'); ?>"><span class="glyphicon glyphicon-comment"></span> <?php echo Yii::app()->params["notificationStateFunctionalityLabel"] ?></a></li>
                                                 </ul>
                                                 <!-- /.nav-second-level -->
                                             </li>
@@ -131,35 +131,35 @@
                                             if (strcmp(Yii::app()->session[Constants::SESSION_CURRENT_TAB], Constants::ITEM_MENU_USUARIOS) == 0) {
                                                 echo 'active';
                                             }
-                                            ?>"><a href="<?php echo Yii::app()->createUrl('user/admin'); ?>"><span class="glyphicon glyphicon-user"></span> <?php echo Yii::app()->params["labelFuncionalidadUsuarios"] ?></a></li>
+                                            ?>"><a href="<?php echo Yii::app()->createUrl('user/admin'); ?>"><span class="glyphicon glyphicon-user"></span> <?php echo Yii::app()->params["userFunctionalityLabel"] ?></a></li>
                                             <?php } ?>
                                             <?php if (Yii::app()->user->hasRole(Constants::USER_ROLE_DIRECTOR) || Yii::app()->user->hasRole(Constants::USER_ROLE_ADMINISTRATIVO)) { ?>
                                             <li class="<?php
                                             if (strcmp(Yii::app()->session[Constants::SESSION_CURRENT_TAB], Constants::ITEM_MENU_CLIENTES) == 0) {
                                                 echo 'active';
                                             }
-                                            ?>"><a href="<?php echo Yii::app()->createUrl('customer/admin'); ?>" ><span class="glyphicon glyphicon-list"></span> <?php echo Yii::app()->params["labelFuncionalidadClientes"] ?></a></li>
+                                            ?>"><a href="<?php echo Yii::app()->createUrl('customer/admin'); ?>" ><span class="glyphicon glyphicon-list"></span> <?php echo Yii::app()->params["clientFunctionalityLabel"] ?></a></li>
                                             <li class="<?php
                                             if (strcmp(Yii::app()->session[Constants::SESSION_CURRENT_TAB], Constants::ITEM_MENU_INMUEBLES) == 0) {
                                                 echo 'active';
                                             }
-                                            ?>"><a href="#"><span class="glyphicon glyphicon-home"></span> <?php echo Yii::app()->params["labelFuncionalidadInmuebles"] ?></a></li>
+                                            ?>"><a href="#"><span class="glyphicon glyphicon-home"></span> <?php echo Yii::app()->params["propertyFunctionalityLabel"] ?></a></li>
                                             <li class="<?php
                                             if (strcmp(Yii::app()->session[Constants::SESSION_CURRENT_TAB], Constants::ITEM_MENU_NOTIFICACIONES) == 0) {
                                                 echo 'active';
                                             }
-                                            ?>"><a href="<?php echo Yii::app()->createUrl('notification/admin'); ?>"><span class="glyphicon glyphicon-envelope"></span> <?php echo Yii::app()->params["labelFuncionalidadNotificaciones"] ?></a></li>                        
+                                            ?>"><a href="<?php echo Yii::app()->createUrl('notification/admin'); ?>"><span class="glyphicon glyphicon-envelope"></span> <?php echo Yii::app()->params["notificationFunctionalityLabel"] ?></a></li>                        
                                             <li class="<?php
                                             if (strcmp(Yii::app()->session[Constants::SESSION_CURRENT_TAB], Constants::ITEM_MENU_PORTADA) == 0) {
                                                 echo 'active';
                                             }
-                                            ?>"><a href="#"><span class="glyphicon glyphicon-th"></span> <?php echo Yii::app()->params["labelFuncionalidadPortada"] ?></a></li>
+                                            ?>"><a href="#"><span class="glyphicon glyphicon-th"></span> <?php echo Yii::app()->params["topPropertiesFunctionalityLabel"] ?></a></li>
                                             <?php } ?>
                                         <li class="<?php
                                         if (strcmp(Yii::app()->session[Constants::SESSION_CURRENT_TAB], Constants::ITEM_MENU_CALENDARIO) == 0) {
                                             echo 'active';
                                         }
-                                        ?>"><a href="<?php echo Yii::app()->createUrl('calendar/admin'); ?>"><span class="glyphicon glyphicon-calendar"></span> <?php echo Yii::app()->params["labelFuncionalidadCalendario"] ?></a></li>
+                                        ?>"><a href="<?php echo Yii::app()->createUrl('calendar/admin'); ?>"><span class="glyphicon glyphicon-calendar"></span> <?php echo Yii::app()->params["calendarFunctionalityLabel"] ?></a></li>
                                     </ul>
                                     <!-- /#side-menu -->
                                 </div>

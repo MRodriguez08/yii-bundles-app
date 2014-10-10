@@ -31,8 +31,8 @@
         <?php echo $form->error($model, 'city_id', array("class" => "yii-error-alert")); ?>
     </div>
 
-    <a href="<?php echo Yii::app()->createUrl("neighbourhood/admin") ?>"><?php echo Yii::app()->params["labelBotonVolver"] ?></a>
-    <?php echo CHtml::submitButton($model->isNewRecord ? Yii::app()->params["labelBotonCrear"] : Yii::app()->params["labelBotonGuardar"], array("class" => "btn btn-default")); ?>
+    <a href="<?php echo Yii::app()->createUrl("neighbourhood/admin") ?>"><?php echo Yii::app()->params["goBackButtonLabel"] ?></a>
+    <?php echo CHtml::submitButton($model->isNewRecord ? Yii::app()->params["createButtonLabel"] : Yii::app()->params["createButtonLabel"], array("class" => "btn btn-default")); ?>
 
 
     <?php $this->endWidget(); ?>

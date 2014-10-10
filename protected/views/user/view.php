@@ -5,7 +5,7 @@
 
 <div class="row">
     <div class="col-lg-4">
-        <?php echo Yii::app()->params["UiHeadersWrapperOMarkup"]; ?><span class="glyphicon glyphicon-user"></span> Informaci&oacute;n de usuario<?php echo Yii::app()->params["UiHeadersWrapperCMarkup"]; ?>
+        <?php echo Yii::app()->params["uiHeadersWrapperOMarkup"]; ?><span class="glyphicon glyphicon-user"></span> Informaci&oacute;n de usuario<?php echo Yii::app()->params["uiHeadersWrapperCMarkup"]; ?>
 
         <form role="form">
             <div class="form-group">

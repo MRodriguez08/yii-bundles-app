@@ -2,7 +2,7 @@
 
 <div class="row">
     <div class="col-lg-12">
-        <?php echo Yii::app()->params["UiHeadersWrapperOMarkup"]; ?> <span class="glyphicon glyphicon-dashboard"></span>  Resumen<?php echo Yii::app()->params["UiHeadersWrapperCMarkup"]; ?> 
+        <?php echo Yii::app()->params["uiHeadersWrapperOMarkup"]; ?> <span class="glyphicon glyphicon-dashboard"></span>  Resumen<?php echo Yii::app()->params["uiHeadersWrapperCMarkup"]; ?> 
     </div>
     <div class="col-lg-6">
         <div class="panel panel-default">

@@ -28,7 +28,7 @@ class City extends CActiveRecord {
         // NOTE: you should only define rules for those attributes that
         // will receive user inputs.
         return array(
-            array('department_id,name', 'required' , "message" => Yii::app()->params["templateEmptyValueErrorMessage"]),
+            array('department_id,name', 'required' , "message" => Yii::app()->params["emptyValueErrorMessage"]),
             array('department_id', 'numerical', 'integerOnly' => true),
             array('name', 'length', 'max' => 128),
             array('name', 'duplicatedName', 'message' => Yii::app()->params["templateDuplicatedValueErrorMessage"]),

@@ -20,11 +20,11 @@ $('.search-form form').submit(function(){
     <div class="col-lg-12">
         <div class="row top-admin-row">
             <div class="col-lg-12">
-                <?php echo Yii::app()->params["UiHeadersWrapperOMarkup"]; ?><span class="glyphicon glyphicon-wrench"></span> <?php echo Yii::app()->params["labelFuncionalidadParametros"] ?><?php echo Yii::app()->params["UiHeadersWrapperCMarkup"]; ?>
+                <?php echo Yii::app()->params["uiHeadersWrapperOMarkup"]; ?><span class="glyphicon glyphicon-wrench"></span> <?php echo Yii::app()->params["sysparamFunctionalityLabel"] ?><?php echo Yii::app()->params["uiHeadersWrapperCMarkup"]; ?>
                 <ol class="breadcrumb">
                     <li><a href="<?php echo Yii::app()->createUrl("site/index") ?>">Inicio</a></li>
                     <li><a href="#">Configuraci&oacute;n</a></li>
-                    <li class="active"><?php echo Yii::app()->params["labelFuncionalidadParametros"] ?></li>
+                    <li class="active"><?php echo Yii::app()->params["sysparamFunctionalityLabel"] ?></li>
                 </ol>
                     <?php
                     $this->renderPartial('_search', array(
@@ -42,14 +42,14 @@ $('.search-form form').submit(function(){
                     'summaryText' => '',
                     'pager' => array(
                         'cssFile' => Yii::app()->params["gridViewStyleSheet"],
-                        'header' => Yii::app()->params["labelPaginacionTabla"],
+                        'header' => Yii::app()->params["tablePagingLabel"],
                         'firstPageLabel' => '&lt;&lt;',
                         'prevPageLabel' => Yii::app()->params["prevPageLabel"],
                         'nextPageLabel' => Yii::app()->params["nextPageLabel"],
                         'lastPageLabel' => '&gt;&gt;',
                     ),
                     'cssFile' => Yii::app()->params["gridViewStyleSheet"],
-                    'emptyText' => Yii::app()->params["labelTablaSinResultados"],
+                    'emptyText' => Yii::app()->params["emptyTableLabel"],
                     'columns' => array(
                         'name',
                         'description',

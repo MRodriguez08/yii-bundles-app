@@ -5,7 +5,7 @@
 
 <div class="row">
     <div class="col-lg-4">
-        <?php echo Yii::app()->params["UiHeadersWrapperOMarkup"]; ?><span class="glyphicon glyphicon-comment"></span> Ver info de tipo de notificaci&oacute;n<?php echo Yii::app()->params["UiHeadersWrapperCMarkup"]; ?>
+        <?php echo Yii::app()->params["uiHeadersWrapperOMarkup"]; ?><span class="glyphicon glyphicon-comment"></span> Ver info de tipo de notificaci&oacute;n<?php echo Yii::app()->params["uiHeadersWrapperCMarkup"]; ?>
         <div class="form">
 
             <?php
@@ -33,7 +33,7 @@
                 <?php echo $form->error($model, 'description'); ?>
             </div>
 
-            <a href="<?php echo Yii::app()->createUrl("notificationtype/admin") ?>"><?php echo Yii::app()->params["labelBotonVolver"] ?></a>
+            <a href="<?php echo Yii::app()->createUrl("notificationtype/admin") ?>"><?php echo Yii::app()->params["goBackButtonLabel"] ?></a>
             <?php $this->endWidget(); ?>
 
         </div><!-- form -->

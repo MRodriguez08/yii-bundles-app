@@ -16,7 +16,7 @@
             <div class="panel-heading">
                 <h4 class="panel-title">
                     <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
-                        <?php echo Yii::app()->params["labelDesplegarFiltros"]; ?>
+                        <?php echo Yii::app()->params["showFiltersLabel"]; ?>
                     </a>
                 </h4>
             </div>
@@ -38,12 +38,12 @@
                         <?php echo $form->label($model, 'city_id'); ?>
                         <?php echo $form->dropDownList($model , 'city_id', 
                                 $this->getCitiesList(), 
-                                array("empty"=> Yii::app()->params["labelEmptyComboBoxValue"],"class" => "form-control input-sm")) ?>
+                                array("empty"=> Yii::app()->params["emptyComboBoxLabel"],"class" => "form-control input-sm")) ?>
                     </div>
 
                     <div class="form-group col-lg-12">
                         <button type="submit" class="btn btn-default btn-sm">
-                            <?php echo Yii::app()->params["labelBotonFiltrar"] ?>
+                            <?php echo Yii::app()->params["filterButtonLabel"] ?>
                         </button>             
                     </div>
 

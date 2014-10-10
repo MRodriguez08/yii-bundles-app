@@ -27,9 +27,9 @@ class Customer extends CActiveRecord {
         // NOTE: you should only define rules for those attributes that
         // will receive user inputs.
         return array(
-            array('email', 'required', 'message' => Yii::app()->params["templateEmptyValueErrorMessage"]),
+            array('email', 'required', 'message' => Yii::app()->params["emptyValueErrorMessage"]),
             array('email', 'length', 'max' => 64),
-            array('email', 'validateEmailFormat', 'message' => Yii::app()->params["templateInvalidEmailFormatMessage"]),
+            array('email', 'validateEmailFormat', 'message' => Yii::app()->params["invalidEmailFormatMessage"]),
             array('email', 'duplicatedClientEmail', 'message' => Yii::app()->params["templateDuplicatedValueErrorMessage"]),
             array('name, surname', 'length', 'max' => 100),
             array('streetaddress, comments', 'length', 'max' => 2048),
@@ -52,7 +52,7 @@ class Customer extends CActiveRecord {
     public function validateEmailFormat($attribute, $params) 
     {
         if (!filter_var($this->email, FILTER_VALIDATE_EMAIL))
-            $this->addError($attribute, Yii::app()->params["templateInvalidEmailFormatMessage"]);
+            $this->addError($attribute, Yii::app()->params["invalidEmailFormatMessage"]);
     }
 
     /**

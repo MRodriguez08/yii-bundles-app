@@ -3,7 +3,7 @@
 class SysparamController extends AdminController {
 
     protected $pageTitle = ". : Parametros : .";
-    
+
     /**
      * @return array action filters
      */
@@ -11,7 +11,7 @@ class SysparamController extends AdminController {
         parent::initController();
         Yii::app()->session[Constants::SESSION_CURRENT_TAB] = Constants::ITEM_MENU_PARAMETROS;
         return array(
-            'accessControl', 
+            'accessControl',
             'postOnly + delete',
         );
     }
@@ -49,35 +49,43 @@ class SysparamController extends AdminController {
      * @param integer $id the ID of the model to be updated
      */
     public function actionUpdate($id) {
-        $model = $this->loadModel($id);
-        
-        if ($model->editable == false){
-            $this->render('/site/invalidOperation', array(
-                'header' => 'Operacion no valida' , 
-                'message' => 'El parametro que desea modifica esta marcado como no editable',
-                'returnUrl'=>Yii::app()->createUrl('sysparam/admin')
-            ));
-            return;
-        }
-        // Uncomment the following line if AJAX validation is needed
-        // $this->performAjaxValidation($model);
+        $transaction = Yii::app()->db->beginTransaction();
+        try {
+            $model = $this->loadModel($id);
 
-        if (isset($_POST['Sysparam'])) {
-            $model->attributes = $_POST['Sysparam'];
-            if ($model->save()) {
-                $this->audit->logAudit(Yii::app()->user->id, new DateTime, Constants::AUDITORIA_OBJETO_PARAMETRO, Constants::AUDITORIA_OPERACION_MODIFICACION, "sysparam = " . $model->name . ", nuevo_valor = " . $model->value);
-                $this->render('/site/successfullOperation', array(
-                    'header' => 'Par&aacute;metro modificado con &eacute;xito' , 
-                    'message' => 'Haga click en volver para regresar a la gestión de parámetros',
-                    'returnUrl'=>Yii::app()->createUrl('sysparam/admin')
+            if ($model->editable == false) {
+                $this->render('/site/invalidOperation', array(
+                    'header' => 'Operacion no valida',
+                    'message' => 'El parametro que desea modifica esta marcado como no editable',
+                    'returnUrl' => Yii::app()->createUrl('sysparam/admin')
                 ));
+                $transaction->rollback();
                 return;
             }
-        }
+            // Uncomment the following line if AJAX validation is needed
+            // $this->performAjaxValidation($model);
 
-        $this->render('update', array(
-            'model' => $model,
-        ));
+            if (isset($_POST['Sysparam'])) {
+                $model->attributes = $_POST['Sysparam'];
+                if ($model->save()) {
+                    $this->audit->logAudit(Yii::app()->user->id, new DateTime, Constants::AUDITORIA_OBJETO_PARAMETRO, Constants::AUDITORIA_OPERACION_MODIFICACION, "sysparam = " . $model->name . ", nuevo_valor = " . $model->value);
+                    $this->render('/site/successfullOperation', array(
+                        'header' => 'Par&aacute;metro modificado con &eacute;xito',
+                        'message' => 'Haga click en volver para regresar a la gestión de parámetros',
+                        'returnUrl' => Yii::app()->createUrl('sysparam/admin')
+                    ));
+                    $transaction->commit();
+                    return;
+                }
+            }
+            
+            $this->render('update', array(
+                'model' => $model,
+            ));            
+        } catch (Exception $exc) {
+            Yii::log($exc->getMessage(), DBLog::LOG_LEVEL_ERROR);
+            $transaction->rollback();
+        }
     }
 
     /**
@@ -141,12 +149,12 @@ class SysparamController extends AdminController {
             Yii::app()->end();
         }
     }
-    
+
     protected function renderEdit($data, $row) {
         if ($data->editable == 1)
-            echo "<a href=" . Yii::app()->createUrl("sysparam/update", array("id"=>$data->name)) . "> " . Yii::app()->params["labelBotonGrillaEditar"] . "</a>";
+            echo "<a href=" . Yii::app()->createUrl("sysparam/update", array("id" => $data->name)) . "> " . Yii::app()->params["editGridButtonLabel"] . "</a>";
         else
-            echo Yii::app()->params["labelBotonGrillaEditarDisabled"];
+            echo Yii::app()->params["disabledEditGridButtonLabel"];
     }
 
 }

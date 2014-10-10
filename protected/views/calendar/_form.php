@@ -59,8 +59,8 @@
         <?php echo $form->error($model, 'description'); ?>
     </div>
 
-    <a href="<?php echo Yii::app()->createUrl("evento/admin") ?>"><?php echo Yii::app()->params["labelBotonVolver"] ?></a>
-    <?php echo CHtml::submitButton($model->isNewRecord ? Yii::app()->params["labelBotonCrear"] : Yii::app()->params["labelBotonGuardar"], array("class" => "btn btn-default")); ?>
+    <a href="<?php echo Yii::app()->createUrl("evento/admin") ?>"><?php echo Yii::app()->params["goBackButtonLabel"] ?></a>
+    <?php echo CHtml::submitButton($model->isNewRecord ? Yii::app()->params["createButtonLabel"] : Yii::app()->params["createButtonLabel"], array("class" => "btn btn-default")); ?>
 
     <?php $this->endWidget(); ?>
 

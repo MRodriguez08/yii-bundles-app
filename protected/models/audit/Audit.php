@@ -11,7 +11,7 @@
  * @property string $description
  */
 class Audit extends CActiveRecord {
-    
+
     public $dateTimeFrom;
     public $dateTimeTo;
 
@@ -26,15 +26,15 @@ class Audit extends CActiveRecord {
      * @return array validation rules for model attributes.
      */
     public function rules() {
-        // NOTE: you should only define rules for those attributes that
-        // will receive user inputs.
+// NOTE: you should only define rules for those attributes that
+// will receive user inputs.
         return array(
             array('date_time, object, operation, user', 'required'),
             array('object, operation', 'length', 'max' => 100),
             array('description', 'length', 'max' => 512),
             array('user', 'length', 'max' => 50),
             // The following rule is used by search().
-            // @todo Please remove those attributes that should not be searched.
+// @todo Please remove those attributes that should not be searched.
             array('user, date_time, object, operation', 'safe', 'on' => 'search'),
         );
     }
@@ -43,10 +43,9 @@ class Audit extends CActiveRecord {
      * @return array relational rules.
      */
     public function relations() {
-        // NOTE: you may need to adjust the relation name and the related
-        // class name for the relations automatically generated below.
-        return array(
-        );
+// NOTE: you may need to adjust the relation name and the related
+// class name for the relations automatically generated below.
+        return array();
     }
 
     /**
@@ -78,11 +77,11 @@ class Audit extends CActiveRecord {
      * based on the search/filter conditions.
      */
     public function search() {
-        // @todo Please modify the following code to remove attributes that should not be searched.
+// @todo Please modify the following code to remove attributes that should not be searched.
 
-        $criteria = new CDbCriteria;        
+        $criteria = new CDbCriteria;
         if (isset($_GET["Audit"])) {
-            $dH = new DateTimeHelper;            
+            $dH = new DateTimeHelper;
             $dtFrom = $dH->getDateTimeFromUI($_GET["Audit"]["dateTimeFrom"]);
             $dtTo = $dH->getDateTimeFromUI($_GET["Audit"]["dateTimeTo"]);
             if ($desde !== false) {
@@ -116,26 +115,27 @@ class Audit extends CActiveRecord {
         return parent::model($className);
     }
 
+    /**
+     * Description: logs an audit on the database, 
+     * ¡¡ assumes that there is an active transaction !!
+     * @param type $user
+     * @param type $dateTime
+     * @param type $object
+     * @param type $operation
+     * @param type $description
+     * @throws \Exception
+     */
     public function logAudit($user, $dateTime, $object, $operation, $description) {
-        $transaction = Yii::app()->db->beginTransaction();
-        try {
-            $a = new Audit;
+        $a = new Audit;
 
-            $a->description = $description;
-            $a->date_time = $dateTime->getTimestamp();
-            $a->user = $user;
-            $a->object = $object;
-            $a->operation = $operation;           
-            
-            if (!$a->save())
-                throw new \Exception("Error logging audit: " + CJSON::encode($a->getErrors()));            
-            $transaction->commit();
-        } catch (Exception $exc) {
-            $transaction->rollback();
-            Yii::log($exc->getMessage(), DBLog::LOG_LEVEL_ERROR);
-        }
+        $a->description = $description;
+        $a->date_time = $dateTime->getTimestamp();
+        $a->user = $user;
+        $a->object = $object;
+        $a->operation = $operation;
 
-        
+        if (!$a->save())
+            throw new \Exception("Error logging audit: " + CJSON::encode($a->getErrors()));
     }
 
 }

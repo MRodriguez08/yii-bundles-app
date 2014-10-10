@@ -57,7 +57,7 @@ class Property extends CActiveRecord {
         // NOTE: you should only define rules for those attributes that
         // will receive user inputs.
         return array(
-            array('title, description, propertytype, state_id,propertyoperation', 'required', 'message' => Yii::app()->params["templateEmptyValueErrorMessage"]),
+            array('title, description, propertytype, state_id,propertyoperation', 'required', 'message' => Yii::app()->params["emptyValueErrorMessage"]),
             array('hasseaview, hasheating, constructionyearapprox, totalbathrooms, mts2surface, house_totalfloors, ishorizontalproperty, totalbedrooms, floornumber, haselevator, hasfloorman, haselectricdoorman, hasmonitoring, hasupstairs, mainsaloonheight, comercialproperty_totalfloors, hasparking, hasdeposit, state_id', 'numerical', 'integerOnly' => true),
             array('commonexpenses, propertyprice,department_id,city_id,neighbourhood_id', 'numerical'),
             array('title,shortstreetaddress', 'length', 'max' => 100),

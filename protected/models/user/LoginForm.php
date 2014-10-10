@@ -19,7 +19,7 @@ class LoginForm extends CFormModel {
     public function rules() {
         return array(
             // username and password are required
-            array('username, password', 'required', 'message' => Yii::app()->params["templateEmptyValueErrorMessage"]),
+            array('username, password', 'required', 'message' => Yii::app()->params["emptyValueErrorMessage"]),
             // password needs to be authenticated
             array('password', 'authenticate'),
         );
@@ -43,7 +43,7 @@ class LoginForm extends CFormModel {
         if (!$this->hasErrors()) {
             $this->_identity = new UserIdentity($this->username, $this->password);
             if (!$this->_identity->authenticate())
-                $this->addError('password', Yii::app()->params["InvalidAuthenticationInfo"]);
+                $this->addError('password', Yii::app()->params["invalidAuthenticationInfo"]);
         }
     }
 

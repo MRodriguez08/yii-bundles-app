@@ -7,10 +7,10 @@
     <div class="col-lg-12">
         <div class="row top-admin-row">
             <div class="col-lg-12">
-                <?php echo Yii::app()->params["UiHeadersWrapperOMarkup"]; ?><span class="glyphicon glyphicon-calendar"></span> <?php echo Yii::app()->params["labelFuncionalidadCalendario"] ?><?php echo Yii::app()->params["UiHeadersWrapperCMarkup"]; ?>
+                <?php echo Yii::app()->params["uiHeadersWrapperOMarkup"]; ?><span class="glyphicon glyphicon-calendar"></span> <?php echo Yii::app()->params["calendarFunctionalityLabel"] ?><?php echo Yii::app()->params["uiHeadersWrapperCMarkup"]; ?>
                 <ol class="breadcrumb">
                     <li><a href="<?php echo Yii::app()->createUrl("site/index") ?>">Inicio</a></li>
-                    <li class="active"><?php echo Yii::app()->params["labelFuncionalidadCalendario"] ?></li>
+                    <li class="active"><?php echo Yii::app()->params["calendarFunctionalityLabel"] ?></li>
                 </ol>               
             </div>            
         </div>

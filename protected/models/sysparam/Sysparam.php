@@ -24,8 +24,8 @@ class Sysparam extends CActiveRecord {
         // NOTE: you should only define rules for those attributes that
         // will receive user inputs.
         return array(
-            array('name, value, description', 'required', "message" => Yii::app()->params["templateEmptyValueErrorMessage"]),
-            array('value', 'validateParameter', 'message' => Yii::app()->params["templateInvalidEmailFormatMessage"]),
+            array('name, value, description', 'required', "message" => Yii::app()->params["emptyValueErrorMessage"]),
+            array('value', 'validateParameter', 'message' => Yii::app()->params["invalidEmailFormatMessage"]),
             array('name', 'length', 'max' => 64),
             array('description', 'length', 'max' => 1024),
             array('value', 'length', 'max' => 512),
