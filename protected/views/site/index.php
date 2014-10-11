@@ -51,9 +51,13 @@
 </div>
 
 <script type="text/javascript">
-    $(document).ready(function() {
-        obtenerGraficaCantidadInmueblesPorTipo(backendConstants.GRAFICA_INMUEBLE_POR_TIPO);
-        obtenerNotificacionesPendientes();
-    });
+    head.ready(["//code.jquery.com/jquery-1.11.0.min.js"], function() {
+        $(document).ready(function() {
+
+            obtenerGraficaCantidadInmueblesPorTipo(backendConstants.GRAFICA_INMUEBLE_POR_TIPO);
+            obtenerNotificacionesPendientes();
+
+        });
+    })
 </script>
 
