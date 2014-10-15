@@ -36,7 +36,9 @@
                             <a href="<?php echo Yii::app()->createUrl("user/myProfile") ?>"><span class="glyphicon glyphicon-user"></span> Mi perfil</a>
                         </li>
                         <li class="divider"></li>
-                        <a href="#"><i class="fa fa-bug"></i> Reportar error</a>
+                        <li>
+                            <a href="#"><i class="fa fa-bug"></i> Reportar error</a>
+                        </li>
                         <li class="divider"></li>
                         <li>
                             <a href="<?php echo Yii::app()->createUrl("user/logout") ?>"><span class="glyphicon glyphicon-log-out"></span> Salir</a>
