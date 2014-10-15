@@ -1,7 +1,7 @@
 
 function initCalendar() {
     "use strict";
-    alert('fui por eventos');
+    //alert('fui por eventos');
     var options = {
         events_source: CONF['backendIp'] + '/events',
         view: 'month',

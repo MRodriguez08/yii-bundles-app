@@ -39,7 +39,7 @@ head.load([ { jquery : '//code.jquery.com/jquery-1.11.0.min.js' }] ,  function()
         { jsMyDesktopCalendarBundleAjaxCalls : baseUrl + 'assets/js/bundles/calendar/ajaxcalls.js'},
         { jsMyDesktopCharts : baseUrl + 'assets/js/graficas.js'},
         { jsMyDesktopObjects : baseUrl + 'assets/js/objects.js'},
-        { jsMyDesktopAjaxCalls : baseUrl + 'assets/js/LlamadasAjax.js'},
+        { jsMyDesktopAjaxCalls : baseUrl + 'assets/js/llamadas-ajax.js'},
         
         { jsJqueryMetisMenu : baseUrl + 'assets/js/lib/metisMenu/jquery.metisMenu.js'},
         { jsSbAdmin : baseUrl + 'assets/js/sb-admin.js'},     

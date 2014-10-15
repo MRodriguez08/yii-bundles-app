@@ -14,6 +14,9 @@
                 $form = $this->beginWidget('CActiveForm', array(
                     'id' => 'user-form',
                     'enableAjaxValidation' => false,
+                    'htmlOptions'=>array(
+                        'enctype'=>'multipart/form-data'
+                     ),
                 ));
                 ?>
 
@@ -45,6 +48,12 @@
                     <?php echo $form->labelEx($model, 'surname'); ?>
                     <?php echo $form->textField($model, 'surname', array('size' => 60, 'maxlength' => 100, "class" => "form-control input-sm")); ?>
                     <?php echo $form->error($model, 'surname', array("class" => "yii-error-alert")); ?>
+                </div>
+            
+                <div class="form-group">
+                    <?php echo $form->labelEx($model, 'photo'); ?>
+                    <input name="User_photo_file" type="file" class="form-control input-sm" id="User_photo" />
+                    <?php echo $form->error($model, 'photo', array("class" => "yii-error-alert")); ?>
                 </div>
 
                 <a href="<?php echo Yii::app()->createUrl("user/myProfile") ?>"><?php echo Yii::app()->params["goBackButtonLabel"] ?></a>

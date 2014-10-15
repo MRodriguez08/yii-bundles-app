@@ -1,9 +1,10 @@
 
 
-function bloquearPantalla(){
+function blockScreen(){
     
 }
 
-function desbloquearPantalla(){
+function unblockScreen(){
     
 }
+

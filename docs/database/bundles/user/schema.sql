@@ -39,6 +39,9 @@ CREATE TABLE `users` (
   `last_login` date DEFAULT NULL,
   `enabled` tinyint(1) DEFAULT NULL,
   `role` varchar(50) DEFAULT NULL,
+
   PRIMARY KEY (`nick`),
   UNIQUE KEY `email` (`email`)
 );
+
+alter table users add column photo blob;

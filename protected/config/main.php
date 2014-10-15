@@ -49,6 +49,9 @@ return array(
         
         /* components */
         'application.components.*',
+        
+        /* components */
+        'ext.*',
 
     ),
     'aliases' => array(

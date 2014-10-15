@@ -10,7 +10,8 @@
     <div class="col-lg-4">
         <?php echo Yii::app()->params["uiHeadersWrapperOMarkup"]; ?><span class="glyphicon glyphicon-user"></span> Mi perfil<?php echo Yii::app()->params["uiHeadersWrapperCMarkup"]; ?>
         <div class="row">
-            <div class="btn-group">
+            <div class="col-lg-12">
+                <div class="btn-group">
                 <a href="<?php echo Yii::app()->createUrl("user/editMyProfile") ?>">
                     <button type="button" class="btn btn-default">Editar</button>
                 </a>
@@ -18,7 +19,12 @@
                     <button type="button" class="btn btn-default">Cambiar contrase&ntilde;a</button>
                 </a>
             </div>
-            <form role="form">
+            </div>
+            <div class="col-lg-12">
+                <img class="profile-photo" src="<?php echo Yii::app()->createUrl("file/profilePhoto") ?>" alt="img" />
+            </div>
+            <div class="col-lg-12">
+                <form role="form">
                 <div class="form-group">
                     <label for="inputUsuario">Usuario</label>
                     <input disabled="true" type="text" class="form-control input-sm" id="inputUsuario" value="<?php echo $model->nick; ?>">
@@ -37,6 +43,10 @@
                 </div>
                 <a href="<?php echo Yii::app()->createUrl("user/admin"); ?>">Volver</a>
             </form>
+            </div>
+            
+            
+            
         </div>
     </div>
 </div>

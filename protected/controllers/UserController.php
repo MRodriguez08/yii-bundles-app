@@ -12,7 +12,7 @@ class UserController extends AdminController {
 
     protected $pageTitle = ". : Usuarios : .";
     public $defaultAction = 'admin';
-
+    
     /**
      * @return array action filters
      */
@@ -141,6 +141,13 @@ class UserController extends AdminController {
 
         if (isset($_POST['User'])) {
             $model->attributes = $_POST['User'];
+            
+            if (empty($_FILES['User_photo_file']['name']) == false){
+                $arr = file_get_contents($_FILES['User_photo_file']['tmp_name']);
+                $model->photo = $arr;
+            }
+            
+            
             if ($model->save()) {
                 $this->audit->logAudit(Yii::app()->user->id, new DateTime, Constants::AUDITORIA_OBJETO_USUARIO, Constants::AUDITORIA_OPERACION_MODIFICACION, $model->nick);
                 $this->render('/site/successfullOperation', array(

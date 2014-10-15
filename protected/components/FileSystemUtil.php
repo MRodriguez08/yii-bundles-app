@@ -14,6 +14,7 @@
 class FileSystemUtil {
 
     const TMP_FOLDER_NAME = "tmp";
+    const STATIC_FOLDER_NAME = "static";
     const IMAGES_FOLDER_NAME = "inmuebles";
     const RIGHTS_MODE = 0755;
 
@@ -42,6 +43,17 @@ class FileSystemUtil {
     function getTmpFile($fileName) {
         $rutaBase = Sysparam::model()->findByPk(Constants::PARAMETRO_RUTA_BASE)->value;
         $file = join(DIRECTORY_SEPARATOR, array($rutaBase, FileSystemUtil::TMP_FOLDER_NAME, Yii::app()->user->id, $fileName));
+        return $file;
+    }
+    
+    /**
+     * 
+     * @param type $fileName
+     * @return type
+     */
+    function getStaticFile($fileName) {
+        $rutaBase = Sysparam::model()->findByPk(Constants::PARAMETRO_RUTA_BASE)->value;
+        $file = join(DIRECTORY_SEPARATOR, array($rutaBase, FileSystemUtil::STATIC_FOLDER_NAME,$fileName));
         return $file;
     }
 

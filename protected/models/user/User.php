@@ -89,6 +89,7 @@ class User extends CActiveRecord {
             'last_login' => 'Ultimo Ingreso',
             'enabled' => 'Habilitado',
             'role' => 'Rol',
+            'photo' => 'Imagen',
         );
     }
 

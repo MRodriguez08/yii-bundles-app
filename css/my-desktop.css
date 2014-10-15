@@ -49,3 +49,15 @@ body{
     padding-top: 20px;
     padding-bottom: 10px;
 }
+
+.profile-photo {
+    max-width: 149px;
+    margin-right: 5%;
+    margin-top: 2%;
+    margin-bottom: 10px;    
+}
+
+.nav .profile-photo {
+    max-width: 30px;
+    float: left;
+}

@@ -28,7 +28,7 @@
                 <!-- /.dropdown -->
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                        <span class="glyphicon glyphicon-user"></span>  <?php echo Yii::app()->user->getNameAndRole(); ?> <i class="fa fa-caret-down"></i>  
+                        <img class="profile-photo" src="<?php echo Yii::app()->createUrl("file/profilePhoto") ?>" alt="img" />  <?php echo Yii::app()->user->getNameAndRole(); ?> <i class="fa fa-caret-down"></i>  
                     </a>
                     <ul class="dropdown-menu dropdown-user">
                         <li>
@@ -155,7 +155,3 @@
     
     <script src="<?php echo Yii::app()->request->baseUrl; ?>/assets/js/scripts.load.js"></script>
 </html>
-
-
-
-

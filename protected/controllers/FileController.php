@@ -27,6 +27,10 @@ class FileController extends CController {
                 'actions' => array('display','displayPropertyImage'),
                 'users' => array('*'),
             ),
+            array('allow',
+                'actions' => array('profilePhoto'),
+                'users' => array('@'),
+            ),
             array('deny',
                 'users' => array('*'),
             ),
@@ -48,6 +52,22 @@ class FileController extends CController {
         $fs = new FileSystemUtil;
         $file = $fs->getInmuebleFile($idInmueble, $idArchivo);
         Response::sendImage($file);
+    }
+    
+    public function actionProfilePhoto(){
+        $u = User::model()->findByPk(Yii::app()->user->id);
+        if ($u->photo == null){
+            $fs = new FileSystemUtil;
+            $photoUrl = $fs->getStaticFile("no-photo.jpg"); 
+            if (file_exists($photoUrl)){
+                Response::sendImage($photoUrl);
+            } else {
+                die ($photoUrl . " no-photo.jpg no existe" );
+            }                
+        }
+            
+        else
+            Response::sendByteArray($u->photo);
     }
 
 }
