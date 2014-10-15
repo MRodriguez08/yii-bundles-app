@@ -15,6 +15,11 @@
 class User extends CActiveRecord {
 
     /**
+     * Attribute to store the new photo on edit mode. Needed to validate file size
+     */
+    public $newPhotoData = null;
+
+    /**
      * @return string the associated database table name
      */
     public function tableName() {
@@ -32,6 +37,7 @@ class User extends CActiveRecord {
             array('nick', 'duplicatedUserName', 'message' => Yii::app()->params["templateDuplicatedValueErrorMessage"]),
             array('email', 'duplicatedUserEmal', 'message' => Yii::app()->params["templateDuplicatedValueErrorMessage"]),
             array('email', 'validateEmailFormat', 'message' => Yii::app()->params["invalidEmailFormatMessage"]),
+            array('newPhotoData', 'validatePhotoSize', 'message' => Yii::app()->params["userPhotoFileSizeExceeded"]),
             array('enabled', 'numerical', 'integerOnly' => true),
             array('nick, email, password', 'length', 'max' => 64),
             array('name, surname', 'length', 'max' => 100),
@@ -50,15 +56,24 @@ class User extends CActiveRecord {
         }
     }
 
+    public function validatePhotoSize($attribute, $params) {
+        if ($this->newPhotoData !== null) {
+            if ((int) $this->newPhotoData['size'] > (int) Yii::app()->params['maxUserPhotoSize']) {
+                $this->addError('photo', Yii::app()->params["userPhotoFileSizeExceeded"]);
+            } else {
+                $this->photo = file_get_contents($this->newPhotoData['tmp_name']);
+            }
+        }
+    }
+
     public function duplicatedUserEmal($attribute, $params) {
         if ($this->isNewRecord) {
             if (count(User::model()->findALl('email=:email', array("email" => $this->email))) > 0)
                 $this->addError($attribute, str_replace("{attribute}", $attribute, Yii::app()->params["templateDuplicatedValueErrorMessage"]));
-        }  else {
-            if (count(User::model()->findALl('email=:email and nick <> :nick', array("email" => $this->email,"nick" => $this->nick))) > 0)
+        } else {
+            if (count(User::model()->findALl('email=:email and nick <> :nick', array("email" => $this->email, "nick" => $this->nick))) > 0)
                 $this->addError($attribute, str_replace("{attribute}", $attribute, Yii::app()->params["templateDuplicatedValueErrorMessage"]));
         }
-        
     }
 
     public function validateEmailFormat($attribute, $params) {
@@ -84,7 +99,7 @@ class User extends CActiveRecord {
             'nick' => 'Usuario',
             'email' => 'Email',
             'password' => 'Contrase&ntilde;a',
-            'name' => 'name',
+            'name' => 'Nombre',
             'surname' => 'Apellido',
             'last_login' => 'Ultimo Ingreso',
             'enabled' => 'Habilitado',
@@ -111,7 +126,7 @@ class User extends CActiveRecord {
         $criteria = new CDbCriteria;
 
         $criteria->compare('nick', $this->nick, true);
-        $criteria->compare('email', $this->email, true);        
+        $criteria->compare('email', $this->email, true);
         $criteria->compare('name', $this->name, true);
         $criteria->compare('surname', $this->surname, true);
         $criteria->compare('last_login', $this->last_login, true);
@@ -131,8 +146,8 @@ class User extends CActiveRecord {
     public static function model($className = __CLASS__) {
         return parent::model($className);
     }
-    
-    public function resetPassword(){
+
+    public function resetPassword() {
         $defPassword = Sysparam::model()->findByPk(Constants::PARAMETRO_CONTRASENIA_REINICIO);
         $this->password = crypt($defPassword->value);
     }

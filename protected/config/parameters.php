@@ -48,7 +48,9 @@ return array(
     "templateDuplicatedValueErrorMessage" => " {attribute} ya utilizado",
     "formHasErrorPanel" => "<div class=\"alert alert-danger\" role=\"alert\"><b>Hay errores en los datos. Por favor verifiquelos</b></div>",
     "invalidEmailFormatMessage" => "formato de email inv&aacute;lido. ej: jperez@gmail.com",
-
+    "userPhotoFileSizeExceeded" => "La imagen demaciada grande.",
+    
+    
     /**
      * Valid options
      *      - 'in' for panel visible
@@ -73,5 +75,7 @@ return array(
     /* http status messages */
     "httpErrorCode404Message" => 'The requested page does not exist.',
     "httpErrorCode500Message" => 'Internal server error!! please contant the system administrator or report the bug. Thanks!!',
+    
+    "maxUserPhotoSize" => 1048576
     
 );

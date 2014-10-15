@@ -59,6 +59,7 @@ body{
 
 .nav .profile-photo {
     max-width: 30px;
+    max-height: 30px;
     float: left;
     margin-top: 0px !important;
 }

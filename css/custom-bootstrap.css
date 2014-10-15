@@ -4433,6 +4433,7 @@ a.thumbnail.active {
 }
 .yii-error-alert {
   color: red;
+  padding-top: 10px;
 }
 .alert h4 {
   margin-top: 0;

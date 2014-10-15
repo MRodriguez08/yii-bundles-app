@@ -1,6 +1,5 @@
 <?php
 
-
 /**
  * User controller
  * 
@@ -12,7 +11,7 @@ class UserController extends AdminController {
 
     protected $pageTitle = ". : Usuarios : .";
     public $defaultAction = 'admin';
-    
+
     /**
      * @return array action filters
      */
@@ -37,7 +36,7 @@ class UserController extends AdminController {
                 'users' => array('?'),
             ),
             array('allow',
-                'actions' => array('logout', 'myProfile', 'editMyProfile','changePassword'),
+                'actions' => array('logout', 'myProfile', 'editMyProfile', 'changePassword'),
                 'users' => array('@'),
             ),
             array('allow',
@@ -141,14 +140,13 @@ class UserController extends AdminController {
 
         if (isset($_POST['User'])) {
             $model->attributes = $_POST['User'];
-            
-            if (empty($_FILES['User_photo_file']['name']) == false){
-                $arr = file_get_contents($_FILES['User_photo_file']['tmp_name']);
-                $model->photo = $arr;
+
+            if (empty($_FILES['User_photo_file']['name']) == false) {
+                $model->newPhotoData = $_FILES['User_photo_file'];
             }
-            
-            
-            if ($model->save()) {
+
+
+            if ($model->validate() && $model->save()) {
                 $this->audit->logAudit(Yii::app()->user->id, new DateTime, Constants::AUDITORIA_OBJETO_USUARIO, Constants::AUDITORIA_OPERACION_MODIFICACION, $model->nick);
                 $this->render('/site/successfullOperation', array(
                     'header' => 'Perfil editado con &eacute;xito',
@@ -163,7 +161,7 @@ class UserController extends AdminController {
             'model' => $model,
         ));
     }
-    
+
     public function actionChangePassword() {
         // Uncomment the following line if AJAX validation is needed
         // $this->performAjaxValidation($model);
