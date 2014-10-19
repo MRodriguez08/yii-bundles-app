@@ -275,7 +275,7 @@ html {
 body {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 14px;
-  line-height: 0.428571;
+  line-height: 1.42857143;
   color: #333;
   background-color: #fff;
 }
@@ -288,7 +288,7 @@ textarea {
   line-height: inherit;
 }
 a {
-  color: #333;
+  color: #428bca;
   text-decoration: none;
 }
 a:hover,
@@ -564,7 +564,7 @@ a.bg-danger:hover {
 }
 .page-header {
   padding-bottom: 9px;
-  margin: 20px 0 20px;
+  margin: 40px 0 20px;
   border-bottom: 1px solid #eee;
 }
 ul,
@@ -3647,7 +3647,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 }
 @media (min-width: 768px) {
   .navbar {
-    border-radius: 0px;
+    border-radius: 4px;
   }
 }
 @media (min-width: 768px) {
@@ -4425,15 +4425,10 @@ a.thumbnail.active {
   color: #333;
 }
 .alert {
-  padding: 4px;
-  padding-left: 4px;
+  padding: 15px;
   margin-bottom: 20px;
   border: 1px solid transparent;
   border-radius: 4px;
-}
-.yii-error-alert {
-  color: red;
-  padding-top: 10px;
 }
 .alert h4 {
   margin-top: 0;
@@ -4767,7 +4762,7 @@ a.list-group-item-danger.active:focus {
           box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
 }
 .panel-body {
-  padding: 4px;
+  padding: 15px;
 }
 .panel-heading {
   padding: 10px 15px;
@@ -4781,7 +4776,7 @@ a.list-group-item-danger.active:focus {
 .panel-title {
   margin-top: 0;
   margin-bottom: 0;
-  font-size: 14px;
+  font-size: 16px;
   color: inherit;
 }
 .panel-title > a {
