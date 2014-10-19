@@ -8,6 +8,7 @@ class SiteController extends AdminController {
      * @return array action filters
      */
     public function filters() {
+        parent::initController();
         Yii::app()->session[Constants::SESSION_CURRENT_TAB] = Constants::ITEM_MENU_HOME;
         return array(
             'accessControl',
@@ -43,6 +44,7 @@ class SiteController extends AdminController {
     
     public function actionIndex(){
         Yii::app()->session[Constants::SESSION_CURRENT_TAB] =  Constants::ITEM_MENU_HOME ;
+        echo "asdasdasddas";
         $this->render('index');
     }
 

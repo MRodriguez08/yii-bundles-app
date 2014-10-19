@@ -6,7 +6,7 @@
 // CWebApplication properties can be configured here.
 return array(
     'basePath' => dirname(__FILE__) . DIRECTORY_SEPARATOR . '..',
-    'name' => 'My Desktop',
+    'name' => 'My Desktop',    
     'defaultController' => 'site/index',
     // preloading 'log' component
     'preload' => array('log'),
@@ -150,5 +150,5 @@ return array(
     ),
     // application-level parameters that can be accessed
     // using Yii::app()->params['paramName']
-    "params" => include(dirname(__FILE__) . "/parameters.php" ), //<� here is our file
+    "params" => include(dirname(__FILE__) . "/parameters.php" ), //<� here is our file    
 );

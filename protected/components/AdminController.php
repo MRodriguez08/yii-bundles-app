@@ -31,11 +31,18 @@ class AdminController extends CController {
     public $errorFields = array();
     
     /**
-     * Objeto para registro de audiria del sistema;
+     * Object to log events in the audir database table
      * @var type Audit
      */
     protected $audit;
 
+    
+    /**
+     * Object create necesary assets imports.
+     * @var type AssetsHelper (extension)
+     */
+    protected $assetsHelper;
+    
     protected function setCustomError($message){
         $this->hasError = true; 
         $this->errorMessage = $message;
@@ -43,6 +50,7 @@ class AdminController extends CController {
     
     protected function initController() {
         $this->audit = new Audit;
+        $this->assetsHelper = new AssetsHelper();
     }
 
 }

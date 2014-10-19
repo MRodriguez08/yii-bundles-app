@@ -76,6 +76,10 @@ return array(
     "httpErrorCode404Message" => 'The requested page does not exist.',
     "httpErrorCode500Message" => 'Internal server error!! please contant the system administrator or report the bug. Thanks!!',
     
-    "maxUserPhotoSize" => 1048576
+    "maxUserPhotoSize" => 1048576,
+    
+    "styles" => include(dirname(__FILE__) . "/styles.php" ),
+    "scripts" => include(dirname(__FILE__) . "/scripts.php" ),
+    'runMode' => 'debug',
     
 );

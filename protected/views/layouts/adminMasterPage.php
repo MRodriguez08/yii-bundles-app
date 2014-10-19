@@ -6,7 +6,7 @@
         <meta name="language" content="en" />
 
         <!-- Head.js -->
-        <script src="<?php echo Yii::app()->request->baseUrl; ?>/assets/js/styles.load.js"></script>
+        <?php echo $this->assetsHelper->getCssIncludes(); ?>
         
         <title><?php echo CHtml::encode($this->pageTitle); ?></title>
     </head>
@@ -156,5 +156,5 @@
         <!-- /#page-wrapper -->
     </body>
     
-    <script src="<?php echo Yii::app()->request->baseUrl; ?>/assets/js/scripts.load.js"></script>
+    <?php echo $this->assetsHelper->getJsIncludes(); ?>
 </html>
