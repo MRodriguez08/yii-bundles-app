@@ -1,6 +1,9 @@
 <?php
 
 return array(
+    
+    'debugMode' => YII_DEBUG,
+    //'debugMode' => true,
 
     /* buttons labels (grid and non grid button */
     "showFiltersLabel" => "B&uacute;squeda avanzada",
@@ -79,7 +82,6 @@ return array(
     "maxUserPhotoSize" => 1048576,
     
     "styles" => include(dirname(__FILE__) . "/styles.php" ),
-    "scripts" => include(dirname(__FILE__) . "/scripts.php" ),
-    'runMode' => 'debug',
+    "scripts" => include(dirname(__FILE__) . "/scripts.php" ),    
     
 );

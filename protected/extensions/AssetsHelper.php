@@ -13,7 +13,7 @@ class AssetsHelper {
     
     public function getCssIncludes(){
         $out = "";
-        if (strcmp(Yii::app()->params["runMode"], "production") == 0){ 
+        if (Yii::app()->params["debugMode"] === false){ 
             $out = "<link rel='stylesheet' href='" . Yii::app()->request->baseUrl. "/css/styles.css' >";
         } else { 
             foreach (Yii::app()->params["styles"] as $s){
@@ -25,7 +25,7 @@ class AssetsHelper {
     
     public function getjsIncludes(){
         $out = "";
-        if (strcmp(Yii::app()->params["runMode"], "production") == 0){ 
+        if (Yii::app()->params["debugMode"] === false){ 
             $out = "<script src='" . Yii::app()->request->baseUrl . "/assets/js/scripts.css'></script>";
         } else { 
             foreach (Yii::app()->params["scripts"] as $s){
