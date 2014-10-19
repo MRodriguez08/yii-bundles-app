@@ -9,6 +9,7 @@ class CalendarController extends AdminController {
      * @return array action filters
      */
     public function filters() {
+        parent::initController();
         Yii::app()->session[Constants::SESSION_CURRENT_TAB] = Constants::ITEM_MENU_CALENDARIO;
         return array(
             'accessControl',

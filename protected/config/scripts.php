@@ -1,6 +1,9 @@
 <?php
 
-return array(   
+return array(  
+    
+    "jsJQuery" => '//code.jquery.com/jquery-1.11.0.min.js',
+    "jsUnderscore" => 'assets/js/lib/underscore/underscore-min.js',
     "jsBootstrap" =>'assets/js/lib/bootstrap/bootstrap3.1.1.min.js' ,
     "jsAlertify" =>'assets/js/lib/alertify.min.js' ,
     "jsExtend" =>'assets/js/lib/js-extend.js' ,
