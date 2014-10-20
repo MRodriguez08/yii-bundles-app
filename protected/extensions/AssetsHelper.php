@@ -36,19 +36,29 @@ class AssetsHelper {
     }   
     
     private function getCssTag($s){
-        if (strcmp(substr($s, 0, 2), "//") !== 0){
-            return "<link rel='stylesheet' href='" . Yii::app()->request->baseUrl . "/" . $s . "'>";
+        if ($s["local"] !== null){
+            return "<link rel='stylesheet' href='" . Yii::app()->request->baseUrl . "/" . $s["local"] . "'>";
         } else {
-            return "<link rel='stylesheet' href='" . $s . "'>";
+            return "<link rel='stylesheet' href='" . $s["cdn"] . "'>";
         }
     }
     
-    private function getJsTag($s){
-        if (strcmp(substr($s, 0, 2), "//") !== 0){
-            return "<script src='" . Yii::app()->request->baseUrl . "/" . $s . "'></script>";        
+    /**
+     * Get a resource node as parameter and return the <script> tag with the local fallback (if possible).
+     * Creates a include with local fallback.
+     * @param type $r
+     * @return type
+     */
+    private function getJsTag($r){
+        $out = "";        
+        if ($r["cdn"] !== null){
+            //if i have a cdn set, return the script with local fallback
+            $out .= "<script src='" . $r["cdn"] . "'></script><script>window." . $r["fn"] . " || document.write('<script src=\"". Yii::app()->request->baseUrl . "/" . $r["local"] . "\"><\/script>')</script>";
         } else {
-            return "<script src='" . $s . "'></script>";        
+            //if I don't... just local
+            $out = "<script src=\"" . Yii::app()->request->baseUrl . "/" . $r["local"] . "\"></script>";        
         }
+        return $out;
     }
     
 }
