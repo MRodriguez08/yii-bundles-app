@@ -24,7 +24,7 @@ class FileController extends CController {
                 'roles' => array(Constants::USER_ROLE_ADMINISTRATIVO, Constants::USER_ROLE_DIRECTOR),
             ),
             array('allow',
-                'actions' => array('display','displayPropertyImage'),
+                'actions' => array('display','displayPropertyImage','getMyImage'),
                 'users' => array('*'),
             ),
             array('allow',
@@ -64,10 +64,13 @@ class FileController extends CController {
             } else {
                 die ($photoUrl . " no-photo.jpg no existe" );
             }                
-        }
-            
-        else
-            Response::sendByteArray($u->photo);
+        } else {
+            Response::sendByteArray($u->photo);            
+        }            
+    }
+    
+    public function actionGetMyImage(){
+        Response::sendImage("/opt/lampp/htdocs/files/yii-bundles-app/lambo.jpg");
     }
 
 }

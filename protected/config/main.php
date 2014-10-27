@@ -46,6 +46,8 @@ return array(
         /* notifications bundle */
         'application.models.notification.*',
         
+        /* products bundle */
+        'application.models.product.*',
         
         /* components */
         'application.components.*',
@@ -91,11 +93,14 @@ return array(
                 'event/update' => 'calendar/updateEvent',
                 'event/<id:\d+>' => 'calendar/view',      
                 
+                'image/getmyimage' => 'file/getMyImage',
                 'image/<id:.*\S.*>' => 'file/display',
+                
                 'propertyImage' => 'file/displayPropertyImage',
                 
                 
-                'rwsinmueble/<data:.*\S*>' => 'rwsinmueble/processRequest',                
+                'catalogue/' => 'rwscatalogue/processRequest',    
+                'rwsinmueble/<data:.*\S*>' => 'rwsinmueble/processRequest',            
                 'rwsinmueble' => 'rwsinmueble/processRequest',
                 'rwsnotification/\w+' => 'rwsnotification/processRequest',
                 'rwsnotification' => 'rwsnotification/processRequest',

@@ -128,7 +128,6 @@ class Response {
         http_response_code(200);
         header('Content-Type:' . $contentType);
         header('Content-Length: ' . filesize($imageUrl));
-        $s = filesize($imageUrl);
         readfile($imageUrl);
     }
     
